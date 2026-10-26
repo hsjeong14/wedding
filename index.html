@@ -11,7 +11,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400;1,6..96,500&family=Noto+Serif+KR:wght@300;400;500&family=Noto+Sans+KR:wght@300;400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400;1,6..96,500&family=Noto+Serif+KR:wght@300;400;500&family=Noto+Sans+KR:wght@300;400&family=Mrs+Saint+Delafield&display=swap">
 <style>
 /* Layout: a fashion-editorial single column. Full-bleed cover, then generous white space,
    hairline rules, and one large Bodoni numeral per section. Single light look by choice (paper invitation). */
@@ -250,13 +250,13 @@ a:focus-visible, button:focus-visible { outline: 1px solid var(--seine); outline
 .intro.gone { opacity: 0; visibility: hidden; pointer-events: none; }
 .intro-bg {
   position: absolute; inset: 0; width: 100%; height: 100%; max-width: none;
-  object-fit: cover; object-position: 50% 62%;
-  transform-origin: 50% 70%;
+  object-fit: cover; object-position: 50% 40%;
+  transform-origin: 50% 72%;
   transition: transform 2.2s cubic-bezier(.45,0,.2,1), filter 2.2s ease;
 }
 .intro::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(180deg, rgba(18,20,21,.62) 0%, rgba(18,20,21,.08) 34%, rgba(18,20,21,0) 55%, rgba(18,20,21,.72) 100%);
+  background: linear-gradient(180deg, rgba(18,20,21,.38) 0%, rgba(18,20,21,.1) 30%, rgba(18,20,21,0) 50%);
 }
 .intro-copy {
   position: absolute; inset: 0; z-index: 1;
@@ -281,6 +281,39 @@ a:focus-visible, button:focus-visible { outline: 1px solid var(--seine); outline
 }
 .open-btn:hover { background: #f1eee8; color: var(--ink); }
 .open-btn:focus-visible { outline: 1px solid #f1eee8; outline-offset: 4px; }
+.intro .intro-bg {
+  top: 0; bottom: auto; height: calc(100% - 250px - env(safe-area-inset-bottom, 0px));
+  -webkit-mask-image: linear-gradient(180deg, #000 82%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 82%, transparent 100%);
+}
+.intro .intro-foot { gap: 12px; }
+@media (max-height: 760px) {
+  .intro .intro-bg { object-position: 50% 78%; }
+  .intro-copy { padding-top: calc(34px + env(safe-area-inset-top, 0px)); padding-bottom: calc(30px + env(safe-area-inset-bottom, 0px)); }
+  .script { margin-top: 1vh; }
+  .script .s1 { font-size: clamp(52px, 16vw, 74px); }
+  .script .s2 { font-size: clamp(50px, 15vw, 70px); }
+  .intro .intro-bg { height: calc(100% - 226px - env(safe-area-inset-bottom, 0px)); }
+}
+.intro-copy { justify-content: flex-start; }
+.intro-foot { margin-top: auto; }
+.script {
+  margin: 4vh 0 0; width: 100%; max-width: 420px;
+  font-family: "Mrs Saint Delafield", "Snell Roundhand", "Apple Chancery", cursive;
+  font-weight: 400; color: #fbf9f5; line-height: .78;
+  display: grid; transform: rotate(-7deg);
+  text-shadow: 0 2px 18px rgba(20,24,26,.35);
+}
+.script span { display: block; padding: .12em .18em; }
+.script .s1 { font-size: clamp(64px, 20vw, 92px); justify-self: start; margin-left: 4%; }
+.script .s2 { font-size: clamp(60px, 18.5vw, 86px); justify-self: end; margin-right: 0; margin-top: -.06em; }
+.intro .intro-names { font-size: clamp(22px, 6.2vw, 28px); }
+@media (prefers-reduced-motion: no-preference) {
+  .script .s1, .script .s2 { clip-path: inset(-20% 100% -20% 0); animation: pen 2.1s cubic-bezier(.55,.1,.35,1) forwards; }
+  .script .s1 { animation-delay: .5s; }
+  .script .s2 { animation-delay: 1.8s; animation-duration: 2.6s; }
+  @keyframes pen { to { clip-path: inset(-20% -5% -20% 0); } }
+}
 .intro.opening .intro-bg { transform: scale(1.5); filter: brightness(1.15); }
 .intro.opening .intro-copy { opacity: 0; transform: translateY(-10px); }
 @media (prefers-reduced-motion: no-preference) {
@@ -396,14 +429,12 @@ footer .label { color: #a7b3ad; }
 
 
 <div class="intro" id="intro">
-  <img class="intro-bg" src="k/intro_clean.jpg" alt="비르아켐 다리 아래 아치 사이에서 마주 선 현석과 가영">
+  <img class="intro-bg" src="g/LUS04961.jpg" alt="에펠탑이 보이는 센강 난간 앞에 나란히 선 현석과 가영">
   <div class="intro-copy">
-    <div class="intro-head">
-      <p class="label">Wedding Invitation</p>
-      <h2 class="intro-names">Hyunseok <span class="amp">&amp;</span> Gayeong</h2>
-      <p class="intro-ko">정현석 · 양가영</p>
-    </div>
+    <p class="label">Wedding Invitation</p>
+    <h2 class="script" aria-label="We are getting married"><span class="s1" aria-hidden="true">We are</span><span class="s2" aria-hidden="true">getting married</span></h2>
     <div class="intro-foot">
+      <p class="intro-names">Hyunseok <span class="amp">&amp;</span> Gayeong</p>
       <p class="intro-when"><span class="d">2027. 02. 20</span><span class="v">토요일 오후 3시 · 빌라드지디 논현</span></p>
       <button class="open-btn" id="openBtn" type="button">열기</button>
     </div>
