@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light only">
+<meta name="format-detection" content="telephone=no">
 <meta property="og:title" content="정현석 · 양가영 결혼합니다">
 <meta property="og:description" content="2027년 2월 20일 토요일 오후 3시 · 빌라드지디 논현">
 <meta property="og:image" content="g/LUS05578.jpg">
@@ -412,6 +414,39 @@ footer .label { color: #a7b3ad; }
 @media (max-width: 360px) {
   .families { grid-template-columns: auto auto auto; column-gap: 8px; }
   .fam .parents { font-size: 14px; }
+}
+
+
+/* Robustness: text never reflows or gets pushed on any phone/browser */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+:root { color-scheme: light only; }
+.cover-names, .cover-date, .ko-names, .intro-names, .intro-when .d, .day-meta .en, footer .sig, .venue, .venue-en, .fam span, .tl-legend span, .tl-scale span, .label { white-space: nowrap; }
+.day-meta .en { font-size: clamp(15px, 4.9vw, 19px); }
+footer .sig { font-size: clamp(24px, 7.6vw, 30px); }
+.cover-names { font-size: clamp(24px, 7.6vw, 34px); }
+@media (max-width: 340px) {
+  .fam .parents { font-size: 13.5px; }
+  .fam .child { font-size: 15.5px; }
+  .families { column-gap: 6px; }
+  .big-num { font-size: 96px; }
+}
+@media (max-height: 620px) {
+  .script .s1 { font-size: 48px; }
+  .script .s2 { font-size: 46px; }
+  .intro-copy { padding-top: calc(26px + env(safe-area-inset-top, 0px)); }
+}
+/* Landscape phones: photo fills, info sits over a darker veil */
+@media (max-height: 500px) and (orientation: landscape) {
+  .intro .intro-bg { height: 100%; -webkit-mask-image: none; mask-image: none; object-position: 50% 55%; }
+  .intro::after { background: linear-gradient(180deg, rgba(18,20,21,.45), rgba(18,20,21,.25) 40%, rgba(18,20,21,.7)); }
+  .intro-copy { padding-top: calc(14px + env(safe-area-inset-top, 0px)); padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px)); }
+  .script { margin-top: 0; max-width: 330px; }
+  .script .s1 { font-size: 40px; }
+  .script .s2 { font-size: 38px; }
+  .intro .intro-foot { gap: 6px; }
+  .intro .intro-names { font-size: 20px; }
+  .intro-when .d { font-size: 14px; }
+  .open-btn { margin-top: 2px; padding: 10px 32px 10px 38px; }
 }
 
 /* Desktop: keep everything in the phone-width column */
