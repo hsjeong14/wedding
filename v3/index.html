@@ -512,7 +512,7 @@ footer .sig { font-size: clamp(24px, 7.6vw, 30px); }
   -webkit-mask-composite: source-in;
   mask-image: radial-gradient(circle at var(--cx) var(--cy), #000 calc(var(--rv) * .55), transparent var(--rv)), linear-gradient(180deg, #000 96.5%, transparent 100%);
   mask-composite: intersect;
-  transition: --rv 2.2s cubic-bezier(.35,0,.25,1), opacity .5s ease;
+  transition: --rv 1.3s cubic-bezier(.35,0,.25,1), opacity .35s ease;
 }
 .intro.v3.reveal .v3-wrap { opacity: 0; transition: opacity 1.1s ease .2s; }
 .intro.v3.opening .v3-wrap { opacity: 0; transform: translateY(-14px); }
@@ -538,8 +538,8 @@ footer .sig { font-size: clamp(24px, 7.6vw, 30px); }
       <p class="v3-date">2027. 02. 20 &nbsp;SAT&nbsp; 3 PM</p>
     </div>
     <div class="v3-stage" id="stage3">
-      <img class="v3-bride" id="bride" src="v3/bride2.png" alt="신부 가영" draggable="false">
-      <img class="v3-groom" id="groom" src="v3/groom.png?v=2" alt="신랑 현석, 끌어서 신부 곁으로 옮길 수 있어요" draggable="false" tabindex="0" role="button">
+      <img class="v3-bride" id="bride" src="v3/bride3.png" alt="신부 가영" draggable="false">
+      <img class="v3-groom" id="groom" src="v3/groom3.png" alt="신랑 현석, 끌어서 신부 곁으로 옮길 수 있어요" draggable="false" tabindex="0" role="button">
       <span class="v3-pop" id="pop" aria-hidden="true"><svg viewBox="0 0 24 22"><path d="M12 21.2 10.6 20C5.4 15.4 2 12.3 2 8.5 2 5.4 4.4 3 7.5 3c1.7 0 3.4.8 4.5 2.1C13.1 3.8 14.8 3 16.5 3 19.6 3 22 5.4 22 8.5c0 3.8-3.4 6.9-8.6 11.5L12 21.2z"/></svg></span>
     </div>
     <div class="v3-foot">
@@ -855,8 +855,8 @@ footer .sig { font-size: clamp(24px, 7.6vw, 30px); }
         introEl.classList.add('reveal');
       }
       function go() {
-        setTimeout(reveal, 900);
-        setTimeout(function () { document.getElementById('openBtn').click(); }, 900 + 2600);
+        setTimeout(reveal, 350);
+        setTimeout(function () { document.getElementById('openBtn').click(); }, 350 + 1300);
       }
       if (ph.complete) go(); else { ph.addEventListener('load', go); ph.addEventListener('error', go); }
     }
@@ -892,8 +892,8 @@ footer .sig { font-size: clamp(24px, 7.6vw, 30px); }
       document.body.classList.remove('locked');
       document.body.classList.add('revealed');
       window.scrollTo(0, 0);
-    }, quick ? 150 : 1500);
-    setTimeout(function () { intro.hidden = true; }, quick ? 1100 : 2600);
+    }, quick ? 150 : 450);
+    setTimeout(function () { intro.hidden = true; }, quick ? 1100 : 1500);
   });
 })();
 </script>
