@@ -308,19 +308,8 @@ a:focus-visible, button:focus-visible { outline: 1px solid var(--seine); outline
 .script .s1 { font-size: clamp(64px, 20vw, 92px); justify-self: start; margin-left: 4%; }
 .script .s2 { font-size: clamp(60px, 18.5vw, 86px); justify-self: end; margin-right: 0; margin-top: -.06em; }
 .intro .intro-names { font-size: clamp(22px, 6.2vw, 28px); }
-@media (prefers-reduced-motion: no-preference) {
-  .script .s1, .script .s2 { clip-path: inset(-20% 100% -20% 0); animation: pen 2.1s cubic-bezier(.55,.1,.35,1) forwards; }
-  .script .s1 { animation-delay: .5s; }
-  .script .s2 { animation-delay: 1.8s; animation-duration: 2.6s; }
-  @keyframes pen { to { clip-path: inset(-20% -5% -20% 0); } }
-}
 .intro.opening .intro-bg { transform: scale(1.5); filter: brightness(1.15); }
 .intro.opening .intro-copy { opacity: 0; transform: translateY(-10px); }
-@media (prefers-reduced-motion: no-preference) {
-  .intro-bg { animation: breathe 14s ease-in-out infinite alternate; }
-  .intro.opening .intro-bg { animation: none; }
-  @keyframes breathe { from { transform: scale(1); } to { transform: scale(1.05); } }
-}
 @media (prefers-reduced-motion: reduce) { .intro-bg, .intro-copy { transition: none; } }
 
 /* lightbox */
