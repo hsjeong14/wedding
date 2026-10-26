@@ -412,6 +412,11 @@ footer .label { color: #a7b3ad; }
   .families { grid-template-columns: auto auto auto; column-gap: 8px; }
   .fam .parents { font-size: 14px; }
 }
+
+/* Desktop: keep everything in the phone-width column */
+@media (min-width: 461px) {
+  .intro, .lb { left: 50%; right: auto; width: 460px; transform: translateX(-50%); box-shadow: 0 0 60px rgba(31,34,36,.18); }
+}
 </style>
 </head>
 <body>
