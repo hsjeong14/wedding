@@ -515,10 +515,10 @@ footer .sig { font-size: clamp(24px, 7.6vw, 30px); }
 .v3-stage, .v3-skip { transition: opacity .9s ease .3s; }
 .intro.v3.reveal .v3-stage, .intro.v3.reveal .v3-skip { opacity: 0; }
 .v3-hint, .v3-sub { transition: color 1.2s ease .4s, text-shadow 1.2s ease .4s; }
-.intro.v3.reveal .v3-hint, .intro.v3.reveal .v3-sub { color: #fbf9f5; text-shadow: 0 1px 10px rgba(20,24,26,.5); }
-.intro.v3.reveal { background: #2a2c2d; }
+
+
 .v3-head .label, .v3-head .script, .v3-head .v3-date { transition: color 1.2s ease .4s, text-shadow 1.2s ease .4s; }
-.intro.v3.reveal .v3-head .label, .intro.v3.reveal .v3-head .script, .intro.v3.reveal .v3-head .v3-date { color: #fbf9f5; text-shadow: 0 1px 14px rgba(20,24,26,.45), 0 0 2px rgba(20,24,26,.25); }
+
 
 .v3-guide { position: absolute; z-index: 1; display: grid; justify-items: center; gap: 6px; pointer-events: none; transition: opacity .4s ease; }
 .v3-guide .gh { width: 20px; height: 18px; fill: #e7a3ad; }
@@ -529,6 +529,19 @@ footer .sig { font-size: clamp(24px, 7.6vw, 30px); }
   .v3-guide .gl { animation: guide 1.8s ease-in-out infinite; }
   @keyframes guide { 0%,100% { transform: translateX(-3px); opacity: .75; } 50% { transform: translateX(3px); opacity: 1; } }
 }
+
+.v3-pop { display: none; }
+.intro.v3.reveal .v3-date { color: var(--ink); }
+.v3-burst { position: absolute; z-index: 4; pointer-events: none; opacity: 0; transform: translate(-50%, 0) scale(.3); }
+.v3-burst svg { display: block; width: 100%; height: 100%; fill: #e7a3ad; filter: drop-shadow(0 2px 4px rgba(231,163,173,.45)); }
+@keyframes bloom {
+  0% { opacity: 0; transform: translate(-50%, 0) scale(.3); }
+  25% { opacity: 1; transform: translate(-50%, -18px) scale(1.1); }
+  60% { opacity: 1; transform: translate(calc(-50% + var(--dx)), -46px) scale(1); }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--dx)), -78px) scale(.9); }
+}
+.v3-burst.go { animation: bloom 1.7s cubic-bezier(.25,.8,.35,1) forwards; }
+@media (prefers-reduced-motion: reduce) { .v3-burst.go { animation: none; opacity: 1; transform: translate(-50%, -30px); } }
 .intro.v3.opening .v3-wrap { opacity: 0; transform: translateY(-14px); }
 @media (prefers-reduced-motion: no-preference) {
   .v3-sub .nudge { animation: nudge 1.6s ease-in-out infinite; }
@@ -865,6 +878,7 @@ footer .sig { font-size: clamp(24px, 7.6vw, 30px); }
       ph.style.setProperty('--cx', (GEO.center.x * f) + 'px'); ph.style.setProperty('--cy', (GEO.center.y * f) + 'px');
       pop.style.left = (BL + (GEO.heart.x - GEO.b.x) * f) + 'px';
       pop.style.top = (yOff + (GEO.heart.y - top) * f) + 'px';
+      HX = BL + (GEO.heart.x - GEO.b.x) * f; HEADTOP = yOff - 6;
       var guide = document.getElementById('guide'), gx0 = gw * 0.9 + 4, gx1 = BL + bw * 0.1 - 4;
       guide.style.left = gx0 + 'px'; guide.style.width = Math.max(0, gx1 - gx0) + 'px';
       guide.style.top = (yOff + (bot - top) * f * 0.30) + 'px';
@@ -872,6 +886,19 @@ footer .sig { font-size: clamp(24px, 7.6vw, 30px); }
       set(done ? MX : x);
     }
     function set(v) { x = Math.max(0, Math.min(MX, v)); g.style.transform = 'translateX(' + x + 'px)'; }
+    var HEADTOP = 0, HX = 0;
+    function burst() {
+      var SVG = '<svg viewBox="0 0 24 22"><path d="M12 21.2 10.6 20C5.4 15.4 2 12.3 2 8.5 2 5.4 4.4 3 7.5 3c1.7 0 3.4.8 4.5 2.1C13.1 3.8 14.8 3 16.5 3 19.6 3 22 5.4 22 8.5c0 3.8-3.4 6.9-8.6 11.5L12 21.2z"/></svg>';
+      var spec = [[0, 26, 0, 0], [-22, 16, 260, -10], [20, 18, 480, 12], [-6, 13, 700, -18], [10, 20, 900, 6]];
+      spec.forEach(function (sp) {
+        var h = document.createElement('span'); h.className = 'v3-burst'; h.innerHTML = SVG;
+        h.style.left = (HX + sp[0]) + 'px'; h.style.top = HEADTOP + 'px';
+        h.style.width = sp[1] + 'px'; h.style.height = (sp[1] * 0.92) + 'px';
+        h.style.setProperty('--dx', sp[3] + 'px');
+        stage.appendChild(h);
+        setTimeout(function () { h.classList.add('go'); }, sp[2]);
+      });
+    }
     function reveal() {
       void ph.offsetWidth;
       ph.style.opacity = '1';
@@ -881,7 +908,7 @@ footer .sig { font-size: clamp(24px, 7.6vw, 30px); }
     function meet() {
       if (done) return; done = true;
       g.classList.add('glide'); set(MX);
-      setTimeout(function () { introEl.classList.add('met'); }, 250);
+      setTimeout(function () { introEl.classList.add('met'); burst(); }, 250);
       hint.innerHTML = '드디어 만났어요';
       sub.textContent = '두 사람의 이야기를 열어볼게요';
       function go() {
