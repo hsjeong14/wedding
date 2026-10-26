@@ -486,15 +486,14 @@ footer .sig { font-size: clamp(24px, 7.6vw, 30px); }
 .intro.v3 .script .s2 { font-size: clamp(46px, 14vw, 62px); }
 .v3-date { margin: 4px 0 0; font-family: var(--latin); font-weight: 500; font-size: 15px; letter-spacing: .24em; text-indent: .24em; color: var(--soft); white-space: nowrap; }
 .v3-stage { position: relative; width: 100%; flex: 0 0 auto; height: min(50vh, 400px); margin: auto 0; touch-action: none; user-select: none; -webkit-user-select: none; }
-.v3-stage img { position: absolute; bottom: 0; height: 100%; width: auto; max-width: none; filter: drop-shadow(0 8px 14px rgba(31,34,36,.18)); -webkit-user-drag: none; }
-.v3-bride { right: 4%; }
-.v3-groom { left: 0; cursor: grab; z-index: 2; will-change: transform; }
+.v3-stage img { position: absolute; left: 0; top: 0; max-width: none; filter: drop-shadow(0 8px 14px rgba(31,34,36,.18)); -webkit-user-drag: none; }
+.v3-groom { cursor: grab; z-index: 2; will-change: transform; }
 .v3-groom.drag { cursor: grabbing; filter: drop-shadow(0 16px 20px rgba(31,34,36,.28)); }
 .v3-groom.glide { transition: transform .9s cubic-bezier(.3,.7,.2,1); }
 .v3-groom:focus-visible { outline: 1px dashed var(--seine); outline-offset: 4px; }
-.v3-pop { position: absolute; width: 46px; height: 42px; left: 50%; top: 17%; opacity: 0; width: 34px; height: 31px; transform: translate(-50%, 10px) scale(.4); transition: opacity .4s ease, transform .6s cubic-bezier(.3,1.6,.5,1); pointer-events: none; z-index: 3; }
+.v3-pop { position: absolute; left: 50%; top: 17%; opacity: 0; width: 34px; height: 31px; transform: translate(-50%, -50%) translateY(10px) scale(.4); transition: opacity .4s ease, transform .6s cubic-bezier(.3,1.6,.5,1); pointer-events: none; z-index: 3; }
 .v3-pop svg { width: 100%; height: 100%; fill: #e7a3ad; filter: drop-shadow(0 3px 6px rgba(231,163,173,.5)); }
-.intro.v3.met .v3-pop { opacity: 1; transform: translate(-50%, 0) scale(1); }
+.intro.v3.met .v3-pop { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 .v3-foot { display: grid; gap: 4px; justify-items: center; padding-top: 14px; }
 .v3-hint { margin: 0; font-family: var(--serif); font-size: 16.5px; letter-spacing: .02em; white-space: nowrap; }
 .v3-hint .heart { width: .72em; height: .66em; vertical-align: 0; }
@@ -505,7 +504,7 @@ footer .sig { font-size: clamp(24px, 7.6vw, 30px); }
 
 @property --rv { syntax: '<length>'; inherits: false; initial-value: 0px; }
 .v3-photo {
-  position: absolute; left: 0; top: 0; width: 100%; height: 100%; max-width: none; object-fit: cover;
+  position: absolute; left: 0; top: 0; width: 100%; height: auto; max-width: none;
   z-index: 5; pointer-events: none; opacity: 0; transform-origin: 0 0;
   --cx: 50%; --cy: 60%; --rv: 0px;
   -webkit-mask-image: radial-gradient(circle at var(--cx) var(--cy), #000 calc(var(--rv) * .55), transparent var(--rv));
@@ -513,8 +512,10 @@ footer .sig { font-size: clamp(24px, 7.6vw, 30px); }
   transition: --rv 2.4s cubic-bezier(.4,0,.3,1), opacity .5s ease;
 }
 .v3-wrap { z-index: 6; }
-.v3-stage, .v3-foot { transition: opacity .9s ease .3s; }
-.intro.v3.reveal .v3-stage, .intro.v3.reveal .v3-foot { opacity: 0; }
+.v3-stage, .v3-skip { transition: opacity .9s ease .3s; }
+.intro.v3.reveal .v3-stage, .intro.v3.reveal .v3-skip { opacity: 0; }
+.v3-hint, .v3-sub { transition: color 1.2s ease .4s, text-shadow 1.2s ease .4s; }
+.intro.v3.reveal .v3-hint, .intro.v3.reveal .v3-sub { color: #fbf9f5; text-shadow: 0 1px 10px rgba(20,24,26,.5); }
 .intro.v3.reveal { background: #2a2c2d; }
 .v3-head .label, .v3-head .script, .v3-head .v3-date { transition: color 1.2s ease .4s, text-shadow 1.2s ease .4s; }
 .intro.v3.reveal .v3-head .label, .intro.v3.reveal .v3-head .script, .intro.v3.reveal .v3-head .v3-date { color: #fbf9f5; text-shadow: 0 1px 14px rgba(20,24,26,.45), 0 0 2px rgba(20,24,26,.25); }
@@ -822,44 +823,49 @@ footer .sig { font-size: clamp(24px, 7.6vw, 30px); }
   try { document.fonts.load('80px "Mrs Saint Delafield"').then(reveal, reveal); } catch (e) { reveal(); }
   setTimeout(reveal, 2500);
 
-  // v3: drag the groom to the bride
+  // v3: drag the groom to the bride. Sticker geometry comes from the original photo (photo px, 933x1400 version)
   (function () {
+    var GEO = { g: { x: 306.60, y: 834.12, s: 0.56877, w: 368, h: 900 },
+                b: { x: 459.93, y: 836.13, s: 0.55222, w: 373, h: 900 },
+                heart: { x: 492, y: 905 }, center: { x: 486, y: 1085 } };
     var stage = document.getElementById('stage3'), g = document.getElementById('groom'), b = document.getElementById('bride'),
-        hint = document.getElementById('hint'), sub = document.getElementById('sub'), introEl = document.getElementById('intro');
-    var x = 0, startX = 0, px = 0, dragging = false, moved = false, done = false;
-    function meetX() { return b.offsetLeft - g.offsetWidth + b.offsetWidth * 0.16; }
-    function set(v) { x = Math.max(0, Math.min(meetX(), v)); g.style.transform = 'translateX(' + x + 'px)'; }
+        hint = document.getElementById('hint'), sub = document.getElementById('sub'), introEl = document.getElementById('intro'),
+        ph = document.getElementById('v3photo'), pop = document.getElementById('pop');
+    var f = 1, BL = 0, MX = 0, x = 0, startX = 0, px = 0, dragging = false, moved = false, done = false;
+    function layout() {
+      var Sw = stage.clientWidth, Sh = stage.clientHeight;
+      var top = Math.min(GEO.g.y, GEO.b.y), bot = Math.max(GEO.g.y + GEO.g.h * GEO.g.s, GEO.b.y + GEO.b.h * GEO.b.s);
+      var gwP = GEO.g.w * GEO.g.s, bwP = GEO.b.w * GEO.b.s;
+      f = Math.min(Sh / (bot - top), Sw * 0.84 / (gwP + bwP));
+      var bw = bwP * f, bh = GEO.b.h * GEO.b.s * f, gw = gwP * f, gh = GEO.g.h * GEO.g.s * f;
+      var yOff = (Sh - (bot - top) * f);            // sit them on the stage floor
+      BL = Sw - bw - Sw * 0.03;
+      MX = BL + (GEO.g.x - GEO.b.x) * f;            // groom's left when he sits exactly as in the photo
+      b.style.width = bw + 'px'; b.style.height = bh + 'px'; b.style.left = BL + 'px'; b.style.top = (yOff + (GEO.b.y - top) * f) + 'px';
+      g.style.width = gw + 'px'; g.style.height = gh + 'px'; g.style.left = '0px'; g.style.top = (yOff + (GEO.g.y - top) * f) + 'px';
+      // photo: same scale, placed so its couple lands exactly on the met stickers
+      var SR = stage.getBoundingClientRect(), IR = introEl.getBoundingClientRect();
+      var ox = SR.left - IR.left + BL - GEO.b.x * f, oy = SR.top - IR.top + yOff - top * f;
+      ph.style.width = (933 * f) + 'px'; ph.style.height = (1400 * f) + 'px';
+      ph.style.left = ox + 'px'; ph.style.top = oy + 'px';
+      ph.style.setProperty('--cx', (GEO.center.x * f) + 'px'); ph.style.setProperty('--cy', (GEO.center.y * f) + 'px');
+      pop.style.left = (BL + (GEO.heart.x - GEO.b.x) * f) + 'px';
+      pop.style.top = (yOff + (GEO.heart.y - top) * f) + 'px';
+      set(done ? MX : x);
+    }
+    function set(v) { x = Math.max(0, Math.min(MX, v)); g.style.transform = 'translateX(' + x + 'px)'; }
+    function reveal() {
+      void ph.offsetWidth;
+      ph.style.opacity = '1';
+      ph.style.setProperty('--rv', (Math.max(933, 1400) * f * 1.3) + 'px');
+      introEl.classList.add('reveal');
+    }
     function meet() {
       if (done) return; done = true;
-      g.classList.add('glide'); set(meetX());
-      var pop = document.getElementById('pop'), mx = meetX();
-      pop.style.left = (((mx + g.offsetWidth * 0.74) + (b.offsetLeft + b.offsetWidth * 0.24)) / 2) + 'px';
-      pop.style.top = (stage.offsetHeight * 0.17) + 'px';
+      g.classList.add('glide'); set(MX);
       setTimeout(function () { introEl.classList.add('met'); }, 250);
       hint.innerHTML = '드디어 만났어요';
       sub.textContent = '두 사람의 이야기를 열어볼게요';
-      var ph = document.getElementById('v3photo');
-      function reveal() {
-        var R = introEl.getBoundingClientRect(), W = R.width, H = R.height;
-        var nr = (ph.naturalWidth || 933) / (ph.naturalHeight || 1400);
-        var cw, ch; if (W / H > nr) { cw = W; ch = W / nr; } else { ch = H; cw = H * nr; }
-        var left = (W - cw) * 0.5, top = (H - ch) * 0.72;
-        ph.style.objectFit = 'fill'; ph.style.left = left + 'px'; ph.style.top = top + 'px';
-        ph.style.width = cw + 'px'; ph.style.height = ch + 'px';
-        // where the couple sits in the photo (fractions of the image)
-        var px = left + 0.531 * cw, py = top + 0.762 * ch, coupleH = 0.342 * ch;
-        var gr = g.getBoundingClientRect(), br = b.getBoundingClientRect();
-        var sx = (Math.min(gr.left, br.left) + Math.max(gr.right, br.right)) / 2 - R.left;
-        var sy = (Math.min(gr.top, br.top) + Math.max(gr.bottom, br.bottom)) / 2 - R.top;
-        var sc = (Math.max(gr.bottom, br.bottom) - Math.min(gr.top, br.top)) * 0.9 / coupleH;
-        ph.style.transform = 'translate(' + (sx - sc * px) + 'px,' + (sy - sc * py) + 'px) scale(' + sc + ')';
-        ph.style.setProperty('--cx', (0.531 * cw) + 'px');
-        ph.style.setProperty('--cy', (0.70 * ch) + 'px');
-        void ph.offsetWidth;
-        ph.style.opacity = '1';
-        ph.style.setProperty('--rv', (Math.max(cw, ch) * 1.3) + 'px');
-        introEl.classList.add('reveal');
-      }
       function go() {
         setTimeout(reveal, 800);
         setTimeout(function () { document.getElementById('openBtn').click(); }, 800 + 2500);
@@ -876,17 +882,21 @@ footer .sig { font-size: clamp(24px, 7.6vw, 30px); }
       if (!dragging) return;
       var d = e.clientX - startX; if (Math.abs(d) > 4) moved = true;
       set(px + d);
-      if (x >= meetX() - 6) { dragging = false; g.classList.remove('drag'); meet(); }
+      if (x >= MX - 6) { dragging = false; g.classList.remove('drag'); meet(); }
     });
     function up() {
       if (!dragging) return; dragging = false; g.classList.remove('drag');
-      if (!moved) { meet(); return; }            // a simple tap walks him over
-      if (x > meetX() * 0.6) meet();              // close enough: let them meet
+      if (!moved) { meet(); return; }
+      if (x > MX * 0.6) meet();
     }
     g.addEventListener('pointerup', up); g.addEventListener('pointercancel', up);
     g.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowRight') { e.preventDefault(); meet(); } });
-    window.addEventListener('resize', function () { if (done) set(meetX()); else set(x); });
+    window.addEventListener('resize', layout);
+    layout();
+    [g, b].forEach(function (im) { if (!im.complete) im.addEventListener('load', layout); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(layout);
   })();
+
   // photo intro
   var intro = document.getElementById('intro');
   document.body.classList.add('locked');
