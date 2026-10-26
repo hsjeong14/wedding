@@ -307,6 +307,7 @@ a:focus-visible, button:focus-visible { outline: 1px solid var(--seine); outline
 .script span { display: block; padding: .12em .18em; }
 .script .s1 { font-size: clamp(64px, 20vw, 92px); justify-self: start; margin-left: 4%; }
 .script .s2 { font-size: clamp(60px, 18.5vw, 86px); justify-self: end; margin-right: 0; margin-top: -.06em; }
+.script.wait { visibility: hidden; }
 .intro .intro-names { font-size: clamp(22px, 6.2vw, 28px); }
 .intro.opening .intro-bg { transform: scale(1.5); filter: brightness(1.15); }
 .intro.opening .intro-copy { opacity: 0; transform: translateY(-10px); }
@@ -426,7 +427,7 @@ footer .label { color: #a7b3ad; }
   <img class="intro-bg" src="g/LUS04961.jpg" alt="에펠탑이 보이는 센강 난간 앞에 나란히 선 현석과 가영">
   <div class="intro-copy">
     <p class="label">Wedding Invitation</p>
-    <h2 class="script" aria-label="We are getting married"><span class="s1" aria-hidden="true">We are</span><span class="s2" aria-hidden="true">getting married</span></h2>
+    <h2 class="script wait" id="script" aria-label="We are getting married"><span class="s1" aria-hidden="true">We are</span><span class="s2" aria-hidden="true">getting married</span></h2>
     <div class="intro-foot">
       <p class="intro-names">Hyunseok <span class="amp">&amp;</span> Gayeong</p>
       <p class="intro-when"><span class="d">2027. 02. 20</span><span class="v">토요일 오후 3시 · 빌라드지디 논현</span></p>
@@ -697,6 +698,12 @@ footer .label { color: #a7b3ad; }
     else if (e.key === 'ArrowRight') go(cur + 1, true);
   });
 
+
+  // show the handwritten line only once its font is ready (no fallback flash)
+  var sc = document.getElementById('script');
+  function reveal() { sc.classList.remove('wait'); }
+  try { document.fonts.load('80px "Mrs Saint Delafield"').then(reveal, reveal); } catch (e) { reveal(); }
+  setTimeout(reveal, 2500);
   // photo intro
   var intro = document.getElementById('intro');
   document.body.classList.add('locked');
