@@ -13,7 +13,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400;1,6..96,500&family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@300;400&family=Mrs+Saint+Delafield&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@300;400&family=Mrs+Saint+Delafield&display=swap">
 <style>
 /* Layout: a fashion-editorial single column. Full-bleed cover, then generous white space,
    hairline rules, and one large Bodoni numeral per section. Single light look by choice (paper invitation). */
@@ -25,7 +25,8 @@
   --hair: #cbc7bf;       /* rules */
   --seine: #3e5249;      /* bridge-railing green, the one accent */
   --blush: #b98c88;      /* bouquet, used once or twice */
-  --latin: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --latin: "Cormorant Garamond", "Cormorant", Garamond, Georgia, serif;
+  font-variant-numeric: lining-nums;
   --serif: "Gowun Batang", "Nanum Myeongjo", "AppleMyungjo", serif;
   --sans: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   color-scheme: light;
@@ -453,6 +454,15 @@ footer .sig { font-size: clamp(24px, 7.6vw, 30px); }
 @media (min-width: 461px) {
   .intro, .lb { left: 50%; right: auto; width: 460px; transform: translateX(-50%); box-shadow: 0 0 60px rgba(31,34,36,.18); }
 }
+
+/* Cormorant reads smaller than Bodoni: nudge sizes and force lining figures */
+.cover-date, .intro-when .d { font-weight: 500; }
+.cover-names, .intro-names, footer .sig { font-weight: 500; }
+.day-meta .en { font-size: clamp(17px, 5.3vw, 21px); font-weight: 500; }
+.cal-grid { font-size: 16px; font-weight: 500; }
+.countdown b { font-size: 30px; font-weight: 500; }
+.addr-block .tel, .way .nums, .tl-scale, .show-count, .lb-top { font-weight: 500; font-size: 1.08em; }
+@media (max-width: 340px) { .tl-scale { font-size: 11px; } .tl-scale .ceremony { letter-spacing: -.02em; } }
 </style>
 </head>
 <body>
