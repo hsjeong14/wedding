@@ -463,6 +463,12 @@ footer .sig { font-size: clamp(24px, 7.6vw, 30px); }
 .countdown b { font-size: 30px; font-weight: 500; }
 .addr-block .tel, .way .nums, .tl-scale, .show-count, .lb-top { font-weight: 500; font-size: 1.08em; }
 @media (max-width: 340px) { .tl-scale { font-size: 11px; } .tl-scale .ceremony { letter-spacing: -.02em; } }
+
+/* pink heart between the two names */
+.heart { display: inline-block; width: .5em; height: .46em; margin: 0 .22em; vertical-align: .08em; text-indent: 0; letter-spacing: 0; }
+.heart svg { display: block; width: 100%; height: 100%; fill: #e7a3ad; }
+.ko-names .heart { width: .62em; height: .57em; margin: 0 .5em 0 .2em; vertical-align: 0; }
+.cover .heart svg, .intro .heart svg { fill: #f2b6be; filter: drop-shadow(0 1px 3px rgba(20,24,26,.3)); }
 </style>
 </head>
 <body>
@@ -474,7 +480,7 @@ footer .sig { font-size: clamp(24px, 7.6vw, 30px); }
     <p class="label">Wedding Invitation</p>
     <h2 class="script wait" id="script" aria-label="We are getting married"><span class="s1" aria-hidden="true">We are</span><span class="s2" aria-hidden="true">getting married</span></h2>
     <div class="intro-foot">
-      <p class="intro-names">Hyunseok <span class="amp">&amp;</span> Gayeong</p>
+      <p class="intro-names">Hyunseok <span class="heart" role="img" aria-label="그리고"><svg viewBox="0 0 24 22" aria-hidden="true"><path d="M12 21.2 10.6 20C5.4 15.4 2 12.3 2 8.5 2 5.4 4.4 3 7.5 3c1.7 0 3.4.8 4.5 2.1C13.1 3.8 14.8 3 16.5 3 19.6 3 22 5.4 22 8.5c0 3.8-3.4 6.9-8.6 11.5L12 21.2z"/></svg></span> Gayeong</p>
       <p class="intro-when"><span class="d">2027. 02. 20</span><span class="v">토요일 오후 3시 · 빌라드지디 논현</span></p>
       <button class="open-btn" id="openBtn" type="button">열기</button>
     </div>
@@ -489,7 +495,7 @@ footer .sig { font-size: clamp(24px, 7.6vw, 30px); }
     </div>
     <div class="cover-top">
       <p class="label">Wedding Invitation</p>
-      <h1 class="cover-names">Hyunseok <span class="amp">&amp;</span> Gayeong</h1>
+      <h1 class="cover-names">Hyunseok <span class="heart" role="img" aria-label="그리고"><svg viewBox="0 0 24 22" aria-hidden="true"><path d="M12 21.2 10.6 20C5.4 15.4 2 12.3 2 8.5 2 5.4 4.4 3 7.5 3c1.7 0 3.4.8 4.5 2.1C13.1 3.8 14.8 3 16.5 3 19.6 3 22 5.4 22 8.5c0 3.8-3.4 6.9-8.6 11.5L12 21.2z"/></svg></span> Gayeong</h1>
     </div>
     <div class="cover-bottom">
       <p class="cover-date">2027 . 02 . 20</p>
@@ -499,7 +505,7 @@ footer .sig { font-size: clamp(24px, 7.6vw, 30px); }
   <section class="pad greeting">
     <div class="stack">
       <p class="label">Invitation</p>
-      <p class="ko-names">정현석<span class="dot">·</span>양가영</p>
+      <p class="ko-names">정현석<span class="heart" role="img" aria-label="그리고"><svg viewBox="0 0 24 22" aria-hidden="true"><path d="M12 21.2 10.6 20C5.4 15.4 2 12.3 2 8.5 2 5.4 4.4 3 7.5 3c1.7 0 3.4.8 4.5 2.1C13.1 3.8 14.8 3 16.5 3 19.6 3 22 5.4 22 8.5c0 3.8-3.4 6.9-8.6 11.5L12 21.2z"/></svg></span>양가영</p>
       <hr class="rule">
       <div class="verse">
         <p>겨울의 끝자락,<br>서로의 계절이 되어주기로 한<br>두 사람이 있습니다.</p>
@@ -635,7 +641,7 @@ footer .sig { font-size: clamp(24px, 7.6vw, 30px); }
 
   <footer class="pad">
     <p class="label">With Love</p>
-    <p class="sig">Hyunseok &amp; Gayeong</p>
+    <p class="sig">Hyunseok <span class="heart" role="img" aria-label="그리고"><svg viewBox="0 0 24 22" aria-hidden="true"><path d="M12 21.2 10.6 20C5.4 15.4 2 12.3 2 8.5 2 5.4 4.4 3 7.5 3c1.7 0 3.4.8 4.5 2.1C13.1 3.8 14.8 3 16.5 3 19.6 3 22 5.4 22 8.5c0 3.8-3.4 6.9-8.6 11.5L12 21.2z"/></svg></span> Gayeong</p>
   </footer>
 </main>
 
