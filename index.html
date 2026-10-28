@@ -23,7 +23,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@300;400&family=Mrs+Saint+Delafield&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@300;400&family=Mrs+Saint+Delafield&family=Nanum+Pen+Script&display=swap">
 <style>
 /* Layout: a fashion-editorial single column. Full-bleed cover, then generous white space,
    hairline rules, and one large Bodoni numeral per section. Single light look by choice (paper invitation). */
@@ -216,115 +216,45 @@ section + section { border-top: 1px solid var(--hair); }
 a:focus-visible, button:focus-visible { outline: 1px solid var(--seine); outline-offset: 3px; }
 
 
-/* ── Gallery: slow crossfade slideshow ── */
-.show { width: 100%; display: grid; gap: 16px; }
-.stage {
-  position: relative; width: 100%; max-width: 100%; aspect-ratio: 2 / 3;
-  overflow: hidden; background: var(--stone); cursor: zoom-in;
-  touch-action: pan-y; -webkit-tap-highlight-color: transparent;
+/* ── Gallery: 3 x 5 grid with "more" ── */
+.grid { width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+.tile { display: block; padding: 0; border: 0; background: var(--stone); cursor: zoom-in; aspect-ratio: 3 / 4; overflow: hidden; max-width: 100%; }
+.tile img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease, opacity .4s ease; }
+.tile:hover img { transform: scale(1.04); }
+.tile:focus-visible { outline: 1px solid var(--seine); outline-offset: 2px; }
+.more {
+  margin-top: 4px; background: none; border: 1px solid var(--hair); color: var(--ink);
+  font-family: var(--sans); font-size: 13px; letter-spacing: .12em; padding: 12px 28px; cursor: pointer;
+  display: inline-flex; gap: 10px; align-items: baseline;
 }
-.stage img {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  opacity: 0; transition: opacity 1.6s ease;
-}
-.stage img.on { opacity: 1; }
-.stage:focus-visible { outline: 1px solid var(--seine); outline-offset: 3px; }
-.show-bar { display: flex; align-items: center; gap: 14px; }
-.show-bar button {
-  background: none; border: 0; padding: 6px 4px; cursor: pointer; color: var(--ink);
-  font-family: var(--latin); font-size: 18px; line-height: 1;
-}
-.show-bar button:focus-visible { outline: 1px solid var(--seine); outline-offset: 2px; }
-.progress { flex: 1; height: 1px; background: var(--hair); position: relative; overflow: hidden; }
-.progress i { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--ink); }
-.show-count { font-family: var(--latin); font-size: 13px; letter-spacing: .14em; color: var(--soft); font-variant-numeric: tabular-nums lining-nums; min-width: 54px; text-align: center; }
-.strip {
-  display: flex; gap: 6px; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none;
-  padding-block: 2px; margin: 0 -2px;
-}
-.strip::-webkit-scrollbar { display: none; }
-.th { flex: 0 0 52px; aspect-ratio: 2 / 3; padding: 0; border: 0; background: var(--stone); cursor: pointer; opacity: .45; transition: opacity .3s ease; scroll-snap-align: center; }
-.th img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.th.on { opacity: 1; outline: 1px solid var(--ink); outline-offset: 2px; }
-.th:hover { opacity: .85; }
+.more span { font-family: var(--latin); font-size: 13px; color: var(--soft); letter-spacing: .06em; }
+.more:hover { border-color: var(--ink); }
+.tile[hidden], .more[hidden] { display: none; }
 .more-hint { font-family: var(--sans); font-size: 11.5px; letter-spacing: .1em; color: var(--soft); margin: 0; }
-@media (prefers-reduced-motion: no-preference) {
-  .stage img.on { animation: drift 7s ease-out both; }
-  @keyframes drift { from { transform: scale(1.045); } to { transform: scale(1); } }
-}
 
-/* ── Photo intro: the Bir-Hakeim arcade ── */
-.intro {
-  position: fixed; inset: 0; z-index: 40; overflow: hidden;
-  background: #1c1f20; color: #f1eee8;
-  transition: opacity 1s ease, visibility 0s linear 1s;
+/* ── Letters ── */
+.letters-sub { margin: -14px 0 0; font-family: var(--sans); font-size: 12px; letter-spacing: .1em; color: var(--soft); }
+.letter {
+  position: relative; width: 100%; max-width: 340px; text-align: left;
+  background-color: #fbf8f1;
+  background-image: repeating-linear-gradient(180deg, transparent 0, transparent 33px, rgba(120,140,150,.22) 33px, rgba(120,140,150,.22) 34px);
+  background-position: 0 14px;
+  color: #3a3631;
+  padding: 18px 24px 22px;
+  box-shadow: 0 1px 2px rgba(31,34,36,.08), 0 10px 24px -12px rgba(31,34,36,.22);
+  font-family: "Nanum Pen Script", "Gaegu", cursive;
+  font-size: 21px; line-height: 34px; padding-left: 20px; padding-right: 18px;
 }
-.intro[hidden] { display: none; }
-.intro.gone { opacity: 0; visibility: hidden; pointer-events: none; }
-.intro-bg {
-  position: absolute; inset: 0; width: 100%; height: 100%; max-width: none;
-  object-fit: cover; object-position: 50% 40%;
-  transform-origin: 50% 72%;
-  transition: transform 2.2s cubic-bezier(.45,0,.2,1), filter 2.2s ease;
-}
-.intro::after {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(180deg, rgba(18,20,21,.38) 0%, rgba(18,20,21,.1) 30%, rgba(18,20,21,0) 50%);
-}
-.intro-copy {
-  position: absolute; inset: 0; z-index: 1;
-  display: flex; flex-direction: column; justify-content: space-between; align-items: center; text-align: center;
-  padding: calc(52px + env(safe-area-inset-top, 0px)) max(24px, env(safe-area-inset-right, 0px)) calc(44px + env(safe-area-inset-bottom, 0px)) max(24px, env(safe-area-inset-left, 0px));
-  transition: opacity .7s ease, transform .9s ease;
-}
-.intro-head, .intro-foot { display: grid; gap: 14px; justify-items: center; }
-.intro .label { color: rgba(241,238,232,.85); }
-.intro-names { margin: 0; font-family: var(--latin); font-style: italic; font-weight: 400; font-size: clamp(34px, 10vw, 46px); line-height: 1.05; }
-.intro-names .amp { font-size: .6em; vertical-align: .2em; margin: 0 .1em; opacity: .85; }
-.intro-ko { margin: 0; font-family: var(--serif); font-size: 14px; letter-spacing: .32em; text-indent: .32em; opacity: .9; }
-.intro-when { margin: 0; display: grid; gap: 2px; }
-.intro-when .d { font-family: var(--latin); font-size: 17px; letter-spacing: .26em; text-indent: .26em; font-variant-numeric: lining-nums; }
-.intro-when .v { font-family: var(--serif); font-size: 13.5px; letter-spacing: .14em; opacity: .85; }
-.open-btn {
-  margin-top: 10px;
-  background: rgba(241,238,232,.06); border: 1px solid rgba(241,238,232,.75); color: #f1eee8;
-  font-family: var(--sans); font-size: 12px; letter-spacing: .5em; padding: 14px 40px 14px 46px;
-  cursor: pointer; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
-  transition: background-color .25s ease, color .25s ease;
-}
-.open-btn:hover { background: #f1eee8; color: var(--ink); }
-.open-btn:focus-visible { outline: 1px solid #f1eee8; outline-offset: 4px; }
-.intro .intro-bg {
-  top: 0; bottom: auto; height: calc(100% - 250px - env(safe-area-inset-bottom, 0px));
-  -webkit-mask-image: linear-gradient(180deg, #000 82%, transparent 100%);
-  mask-image: linear-gradient(180deg, #000 82%, transparent 100%);
-}
-.intro .intro-foot { gap: 12px; }
-@media (max-height: 760px) {
-  .intro .intro-bg { object-position: 50% 78%; }
-  .intro-copy { padding-top: calc(34px + env(safe-area-inset-top, 0px)); padding-bottom: calc(30px + env(safe-area-inset-bottom, 0px)); }
-  .script { margin-top: 1vh; }
-  .script .s1 { font-size: clamp(52px, 16vw, 74px); }
-  .script .s2 { font-size: clamp(50px, 15vw, 70px); }
-  .intro .intro-bg { height: calc(100% - 226px - env(safe-area-inset-bottom, 0px)); }
-}
-.intro-copy { justify-content: flex-start; }
-.intro-foot { margin-top: auto; }
-.script {
-  margin: 4vh 0 0; width: 100%; max-width: 420px;
-  font-family: "Mrs Saint Delafield", "Snell Roundhand", "Apple Chancery", cursive;
-  font-weight: 400; color: #fbf9f5; line-height: .78;
-  display: grid; transform: rotate(-7deg);
-  text-shadow: 0 2px 18px rgba(20,24,26,.35);
-}
-.script span { display: block; padding: .12em .18em; }
-.script .s1 { font-size: clamp(64px, 20vw, 92px); justify-self: start; margin-left: 4%; }
-.script .s2 { font-size: clamp(60px, 18.5vw, 86px); justify-self: end; margin-right: 0; margin-top: -.06em; }
-.script.wait { visibility: hidden; }
-.intro .intro-names { font-size: clamp(22px, 6.2vw, 28px); }
-.intro.opening .intro-bg { transform: scale(1.5); filter: brightness(1.15); }
-.intro.opening .intro-copy { opacity: 0; transform: translateY(-10px); }
-@media (prefers-reduced-motion: reduce) { .intro-bg, .intro-copy { transition: none; } }
+.letter::before { content: ""; position: absolute; left: 50%; top: -9px; width: 64px; height: 18px; transform: translateX(-50%) rotate(-2deg); background: rgba(231,163,173,.45); }
+.letter.l1 { transform: rotate(-1.4deg); }
+.letter.l2 { transform: rotate(1.2deg); margin-top: 8px; }
+.letter.l2::before { background: rgba(157,188,173,.5); transform: translateX(-50%) rotate(3deg); }
+.letter p { margin: 0 0 34px; }
+.letter p:last-child { margin: 0; }
+.letter .to { font-size: 24px; margin-bottom: 0; }
+.letter .from { text-align: right; }
+.letter .heart svg { fill: #e7a3ad; }
+@media (max-width: 360px) { .letter { font-size: 18.5px; padding-left: 16px; padding-right: 14px; } .letter .to { font-size: 21px; } }
 
 /* lightbox */
 .lb {
@@ -524,20 +454,30 @@ footer .sig { font-size: clamp(24px, 7.6vw, 30px); }
     </div>
   </section>
 
+  <section class="pad letters">
+    <div class="stack">
+      <p class="label">Letters</p>
+      <p class="letters-sub">서로에게 건네는 작은 편지</p>
+      <article class="letter l1">
+        <p class="to">To. 가영에게</p>
+        <p>가영아, 파리의 흐린 하늘 아래서도<br>네가 웃으면 그날이 제일 맑은 날이었어.</p>
+        <p>서툰 나를 늘 믿고 기다려줘서 고마워.<br>앞으로의 모든 계절을 너와 함께 걷고 싶어.<br>매일 오늘처럼 아끼고 사랑할게.</p>
+        <p class="from">현석이가 <span class="heart" role="img" aria-label="하트"><svg viewBox="0 0 24 22" aria-hidden="true"><path d="M12 21.2 10.6 20C5.4 15.4 2 12.3 2 8.5 2 5.4 4.4 3 7.5 3c1.7 0 3.4.8 4.5 2.1C13.1 3.8 14.8 3 16.5 3 19.6 3 22 5.4 22 8.5c0 3.8-3.4 6.9-8.6 11.5L12 21.2z"/></svg></span></p>
+      </article>
+      <article class="letter l2">
+        <p class="to">To. 현석에게</p>
+        <p>현석아, 처음 만난 날부터 지금까지<br>늘 내 편이 되어줘서 고마워.</p>
+        <p>너와 함께라면 평범한 하루도 여행 같아.<br>웃는 날도 힘든 날도<br>지금처럼 손 꼭 잡고 함께 가자.</p>
+        <p class="from">가영이가 <span class="heart" role="img" aria-label="하트"><svg viewBox="0 0 24 22" aria-hidden="true"><path d="M12 21.2 10.6 20C5.4 15.4 2 12.3 2 8.5 2 5.4 4.4 3 7.5 3c1.7 0 3.4.8 4.5 2.1C13.1 3.8 14.8 3 16.5 3 19.6 3 22 5.4 22 8.5c0 3.8-3.4 6.9-8.6 11.5L12 21.2z"/></svg></span></p>
+      </article>
+    </div>
+  </section>
+
   <section class="pad gallery">
     <div class="stack">
       <p class="label">Gallery</p>
-      <div class="show">
-        <div class="stage" id="stage" role="button" tabindex="0" aria-label="사진 크게 보기"><img src="r/LUS04897_t.jpg" alt="" class="on" width="700" height="1050"><img src="r/LUS04938_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS04948_t.jpg" alt="" width="700" height="1050"><img data-src="g/LUS04961_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS05163_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS05177_t.jpg" alt="" width="700" height="1050"><img data-src="g/LUS05239_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS05244_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS05503_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS05505_t.jpg" alt="" width="700" height="1050"><img data-src="g/LUS05578_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS05710_t.jpg" alt="" width="700" height="1050"><img data-src="g/LUS05791_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS05815_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS05837_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS05861_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS05872_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS05987_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS06008_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS06044_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS06067_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS06095_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS06110_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS06162_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS06280_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS06290_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS06296_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS06368_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS06380_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS06391_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS06413_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS06447_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS06450_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS06489_t.jpg" alt="" width="700" height="1050"><img data-src="g/LUS06523_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS06555_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS06762_t.jpg" alt="" width="700" height="1050"><img data-src="g/LUS06821_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS06841_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS06897_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS07022_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS07071_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS07093_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS07096_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS07196_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS07324_t.jpg" alt="" width="700" height="1050"><img data-src="g/LUS07389_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS07448_t.jpg" alt="" width="700" height="1050"><img data-src="g/LUS07459_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS07565_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS07572_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS07580_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS07614_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS07714_t.jpg" alt="" width="700" height="1050"><img data-src="r/LUS07716_t.jpg" alt="" width="700" height="1050"></div>
-        <div class="show-bar">
-          <button type="button" id="shPrev" aria-label="이전 사진">&larr;</button>
-          <div class="progress"><i id="shProg"></i></div>
-          <span class="show-count" id="shCount">01 / 55</span>
-          <div class="progress" aria-hidden="true" style="visibility:hidden;flex:0 0 0"></div>
-          <button type="button" id="shNext" aria-label="다음 사진">&rarr;</button>
-        </div>
-        <div class="strip" id="strip"><button type="button" class="th on" data-i="0" aria-label="사진 1"><img src="r/LUS04897_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="1" aria-label="사진 2"><img src="r/LUS04938_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="2" aria-label="사진 3"><img src="r/LUS04948_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="3" aria-label="사진 4"><img src="s/LUS04961.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="4" aria-label="사진 5"><img src="r/LUS05163_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="5" aria-label="사진 6"><img src="r/LUS05177_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="6" aria-label="사진 7"><img src="s/LUS05239.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="7" aria-label="사진 8"><img src="r/LUS05244_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="8" aria-label="사진 9"><img src="r/LUS05503_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="9" aria-label="사진 10"><img src="r/LUS05505_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="10" aria-label="사진 11"><img src="s/LUS05578.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="11" aria-label="사진 12"><img src="r/LUS05710_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="12" aria-label="사진 13"><img src="s/LUS05791.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="13" aria-label="사진 14"><img src="r/LUS05815_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="14" aria-label="사진 15"><img src="r/LUS05837_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="15" aria-label="사진 16"><img src="r/LUS05861_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="16" aria-label="사진 17"><img src="r/LUS05872_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="17" aria-label="사진 18"><img src="r/LUS05987_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="18" aria-label="사진 19"><img src="r/LUS06008_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="19" aria-label="사진 20"><img src="r/LUS06044_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="20" aria-label="사진 21"><img src="r/LUS06067_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="21" aria-label="사진 22"><img src="r/LUS06095_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="22" aria-label="사진 23"><img src="r/LUS06110_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="23" aria-label="사진 24"><img src="r/LUS06162_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="24" aria-label="사진 25"><img src="r/LUS06280_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="25" aria-label="사진 26"><img src="r/LUS06290_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="26" aria-label="사진 27"><img src="r/LUS06296_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="27" aria-label="사진 28"><img src="r/LUS06368_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="28" aria-label="사진 29"><img src="r/LUS06380_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="29" aria-label="사진 30"><img src="r/LUS06391_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="30" aria-label="사진 31"><img src="r/LUS06413_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="31" aria-label="사진 32"><img src="r/LUS06447_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="32" aria-label="사진 33"><img src="r/LUS06450_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="33" aria-label="사진 34"><img src="r/LUS06489_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="34" aria-label="사진 35"><img src="s/LUS06523.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="35" aria-label="사진 36"><img src="r/LUS06555_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="36" aria-label="사진 37"><img src="r/LUS06762_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="37" aria-label="사진 38"><img src="s/LUS06821.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="38" aria-label="사진 39"><img src="r/LUS06841_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="39" aria-label="사진 40"><img src="r/LUS06897_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="40" aria-label="사진 41"><img src="r/LUS07022_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="41" aria-label="사진 42"><img src="r/LUS07071_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="42" aria-label="사진 43"><img src="r/LUS07093_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="43" aria-label="사진 44"><img src="r/LUS07096_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="44" aria-label="사진 45"><img src="r/LUS07196_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="45" aria-label="사진 46"><img src="r/LUS07324_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="46" aria-label="사진 47"><img src="s/LUS07389.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="47" aria-label="사진 48"><img src="r/LUS07448_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="48" aria-label="사진 49"><img src="s/LUS07459.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="49" aria-label="사진 50"><img src="r/LUS07565_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="50" aria-label="사진 51"><img src="r/LUS07572_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="51" aria-label="사진 52"><img src="r/LUS07580_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="52" aria-label="사진 53"><img src="r/LUS07614_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="53" aria-label="사진 54"><img src="r/LUS07714_s.jpg" alt="" loading="lazy" width="200" height="300"></button><button type="button" class="th" data-i="54" aria-label="사진 55"><img src="r/LUS07716_s.jpg" alt="" loading="lazy" width="200" height="300"></button></div>
-      </div>
+      <div class="grid" id="grid"><button type="button" class="tile" data-i="0" aria-label="사진 1 크게 보기"><img src="r/LUS04897_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="1" aria-label="사진 2 크게 보기"><img src="r/LUS04938_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="2" aria-label="사진 3 크게 보기"><img src="r/LUS04948_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="3" aria-label="사진 4 크게 보기"><img src="g/LUS04961_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="4" aria-label="사진 5 크게 보기"><img src="r/LUS05163_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="5" aria-label="사진 6 크게 보기"><img src="r/LUS05177_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="6" aria-label="사진 7 크게 보기"><img src="g/LUS05239_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="7" aria-label="사진 8 크게 보기"><img src="r/LUS05244_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="8" aria-label="사진 9 크게 보기"><img src="r/LUS05503_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="9" aria-label="사진 10 크게 보기"><img src="r/LUS05505_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="10" aria-label="사진 11 크게 보기"><img src="g/LUS05578_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="11" aria-label="사진 12 크게 보기"><img src="r/LUS05710_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="12" aria-label="사진 13 크게 보기"><img src="g/LUS05791_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="13" aria-label="사진 14 크게 보기"><img src="r/LUS05815_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="14" aria-label="사진 15 크게 보기"><img src="r/LUS05837_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="15" aria-label="사진 16 크게 보기" hidden><img src="r/LUS05861_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="16" aria-label="사진 17 크게 보기" hidden><img src="r/LUS05872_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="17" aria-label="사진 18 크게 보기" hidden><img src="r/LUS05987_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="18" aria-label="사진 19 크게 보기" hidden><img src="r/LUS06008_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="19" aria-label="사진 20 크게 보기" hidden><img src="r/LUS06044_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="20" aria-label="사진 21 크게 보기" hidden><img src="r/LUS06067_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="21" aria-label="사진 22 크게 보기" hidden><img src="r/LUS06095_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="22" aria-label="사진 23 크게 보기" hidden><img src="r/LUS06110_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="23" aria-label="사진 24 크게 보기" hidden><img src="r/LUS06162_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="24" aria-label="사진 25 크게 보기" hidden><img src="r/LUS06280_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="25" aria-label="사진 26 크게 보기" hidden><img src="r/LUS06290_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="26" aria-label="사진 27 크게 보기" hidden><img src="r/LUS06296_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="27" aria-label="사진 28 크게 보기" hidden><img src="r/LUS06368_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="28" aria-label="사진 29 크게 보기" hidden><img src="r/LUS06380_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="29" aria-label="사진 30 크게 보기" hidden><img src="r/LUS06391_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="30" aria-label="사진 31 크게 보기" hidden><img src="r/LUS06413_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="31" aria-label="사진 32 크게 보기" hidden><img src="r/LUS06447_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="32" aria-label="사진 33 크게 보기" hidden><img src="r/LUS06450_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="33" aria-label="사진 34 크게 보기" hidden><img src="r/LUS06489_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="34" aria-label="사진 35 크게 보기" hidden><img src="g/LUS06523_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="35" aria-label="사진 36 크게 보기" hidden><img src="r/LUS06555_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="36" aria-label="사진 37 크게 보기" hidden><img src="r/LUS06762_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="37" aria-label="사진 38 크게 보기" hidden><img src="g/LUS06821_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="38" aria-label="사진 39 크게 보기" hidden><img src="r/LUS06841_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="39" aria-label="사진 40 크게 보기" hidden><img src="r/LUS06897_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="40" aria-label="사진 41 크게 보기" hidden><img src="r/LUS07022_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="41" aria-label="사진 42 크게 보기" hidden><img src="r/LUS07071_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="42" aria-label="사진 43 크게 보기" hidden><img src="r/LUS07093_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="43" aria-label="사진 44 크게 보기" hidden><img src="r/LUS07096_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="44" aria-label="사진 45 크게 보기" hidden><img src="r/LUS07196_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="45" aria-label="사진 46 크게 보기" hidden><img src="r/LUS07324_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="46" aria-label="사진 47 크게 보기" hidden><img src="g/LUS07389_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="47" aria-label="사진 48 크게 보기" hidden><img src="r/LUS07448_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="48" aria-label="사진 49 크게 보기" hidden><img src="g/LUS07459_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="49" aria-label="사진 50 크게 보기" hidden><img src="r/LUS07565_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="50" aria-label="사진 51 크게 보기" hidden><img src="r/LUS07572_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="51" aria-label="사진 52 크게 보기" hidden><img src="r/LUS07580_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="52" aria-label="사진 53 크게 보기" hidden><img src="r/LUS07614_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="53" aria-label="사진 54 크게 보기" hidden><img src="r/LUS07714_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="54" aria-label="사진 55 크게 보기" hidden><img src="r/LUS07716_t.jpg" alt="" loading="lazy" width="700" height="1050"></button></div>
+      <button class="more" id="more" type="button">더보기 <span id="moreCount">15 / 55</span></button>
       <p class="more-hint">사진을 누르면 크게 볼 수 있어요</p>
     </div>
   </section>
@@ -699,46 +639,18 @@ footer .sig { font-size: clamp(24px, 7.6vw, 30px); }
     requestAnimationFrame(function () { go(i, false); });
     document.getElementById('lbClose').focus();
   }
-  function close() { lb.hidden = true; document.body.classList.remove('locked'); if (lastBtn) lastBtn.focus(); if (typeof show === 'function') show(cur); }
-  // slideshow
-  var strip = document.getElementById('strip');
-  strip.addEventListener('click', function (e) { var b = e.target.closest('.th'); if (b) show(+b.dataset.i); });
-  var stage = document.getElementById('stage'), slides = stage.querySelectorAll('img'),
-      prog = document.getElementById('shProg'), shCount = document.getElementById('shCount'),
-      si = 0, timer = null, DUR = 4800,
-      still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function show(i) {
-    slides[si].classList.remove('on');
-    si = (i + slides.length) % slides.length;
-    var im = slides[si]; load(im); load(slides[(si + 1) % slides.length]);
-    var ths = strip.children; for (var t = 0; t < ths.length; t++) ths[t].classList.toggle('on', t === si);
-    var th = ths[si]; strip.scrollTo({ left: th.offsetLeft - strip.clientWidth / 2 + th.offsetWidth / 2, behavior: 'smooth' });
-    im.classList.remove('on'); void im.offsetWidth; im.classList.add('on');
-    shCount.textContent = pad(si + 1) + ' / ' + pad(slides.length);
-    run();
-  }
-  function run() {
-    clearTimeout(timer);
-    prog.style.transition = 'none'; prog.style.width = '0';
-    if (still || !lb.hidden) return;
-    void prog.offsetWidth;
-    prog.style.transition = 'width ' + DUR + 'ms linear'; prog.style.width = '100%';
-    timer = setTimeout(function () { show(si + 1); }, DUR);
-  }
-  document.getElementById('shPrev').addEventListener('click', function () { show(si - 1); });
-  document.getElementById('shNext').addEventListener('click', function () { show(si + 1); });
-  var sx = null, sy = null;
-  stage.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
-  stage.addEventListener('touchend', function (e) {
-    if (sx === null) return;
-    var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy; sx = null;
-    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) { e.preventDefault(); show(si + (dx < 0 ? 1 : -1)); }
+  function close() { lb.hidden = true; document.body.classList.remove('locked'); if (lastBtn) lastBtn.focus(); }
+  // gallery grid + more
+  var grid = document.getElementById('grid'), tilesEl = grid.querySelectorAll('.tile'), more = document.getElementById('more'),
+      moreCount = document.getElementById('moreCount'), shown = Math.min(15, tilesEl.length);
+  function updMore() { moreCount.textContent = shown + ' / ' + tilesEl.length; more.hidden = shown >= tilesEl.length; }
+  more.addEventListener('click', function () {
+    var next = Math.min(shown + 15, tilesEl.length);
+    for (var k = shown; k < next; k++) tilesEl[k].hidden = false;
+    shown = next; updMore();
   });
-  stage.addEventListener('click', function () { lastBtn = stage; clearTimeout(timer); open(si); });
-  stage.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); lastBtn = stage; clearTimeout(timer); open(si); } });
-  document.addEventListener('visibilitychange', function () { if (document.hidden) clearTimeout(timer); else run(); });
-  shCount.textContent = pad(1) + ' / ' + pad(slides.length);
-  run();
+  grid.addEventListener('click', function (e) { var t = e.target.closest('.tile'); if (t) { lastBtn = t; open(+t.dataset.i); } });
+  updMore();
   track.addEventListener('scroll', function () {
     var i = Math.round(track.scrollLeft / track.clientWidth);
     if (i !== cur) { cur = i; count.textContent = pad(cur + 1) + ' / ' + pad(total); near(cur); }
