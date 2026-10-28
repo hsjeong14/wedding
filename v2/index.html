@@ -505,24 +505,11 @@ footer { background: #0d0f10; color: #e4e1db; border-top: 1px solid var(--hair);
 <body>
 
 
-<div class="intro" id="intro">
-  <img class="intro-bg" src="g/LUS04961.jpg" alt="에펠탑이 보이는 센강 난간 앞에 나란히 선 현석과 가영">
-  <div class="intro-copy">
-    <p class="label">Wedding Invitation</p>
-    <h2 class="script wait" id="script" aria-label="We are getting married"><span class="s1" aria-hidden="true">We are</span><span class="s2" aria-hidden="true">getting married</span></h2>
-    <div class="intro-foot">
-      <p class="intro-names">Hyunseok <span class="heart" role="img" aria-label="그리고"><svg viewBox="0 0 24 22" aria-hidden="true"><path d="M12 21.2 10.6 20C5.4 15.4 2 12.3 2 8.5 2 5.4 4.4 3 7.5 3c1.7 0 3.4.8 4.5 2.1C13.1 3.8 14.8 3 16.5 3 19.6 3 22 5.4 22 8.5c0 3.8-3.4 6.9-8.6 11.5L12 21.2z"/></svg></span> Gayeong</p>
-      <p class="intro-when"><span class="d">2027. 02. 20</span><span class="v">토요일 오후 3시 · 빌라드지디 논현</span></p>
-      <button class="open-btn" id="openBtn" type="button">열기</button>
-    </div>
-  </div>
-</div>
-
 <main class="card">
 
   <figure class="cover">
     <div class="frame">
-      <img src="g/LUS05578.jpg" alt="에펠탑이 보이는 파리 골목에서 가영을 안아 올린 현석" width="933" height="1400">
+      <img src="g/LUS06110.jpg" alt="에펠탑이 보이는 파리 골목 한가운데에서 손을 맞잡고 춤추는 현석과 가영" width="933" height="1400">
     </div>
     <div class="cover-top">
       <p class="label">Wedding Invitation</p>
@@ -780,25 +767,7 @@ footer { background: #0d0f10; color: #e4e1db; border-top: 1px solid var(--hair);
   });
 
 
-  // show the handwritten line only once its font is ready (no fallback flash)
-  var sc = document.getElementById('script');
-  function reveal() { sc.classList.remove('wait'); }
-  try { document.fonts.load('80px "Mrs Saint Delafield"').then(reveal, reveal); } catch (e) { reveal(); }
-  setTimeout(reveal, 2500);
-  // photo intro
-  var intro = document.getElementById('intro');
-  document.body.classList.add('locked');
-  document.getElementById('openBtn').addEventListener('click', function () {
-    var quick = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-    intro.classList.add('opening');
-    setTimeout(function () {
-      intro.classList.add('gone');
-      document.body.classList.remove('locked');
-      document.body.classList.add('revealed');
-      window.scrollTo(0, 0);
-    }, quick ? 150 : 1500);
-    setTimeout(function () { intro.hidden = true; }, quick ? 1100 : 2600);
-  });
+  document.body.classList.add('revealed');
 })();
 </script>
 
