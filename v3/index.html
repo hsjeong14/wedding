@@ -564,6 +564,16 @@ footer .sig { font-size: clamp(24px, 7.6vw, 30px); }
   .intro.v3 .script .s1 { font-size: 44px; } .intro.v3 .script .s2 { font-size: 42px; }
   .v3-wrap { padding-top: calc(24px + env(safe-area-inset-top, 0px)); }
 }
+
+/* First screen: the cover photo fills the whole phone screen on any device */
+.cover .frame {
+  aspect-ratio: auto;
+  height: calc(100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  height: calc(100svh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  min-height: 480px;
+}
+.cover img { object-position: 50% 62%; }
+@media (orientation: landscape) and (max-height: 500px) { .cover .frame { height: auto; aspect-ratio: 2 / 3; min-height: 0; } }
 </style>
 </head>
 <body>
@@ -603,8 +613,6 @@ footer .sig { font-size: clamp(24px, 7.6vw, 30px); }
     <div class="cover-top">
       <p class="label">Wedding Invitation</p>
       <h1 class="cover-names">Hyunseok <span class="heart" role="img" aria-label="그리고"><svg viewBox="0 0 24 22" aria-hidden="true"><path d="M12 21.2 10.6 20C5.4 15.4 2 12.3 2 8.5 2 5.4 4.4 3 7.5 3c1.7 0 3.4.8 4.5 2.1C13.1 3.8 14.8 3 16.5 3 19.6 3 22 5.4 22 8.5c0 3.8-3.4 6.9-8.6 11.5L12 21.2z"/></svg></span> Gayeong</h1>
-    </div>
-    <div class="cover-bottom">
       <p class="cover-date">2027 . 02 . 20</p>
     </div>
   </figure>
