@@ -145,8 +145,8 @@ section + section { border-top: 1px solid var(--hair); }
 .ko-names {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: 22px;
-  letter-spacing: .32em;
+  font-size: 26px;
+  letter-spacing: .3em;
   text-indent: .32em;  /* balance trailing tracking */
   margin: 0;
 }
@@ -483,10 +483,11 @@ img { -webkit-touch-callout: none; -webkit-user-drag: none; user-select: none; -
 @media (max-height: 700px) { .v4top { top: calc(24px + env(safe-area-inset-top, 0px)); } }
 
 /* quick info right under the cover */
-.quick { padding-block: 34px 34px; text-align: center; border-bottom: 1px solid var(--hair); display: grid; gap: 20px; justify-items: center; }
+.quick { padding-block: 64px 48px; text-align: center; border-bottom: 1px solid var(--hair); display: grid; gap: 20px; justify-items: center; }
 .quick + section { border-top: 0; }
+.greeting { padding-top: 56px; }
 .quick-row { display: grid; gap: 14px; justify-items: center; }
-.q-when, .q-where { margin: 0; display: grid; gap: 2px; }
+.q-when, .q-where { margin: 0; display: grid; gap: 6px; }
 .q-date { font-family: var(--serif); font-size: 17px; letter-spacing: .04em; color: var(--ink); white-space: nowrap; }
 .q-time { font-family: var(--serif); font-size: 15px; color: var(--soft); }
 .q-rule { width: 22px; height: 1px; background: var(--blush); opacity: .8; }
@@ -525,15 +526,14 @@ html { scroll-behavior: smooth; }
 
   <section class="pad quick" aria-label="예식 일시와 장소">
     <div class="quick-row">
-      <p class="q-when"><span class="q-date">2027년 2월 20일 토요일</span><span class="q-date">오후 3시</span></p>
+      <p class="q-when"><span class="q-date">2027년 2월 20일 토요일 오후 3시</span></p>
       <span class="q-rule" aria-hidden="true"></span>
-      <p class="q-where"><span class="q-venue">빌라드지디 논현</span></p>
+      <p class="q-where"><span class="q-venue">빌라드지디 논현</span><span class="q-addr">서울 강남구 언주로126길 23</span></p>
     </div>
   </section>
 
   <section class="pad greeting">
     <div class="stack">
-      <p class="label">Invitation</p>
       <p class="ko-names">정현석<span class="heart" role="img" aria-label="그리고"><svg viewBox="0 0 24 22" aria-hidden="true"><path d="M12 21.2 10.6 20C5.4 15.4 2 12.3 2 8.5 2 5.4 4.4 3 7.5 3c1.7 0 3.4.8 4.5 2.1C13.1 3.8 14.8 3 16.5 3 19.6 3 22 5.4 22 8.5c0 3.8-3.4 6.9-8.6 11.5L12 21.2z"/></svg></span>양가영</p>
       <hr class="rule">
       <div class="verse">
