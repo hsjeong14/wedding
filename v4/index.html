@@ -487,8 +487,16 @@ img { -webkit-touch-callout: none; -webkit-user-drag: none; user-select: none; -
 .quick + section { border-top: 0; }
 .greeting { padding-top: 56px; font-family: var(--sans); }
 .greeting .stack { gap: 40px; }
+.g-photo { margin: 0; padding: 0; }
+.g-photo img { display: block; width: 100%; height: auto; -webkit-touch-callout: none; user-select: none; }
+.quick { border-bottom: 0; padding-bottom: 56px; }
+.g-names { margin: 0; display: flex; align-items: baseline; justify-content: center; white-space: nowrap; font-family: var(--sans); }
+.g-role { font-size: 12px; letter-spacing: .1em; color: var(--soft); margin-right: 10px; font-weight: 400; }
+.g-name { font-size: 21px; letter-spacing: .14em; margin-right: -.14em; font-weight: 400; color: var(--ink); }
+.g-gap { display: inline-block; width: 28px; }
+.greeting .verse p { font-size: clamp(12px, 3.85vw, 15.5px); }
 .greeting .ko-names { font-family: var(--sans); font-weight: 400; }
-.greeting .verse p { font-weight: 300; }
+.greeting .verse p { font-family: var(--serif); font-weight: 400; }
 .greeting .fam .parents { font-family: var(--sans); font-weight: 300; }
 .greeting .fam .child { font-family: var(--sans); font-weight: 500; }
 .quick-row { display: grid; gap: 14px; justify-items: center; }
@@ -537,12 +545,13 @@ html { scroll-behavior: smooth; }
     </div>
   </section>
 
+  <figure class="g-photo"><img src="r/LUS06296_w.jpg?v=2" alt="파리 거리에서 마주 보고 웃는 신랑 신부" width="1600" height="1000" loading="lazy" decoding="async"></figure>
+
   <section class="pad greeting">
     <div class="stack">
-      <p class="ko-names">정현석<span class="heart" role="img" aria-label="그리고"><svg viewBox="0 0 24 22" aria-hidden="true"><path d="M12 21.2 10.6 20C5.4 15.4 2 12.3 2 8.5 2 5.4 4.4 3 7.5 3c1.7 0 3.4.8 4.5 2.1C13.1 3.8 14.8 3 16.5 3 19.6 3 22 5.4 22 8.5c0 3.8-3.4 6.9-8.6 11.5L12 21.2z"/></svg></span>양가영</p>
       <div class="verse">
-        <p>겨울의 끝자락,<br>서로의 계절이 되어주기로 한<br>두 사람이 있습니다.</p>
-        <p>함께 걸어갈 첫걸음을 내딛는 날,<br>귀한 걸음으로 오시어<br>따뜻한 축복을 나눠주세요.</p>
+        <p>5년 동안 서로의 가장 친한 친구이자<br>든든한 지원군이었던 두 사람이<br>이제 부부가 되려 합니다.</p>
+        <p>“연애 5년 차”를 졸업하고<br>“결혼 1년 차”로 새로 시작해보겠습니다.<br>저희의 새로운 출발을 함께 축복해 주세요.</p>
       </div>
       <div class="families">
         <div class="fam"><span class="parents">정득주 · 임수진</span><span class="rel">의 아들</span><span class="child">현석</span></div>
