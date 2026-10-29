@@ -757,7 +757,7 @@ html { scroll-behavior: smooth; }
       vh = Math.min(vh, window.innerHeight);
       // KakaoTalk / in-app browsers draw a toolbar over the bottom of the page: keep the whole photo above it
       var inApp = /KAKAOTALK|NAVER\(inapp|Instagram|FBAN|FBAV|Line\//i.test(navigator.userAgent);
-      if (inApp) vh -= 64;
+      if (inApp) vh = vh * 0.84;
       fr.style.height = Math.max(440, vh - pad) + 'px';
     }
     fix(true);
