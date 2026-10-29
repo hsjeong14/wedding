@@ -23,11 +23,30 @@
 <title>현석과 가영의 결혼식에 초대합니다</title>
 <link rel="preload" as="image" href="r/LUS06413_c.jpg" fetchpriority="high">
 <script>
-/* Cover height comes from CSS (svh = the stable, toolbar-shown screen height), so it is identical
-   on first open, on refresh and while scrolling. JS only flags in-app browsers (KakaoTalk etc.). */
+/* Cover height is measured ONCE (first open), remembered for this browsing session, and then never
+   recalculated — so scrolling (in-app toolbars resizing the webview) and refreshing can't change it.
+   Only a real rotation (width change) measures again. */
 (function () {
   var root = document.documentElement;
-  if (/KAKAOTALK|NAVER\(inapp|Instagram|FBAN|FBAV|Line\//i.test(navigator.userAgent)) root.classList.add('inapp');
+  var inapp = /KAKAOTALK|NAVER\(inapp|Instagram|FBAN|FBAV|Line\//i.test(navigator.userAgent);
+  if (inapp) root.classList.add('inapp');
+  var lastW = 0;
+  function apply() {
+    var w = window.innerWidth; if (Math.abs(w - lastW) < 80) return; lastW = w;
+    var key = 'coverH:' + w, h = 0;
+    try { h = +sessionStorage.getItem(key) || 0; } catch (e) {}
+    if (!h) {
+      h = window.innerHeight;
+      if (window.visualViewport) h = Math.min(h, window.visualViewport.height);
+      if (inapp) h *= 0.84;
+      h = Math.max(440, Math.round(h));
+      try { sessionStorage.setItem(key, h); } catch (e) {}
+    }
+    root.style.setProperty('--coverH', h + 'px');
+  }
+  apply();
+  window.addEventListener('orientationchange', function () { setTimeout(apply, 350); });
+  window.addEventListener('resize', apply);   // ignored unless the width really changed (rotation)
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';   // refresh always starts at the cover
   // hold the cover lettering until its webfont is ready, so the text doesn't visibly swap fonts
   root.classList.add('fonts-pending');
@@ -451,9 +470,10 @@ footer { background: #0d0f10; color: #e4e1db; border-top: 1px solid var(--hair);
   aspect-ratio: auto;
   height: 100vh;
   height: 100svh;
+  height: var(--coverH, 100svh);
   min-height: 440px;
 }
-.inapp .cover .frame { height: 84vh; height: 84svh; }
+.inapp .cover .frame { height: 84vh; height: var(--coverH, 84svh); }
 .cover img { object-position: 50% 100%; }
 @media (orientation: landscape) and (max-height: 500px) { .cover .frame { height: auto; aspect-ratio: 2 / 3; min-height: 0; } }
 
