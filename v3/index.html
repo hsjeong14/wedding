@@ -423,7 +423,7 @@ footer .label { color: #a7b3ad; }
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .revealed .cover img { animation: settle 2.4s cubic-bezier(.2,.7,.2,1) both; }
+
   @keyframes settle { from { transform: scale(1.06); } to { transform: scale(1); } }
 }
 @media (max-width: 360px) {
@@ -978,6 +978,24 @@ img { -webkit-touch-callout: none; -webkit-user-drag: none; user-select: none; -
   var lastTouch = 0;
   document.addEventListener('touchend', function (e) { var now = Date.now(); if (now - lastTouch < 300 && !e.target.closest('button, a, input, textarea')) e.preventDefault(); lastTouch = now; }, { passive: false });
   document.addEventListener('contextmenu', function (e) { if (e.target.tagName === 'IMG') e.preventDefault(); });
+
+  // lock the cover height once, so it doesn't resize while the browser bars slide in and out during scroll
+  (function () {
+    var fr = document.querySelector('.cover .frame'); if (!fr) return;
+    var lastW = 0;
+    function fix(force) {
+      var w = window.innerWidth;
+      if (!force && w === lastW) return;           // ignore height-only changes (address bar show/hide)
+      lastW = w;
+      if (window.matchMedia('(orientation: landscape) and (max-height: 500px)').matches) { fr.style.height = ''; return; }
+      var cs = getComputedStyle(document.documentElement);
+      var pad = (parseFloat(cs.paddingTop) || 0) + (parseFloat(cs.paddingBottom) || 0);
+      fr.style.height = Math.max(480, window.innerHeight - pad) + 'px';
+    }
+    fix(true);
+    window.addEventListener('resize', function () { fix(false); });
+    window.addEventListener('orientationchange', function () { setTimeout(function () { fix(true); }, 250); });
+  })();
 })();
 </script>
 
