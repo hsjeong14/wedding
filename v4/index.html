@@ -526,6 +526,12 @@ img { -webkit-touch-callout: none; -webkit-user-drag: none; user-select: none; -
 .g-heart svg { display: block; width: 100%; height: 100%; fill: #e7a3ad; }
 .greeting .fam .parents { font-family: var(--sans); font-weight: 300; color: #d8cec2; }
 .greeting .fam .child { color: #ece3d8; }
+/* parents' lines: same face, size and weight as the greeting text */
+.greeting .families { column-gap: .45em; row-gap: 10px; }
+.greeting .fam span, .greeting .fam .parents, .greeting .fam .rel, .greeting .fam .child {
+  font-family: var(--serif) !important; font-size: clamp(13px, 3.7vw, 15px) !important; font-weight: 400 !important;
+  letter-spacing: .02em !important; margin-right: 0 !important; color: #d8cec2; }
+.greeting .fam .rel { color: #a9a197; }
 .greeting .fam .child { font-family: var(--sans); font-weight: 500; }
 .quick-row { display: grid; gap: 6px; justify-items: center; }
 .q-when, .q-where { margin: 0; display: grid; gap: 6px; }
