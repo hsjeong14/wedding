@@ -23,28 +23,17 @@
 <title>현석과 가영의 결혼식에 초대합니다</title>
 <link rel="preload" as="image" href="r/LUS06413_c.jpg" fetchpriority="high">
 <script>
-/* Decide the cover height before anything is drawn, so the photo never jumps on open */
+/* Cover height comes from CSS (svh = the stable, toolbar-shown screen height), so it is identical
+   on first open, on refresh and while scrolling. JS only flags in-app browsers (KakaoTalk etc.). */
 (function () {
-  var root = document.documentElement, lastW = 0;
-  function calc(force) {
-    var w = window.innerWidth;
-    if (!force && Math.abs(w - lastW) < 80) return; // lock: ignore toolbar/scroll resizes; only a real rotation recalculates
-    lastW = w;
-    var vh = (window.visualViewport && window.visualViewport.height) || window.innerHeight;
-    vh = Math.min(vh, window.innerHeight);
-    if (/KAKAOTALK|NAVER\(inapp|Instagram|FBAN|FBAV|Line\//i.test(navigator.userAgent)) vh = vh * 0.84;
-    root.style.setProperty('--coverH', Math.max(440, Math.round(vh)) + 'px');
-  }
-  calc(true);
+  var root = document.documentElement;
+  if (/KAKAOTALK|NAVER\(inapp|Instagram|FBAN|FBAV|Line\//i.test(navigator.userAgent)) root.classList.add('inapp');
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';   // refresh always starts at the cover
   // hold the cover lettering until its webfont is ready, so the text doesn't visibly swap fonts
   root.classList.add('fonts-pending');
   var done = function () { root.classList.remove('fonts-pending'); };
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(done); else done();
   setTimeout(done, 1800);
-  window.addEventListener('resize', function () { calc(false); });
-  window.addEventListener('orientationchange', function () { setTimeout(function () { calc(true); }, 300); });
-
-  (function () { var ci = document.querySelector('.cover img'); if (ci && ci.complete && ci.naturalWidth) ci.classList.add('ready'); })();
 })();
 </script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -460,11 +449,11 @@ footer { background: #0d0f10; color: #e4e1db; border-top: 1px solid var(--hair);
 /* First screen: the cover photo fills the whole phone screen on any device */
 .cover .frame {
   aspect-ratio: auto;
-  height: calc(100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
-  height: calc(100svh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
-  height: var(--coverH, 100svh);
-  min-height: 480px;
+  height: 100vh;
+  height: 100svh;
+  min-height: 440px;
 }
+.inapp .cover .frame { height: 84vh; height: 84svh; }
 .cover img { object-position: 50% 100%; }
 @media (orientation: landscape) and (max-height: 500px) { .cover .frame { height: auto; aspect-ratio: 2 / 3; min-height: 0; } }
 
@@ -535,7 +524,7 @@ html { scroll-behavior: smooth; }
 
   <figure class="cover">
     <div class="frame">
-      <img src="r/LUS06413_c.jpg" fetchpriority="high" decoding="async" onload="this.classList.add('ready')" alt="해 질 무렵 센강 난간 앞, 불 밝힌 에펠탑을 배경으로 선 현석과 가영" width="933" height="1400">
+      <img src="r/LUS06413_c.jpg" fetchpriority="high" decoding="async" onload="this.classList.add('ready')" alt="해 질 무렵 센강 난간 앞, 불 밝힌 에펠탑을 배경으로 선 현석과 가영" width="933" height="1400"><script>(function(){var c=document.currentScript.previousElementSibling;if(c.complete&&c.naturalWidth)c.classList.add('ready');})();</script>
     </div>
     <div class="cover-top v4top">
       <p class="label v4label">The Wedding of</p>
