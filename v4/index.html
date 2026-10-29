@@ -33,22 +33,24 @@
   var lastW = 0;
   function apply() {
     var w = window.innerWidth; if (Math.abs(w - lastW) < 80) return; lastW = w;
-    var key = 'coverH9:' + w, h = 0;
+    var key = 'coverH11:' + w, h = 0;
     try { h = +sessionStorage.getItem(key) || 0; } catch (e) {}
     if (!h) {
-      h = window.innerHeight;
-      if (window.visualViewport) h = Math.min(h, window.visualViewport.height);
+      // space actually visible on first open (KakaoTalk & co. also lay a bottom bar over the page)
+      var avail = window.innerHeight;
+      if (window.visualViewport) avail = Math.min(avail, window.visualViewport.height);
       if (inapp) {
         var pr = document.createElement('div');
         pr.style.cssText = 'position:absolute;visibility:hidden;width:0;height:env(safe-area-inset-bottom,0px)';
         root.appendChild(pr); var safeB = pr.offsetHeight || 0; root.removeChild(pr);
-        h -= 66 + safeB;   // keep the feet above KakaoTalk's bottom bar
+        avail -= 96 + safeB;
       }
-      h = Math.max(440, Math.round(h));
+      // the photo is pinned to its bottom edge: enlarging it to fill the screen only trims the sides/sky,
+      // never the feet — so the only thing that can hide them is that bottom bar, which we keep clear of
+      h = Math.max(360, Math.round(avail));
       try { sessionStorage.setItem(key, h); } catch (e) {}
     }
     root.style.setProperty('--coverH', h + 'px');
-    // the photo has ~23% of soft ground added under the feet; that part melts away (transparent) into the page
     var imgH = Math.max(h, Math.min(w, 460) * 1400 / 933);
     root.style.setProperty('--fade', Math.round(imgH * 190 / 1400) + 'px');   // wide, soft veil from the bottom edge
   }
@@ -479,7 +481,7 @@ footer { background: #0d0f10; color: #e4e1db; border-top: 1px solid var(--hair);
   height: 100vh;
   height: 100svh;
   height: var(--coverH, 100svh);
-  min-height: 440px;
+  min-height: 0;
 }
 /* no motion anywhere: no transitions, no animations, no rubber-band stretch at the top */
 *, *::before, *::after { animation: none !important; transition: none !important; }
