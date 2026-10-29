@@ -33,9 +33,18 @@
     var vh = (window.visualViewport && window.visualViewport.height) || window.innerHeight;
     vh = Math.min(vh, window.innerHeight);
     if (/KAKAOTALK|NAVER\(inapp|Instagram|FBAN|FBAV|Line\//i.test(navigator.userAgent)) vh = vh * 0.84;
-    root.style.setProperty('--coverH', Math.max(440, Math.round(vh)) + 'px');
+    // read the safe-area insets once and bake them in, so in-app toolbars changing the inset mid-scroll can't resize the photo
+    var pr = document.createElement('div');
+    pr.style.cssText = 'position:absolute;visibility:hidden;pointer-events:none;top:0;left:0;width:0;height:calc(env(safe-area-inset-top,0px) + env(safe-area-inset-bottom,0px))';
+    root.appendChild(pr); var inset = pr.offsetHeight || 0; root.removeChild(pr);
+    root.style.setProperty('--coverH', Math.max(440, Math.round(vh - inset)) + 'px');
   }
   calc(true);
+  // hold the cover lettering until its webfont is ready, so the text doesn't visibly swap fonts
+  root.classList.add('fonts-pending');
+  var done = function () { root.classList.remove('fonts-pending'); };
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(done); else done();
+  setTimeout(done, 1800);
   window.addEventListener('resize', function () { calc(false); });
   window.addEventListener('orientationchange', function () { setTimeout(function () { calc(true); }, 300); });
 
@@ -457,7 +466,7 @@ footer { background: #0d0f10; color: #e4e1db; border-top: 1px solid var(--hair);
   aspect-ratio: auto;
   height: calc(100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
   height: calc(100svh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
-  height: calc(var(--coverH, 100svh) - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  height: var(--coverH, 100svh);
   min-height: 480px;
 }
 .cover img { object-position: 50% 100%; }
@@ -519,6 +528,8 @@ html { scroll-behavior: smooth; }
 .cover .frame { background: var(--stone); }
 .cover img { opacity: 0; transition: opacity .45s ease; }
 .cover img.ready { opacity: 1; }
+.cover-top, .cover-bottom { transition: opacity .35s ease; }
+.fonts-pending .cover-top, .fonts-pending .cover-bottom { opacity: 0; }
 </style>
 </head>
 <body>
