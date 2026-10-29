@@ -21,6 +21,24 @@
 <meta name="twitter:image" content="https://hsjeong14.github.io/wedding/og-f.jpg">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px/1.5 system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>현석과 가영의 결혼식에 초대합니다</title>
+<script>
+/* Decide the cover height before anything is drawn, so the photo never jumps on open */
+(function () {
+  var root = document.documentElement, lastW = 0;
+  function calc(force) {
+    var w = window.innerWidth;
+    if (!force && w === lastW) return;            // ignore height-only changes (browser bars sliding)
+    lastW = w;
+    var vh = (window.visualViewport && window.visualViewport.height) || window.innerHeight;
+    vh = Math.min(vh, window.innerHeight);
+    if (/KAKAOTALK|NAVER\(inapp|Instagram|FBAN|FBAV|Line\//i.test(navigator.userAgent)) vh = vh * 0.84;
+    root.style.setProperty('--coverH', Math.max(440, Math.round(vh)) + 'px');
+  }
+  calc(true);
+  window.addEventListener('resize', function () { calc(false); });
+  window.addEventListener('orientationchange', function () { setTimeout(function () { calc(true); }, 250); });
+})();
+</script>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -573,6 +591,7 @@ footer .sig { font-size: clamp(24px, 7.6vw, 30px); }
   aspect-ratio: auto;
   height: calc(100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
   height: calc(100svh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  height: calc(var(--coverH, 100svh) - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
   min-height: 480px;
 }
 .cover img { object-position: 50% 100%; }
@@ -979,28 +998,6 @@ img { -webkit-touch-callout: none; -webkit-user-drag: none; user-select: none; -
   document.addEventListener('touchend', function (e) { var now = Date.now(); if (now - lastTouch < 300 && !e.target.closest('button, a, input, textarea')) e.preventDefault(); lastTouch = now; }, { passive: false });
   document.addEventListener('contextmenu', function (e) { if (e.target.tagName === 'IMG') e.preventDefault(); });
 
-  // lock the cover height once, so it doesn't resize while the browser bars slide in and out during scroll
-  (function () {
-    var fr = document.querySelector('.cover .frame'); if (!fr) return;
-    var lastW = 0;
-    function fix(force) {
-      var w = window.innerWidth;
-      if (!force && w === lastW) return;           // ignore height-only changes (address bar show/hide)
-      lastW = w;
-      if (window.matchMedia('(orientation: landscape) and (max-height: 500px)').matches) { fr.style.height = ''; return; }
-      var cs = getComputedStyle(document.documentElement);
-      var pad = (parseFloat(cs.paddingTop) || 0) + (parseFloat(cs.paddingBottom) || 0);
-      var vh = (window.visualViewport && window.visualViewport.height) || window.innerHeight;
-      vh = Math.min(vh, window.innerHeight);
-      // KakaoTalk / in-app browsers draw a toolbar over the bottom of the page: keep the whole photo above it
-      var inApp = /KAKAOTALK|NAVER\(inapp|Instagram|FBAN|FBAV|Line\//i.test(navigator.userAgent);
-      if (inApp) vh = vh * 0.84;
-      fr.style.height = Math.max(440, vh - pad) + 'px';
-    }
-    fix(true);
-    window.addEventListener('resize', function () { fix(false); });
-    window.addEventListener('orientationchange', function () { setTimeout(function () { fix(true); }, 250); });
-  })();
 })();
 </script>
 
