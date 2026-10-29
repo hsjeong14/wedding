@@ -446,23 +446,19 @@ html { touch-action: pan-x pan-y; }
 img { -webkit-touch-callout: none; -webkit-user-drag: none; user-select: none; -webkit-user-select: none; }
 .tile { cursor: zoom-in; }
 
-/* v4 cover: evening-gown typography — copperplate script, hairline caps */
-.v4top { top: calc(46px + env(safe-area-inset-top, 0px)); gap: 6px; }
+/* v4 cover: evening-gown typography — copperplate script on one line, hairline numerals */
+.v4top { top: calc(46px + env(safe-area-inset-top, 0px)); gap: 8px; }
 .cover::after { background: linear-gradient(180deg, rgba(14,14,26,.42) 0%, rgba(14,14,26,.12) 30%, rgba(14,14,26,0) 46%, rgba(14,14,26,0) 70%, rgba(14,14,26,.35) 100%); }
 .v4label { font-family: var(--latin) !important; font-weight: 500; font-size: 12.5px !important; letter-spacing: .48em !important; text-indent: .48em; color: #f3ece2 !important; opacity: .85; }
 .v4names {
-  display: grid; justify-items: center; margin: 4px 0 0;
+  margin: 2px 0 0; white-space: nowrap;
   font-family: "Pinyon Script", "Snell Roundhand", cursive; font-style: normal; font-weight: 400;
-  font-size: clamp(44px, 13.4vw, 58px); line-height: 1.02; letter-spacing: 0;
+  font-size: clamp(32px, 10.2vw, 44px); line-height: 1.15; letter-spacing: 0;
   color: #fbf6ee; text-shadow: 0 2px 18px rgba(10,10,20,.35);
 }
-.v4names .n1 { transform: translateX(-12%); }
-.v4names .n2 { transform: translateX(12%); margin-top: -.12em; }
-.v4amp { display: block; line-height: 0; margin: .02em 0 .06em; }
-.v4amp .heart { width: .32em; height: .3em; margin: 0; vertical-align: 0; }
-.v4date { display: flex; justify-content: center; align-items: center; gap: 12px; margin-top: 14px !important; font-family: var(--latin) !important; font-style: italic; font-weight: 500; font-size: 15px !important; letter-spacing: .08em !important; text-indent: 0 !important; color: #f3ece2; }
-@media (max-height: 700px) { .v4top { top: calc(28px + env(safe-area-inset-top, 0px)); } .v4names { font-size: clamp(38px, 11.5vw, 48px); } .v4date { margin-top: 8px !important; font-size: 14px !important; } }
-.v4date i { width: 4px; height: 4px; border-radius: 50%; background: #e7a3ad; }
+.v4names .heart { width: .34em; height: .31em; margin: 0 .16em; vertical-align: .1em; }
+.v4date { margin-top: 6px !important; font-family: var(--latin) !important; font-weight: 500; font-style: normal; font-size: 15px !important; letter-spacing: .42em !important; text-indent: .42em !important; color: #f3ece2; }
+@media (max-height: 700px) { .v4top { top: calc(30px + env(safe-area-inset-top, 0px)); } }
 </style>
 </head>
 <body>
@@ -476,8 +472,8 @@ img { -webkit-touch-callout: none; -webkit-user-drag: none; user-select: none; -
     </div>
     <div class="cover-top v4top">
       <p class="label v4label">The Wedding of</p>
-      <h1 class="cover-names v4names"><span class="n1">Hyunseok</span><span class="v4amp"><span class="heart" role="img" aria-label="그리고"><svg viewBox="0 0 24 22" aria-hidden="true"><path d="M12 21.2 10.6 20C5.4 15.4 2 12.3 2 8.5 2 5.4 4.4 3 7.5 3c1.7 0 3.4.8 4.5 2.1C13.1 3.8 14.8 3 16.5 3 19.6 3 22 5.4 22 8.5c0 3.8-3.4 6.9-8.6 11.5L12 21.2z"/></svg></span></span><span class="n2">Gayeong</span></h1>
-      <p class="cover-date v4date"><span>Saturday</span><i></i><span>20 February 2027</span></p>
+      <h1 class="cover-names v4names">Hyunseok <span class="heart" role="img" aria-label="그리고"><svg viewBox="0 0 24 22" aria-hidden="true"><path d="M12 21.2 10.6 20C5.4 15.4 2 12.3 2 8.5 2 5.4 4.4 3 7.5 3c1.7 0 3.4.8 4.5 2.1C13.1 3.8 14.8 3 16.5 3 19.6 3 22 5.4 22 8.5c0 3.8-3.4 6.9-8.6 11.5L12 21.2z"/></svg></span> Gayeong</h1>
+      <p class="cover-date v4date">2027. 02. 20</p>
     </div>
   </figure>
 
