@@ -51,8 +51,6 @@
       try { sessionStorage.setItem(key, h); } catch (e) {}
     }
     root.style.setProperty('--coverH', h + 'px');
-    var imgH = Math.max(h, Math.min(w, 460) * 1400 / 933);
-    root.style.setProperty('--fade', Math.round(imgH * 90 / 1400) + 'px');   // thin veil: only the last strip of ground, the shoes stay untouched
   }
   apply();
   window.addEventListener('orientationchange', function () { setTimeout(apply, 350); });
@@ -520,12 +518,6 @@ img { -webkit-touch-callout: none; -webkit-user-drag: none; user-select: none; -
   margin-top: 0; padding-top: 88px !important; padding-bottom: 140px !important; }
 /* the bottom of the cover photo turns transparent and melts into the page — no overlay, no colour band */
 .cover .frame { background: transparent !important; }
-/* a veil of the page colour laid over the bottom of the photo, from the bottom edge up to about the shoes */
-.cover .frame { position: relative; }
-.cover .frame::after {
-  content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: calc(var(--fade, 44px) + 1px); pointer-events: none;
-  background: linear-gradient(to top, var(--paper) 0%, rgba(27,30,32,.72) 9%, rgba(27,30,32,.42) 22%, rgba(27,30,32,.2) 42%, rgba(27,30,32,.07) 68%, rgba(27,30,32,0) 100%);
-}
 .g-names { margin: 0; display: flex; align-items: baseline; justify-content: center; white-space: nowrap; font-family: var(--sans); }
 .g-role { font-size: 12px; letter-spacing: .1em; color: var(--soft); margin-right: 10px; font-weight: 400; }
 .g-name { font-size: 21px; letter-spacing: .14em; margin-right: -.14em; font-weight: 400; color: var(--ink); }
