@@ -21,6 +21,7 @@
 <meta name="twitter:image" content="https://hsjeong14.github.io/wedding/og-f.jpg">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px/1.5 system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>현석과 가영의 결혼식에 초대합니다</title>
+<link rel="preload" as="image" href="r/LUS06413_c.jpg" fetchpriority="high">
 <script>
 /* Decide the cover height before anything is drawn, so the photo never jumps on open */
 (function () {
@@ -37,6 +38,8 @@
   calc(true);
   window.addEventListener('resize', function () { calc(false); });
   window.addEventListener('orientationchange', function () { setTimeout(function () { calc(true); }, 250); });
+
+  (function () { var ci = document.querySelector('.cover img'); if (ci && ci.complete && ci.naturalWidth) ci.classList.add('ready'); })();
 })();
 </script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -497,6 +500,11 @@ img { -webkit-touch-callout: none; -webkit-user-drag: none; user-select: none; -
 .q-links a.q-more { border-color: transparent; color: var(--seine); }
 .q-links a:focus-visible { outline: 1px solid var(--seine); outline-offset: 2px; }
 html { scroll-behavior: smooth; }
+
+/* cover photo fades in once fully loaded (no half-drawn image on open) */
+.cover .frame { background: var(--stone); }
+.cover img { opacity: 0; transition: opacity .45s ease; }
+.cover img.ready { opacity: 1; }
 </style>
 </head>
 <body>
@@ -506,7 +514,7 @@ html { scroll-behavior: smooth; }
 
   <figure class="cover">
     <div class="frame">
-      <img src="r/LUS06413.jpg" alt="해 질 무렵 센강 난간 앞, 불 밝힌 에펠탑을 배경으로 선 현석과 가영" width="933" height="1400">
+      <img src="r/LUS06413_c.jpg" fetchpriority="high" decoding="async" onload="this.classList.add('ready')" alt="해 질 무렵 센강 난간 앞, 불 밝힌 에펠탑을 배경으로 선 현석과 가영" width="933" height="1400">
     </div>
     <div class="cover-top v4top">
       <p class="label v4label">The Wedding of</p>

@@ -20,6 +20,7 @@
 <meta name="twitter:image" content="https://hsjeong14.github.io/wedding/og-f.jpg">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px/1.5 system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>현석과 가영의 결혼식에 초대합니다</title>
+<link rel="preload" as="image" href="r/LUS06110_c.jpg" fetchpriority="high">
 <script>
 /* Decide the cover height before anything is drawn, so the photo never jumps on open */
 (function () {
@@ -36,6 +37,8 @@
   calc(true);
   window.addEventListener('resize', function () { calc(false); });
   window.addEventListener('orientationchange', function () { setTimeout(function () { calc(true); }, 250); });
+
+  (function () { var ci = document.querySelector('.cover img'); if (ci && ci.complete && ci.naturalWidth) ci.classList.add('ready'); })();
 })();
 </script>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -443,6 +446,11 @@ footer .sig { font-size: clamp(24px, 7.6vw, 30px); }
 html { touch-action: pan-x pan-y; }
 img { -webkit-touch-callout: none; -webkit-user-drag: none; user-select: none; -webkit-user-select: none; }
 .tile { cursor: zoom-in; }
+
+/* cover photo fades in once fully loaded (no half-drawn image on open) */
+.cover .frame { background: var(--stone); }
+.cover img { opacity: 0; transition: opacity .45s ease; }
+.cover img.ready { opacity: 1; }
 </style>
 </head>
 <body>
@@ -452,7 +460,7 @@ img { -webkit-touch-callout: none; -webkit-user-drag: none; user-select: none; -
 
   <figure class="cover">
     <div class="frame">
-      <img src="r/LUS06110.jpg" alt="에펠탑이 보이는 파리 골목 한가운데에서 손을 맞잡고 춤추는 현석과 가영" width="933" height="1400">
+      <img src="r/LUS06110_c.jpg" fetchpriority="high" decoding="async" onload="this.classList.add('ready')" alt="에펠탑이 보이는 파리 골목 한가운데에서 손을 맞잡고 춤추는 현석과 가영" width="933" height="1400">
     </div>
     <div class="cover-top">
       <p class="label">Wedding Invitation</p>
