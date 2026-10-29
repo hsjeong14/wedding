@@ -33,12 +33,11 @@
   var lastW = 0;
   function apply() {
     var w = window.innerWidth; if (Math.abs(w - lastW) < 80) return; lastW = w;
-    var key = 'coverH:' + w, h = 0;
+    var key = 'coverH2:' + w, h = 0;
     try { h = +sessionStorage.getItem(key) || 0; } catch (e) {}
     if (!h) {
       h = window.innerHeight;
       if (window.visualViewport) h = Math.min(h, window.visualViewport.height);
-      if (inapp) h *= 0.84;
       h = Math.max(440, Math.round(h));
       try { sessionStorage.setItem(key, h); } catch (e) {}
     }
@@ -473,7 +472,9 @@ footer { background: #0d0f10; color: #e4e1db; border-top: 1px solid var(--hair);
   height: var(--coverH, 100svh);
   min-height: 440px;
 }
-.inapp .cover .frame { height: 84vh; height: var(--coverH, 84svh); }
+/* no motion anywhere: no transitions, no animations, no rubber-band stretch at the top */
+*, *::before, *::after { animation: none !important; transition: none !important; }
+html, body { overscroll-behavior-y: none; }
 .cover img { object-position: 50% 100%; }
 @media (orientation: landscape) and (max-height: 500px) { .cover .frame { height: auto; aspect-ratio: 2 / 3; min-height: 0; } }
 
@@ -528,13 +529,11 @@ img { -webkit-touch-callout: none; -webkit-user-drag: none; user-select: none; -
 }
 .q-links a.q-more { border-color: transparent; color: var(--seine); }
 .q-links a:focus-visible { outline: 1px solid var(--seine); outline-offset: 2px; }
-html { scroll-behavior: smooth; }
+
 
 /* cover photo fades in once fully loaded (no half-drawn image on open) */
 .cover .frame { background: var(--stone); }
-.cover img { opacity: 0; transition: opacity .45s ease; }
 .cover img.ready { opacity: 1; }
-.cover-top, .cover-bottom { transition: opacity .35s ease; }
 .fonts-pending .cover-top, .fonts-pending .cover-bottom { opacity: 0; }
 </style>
 </head>
