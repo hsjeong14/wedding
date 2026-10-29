@@ -33,7 +33,7 @@
   var lastW = 0;
   function apply() {
     var w = window.innerWidth; if (Math.abs(w - lastW) < 80) return; lastW = w;
-    var key = 'coverH3:' + w, h = 0;
+    var key = 'coverH4:' + w, h = 0;
     try { h = +sessionStorage.getItem(key) || 0; } catch (e) {}
     if (!h) {
       h = window.innerHeight;
@@ -43,7 +43,7 @@
         var pr = document.createElement('div');
         pr.style.cssText = 'position:absolute;visibility:hidden;width:0;height:env(safe-area-inset-bottom,0px)';
         root.appendChild(pr); var safeB = pr.offsetHeight || 0; root.removeChild(pr);
-        h -= 52 + safeB;
+        h -= 70 + safeB;
       }
       h = Math.max(440, Math.round(h));
       try { sessionStorage.setItem(key, h); } catch (e) {}
