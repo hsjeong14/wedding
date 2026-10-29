@@ -21,7 +21,7 @@
 <meta name="twitter:image" content="https://hsjeong14.github.io/wedding/og-f.jpg">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px/1.5 system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>현석과 가영의 결혼식에 초대합니다</title>
-<link rel="preload" as="image" href="r/LUS06413_cs.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="r/LUS06413_cx.jpg" fetchpriority="high">
 <script>
 /* Cover height is measured ONCE (first open), remembered for this browsing session, and then never
    recalculated — so scrolling (in-app toolbars resizing the webview) and refreshing can't change it.
@@ -33,7 +33,7 @@
   var lastW = 0;
   function apply() {
     var w = window.innerWidth; if (Math.abs(w - lastW) < 80) return; lastW = w;
-    var key = 'coverH6:' + w, h = 0;
+    var key = 'coverH7:' + w, h = 0;
     try { h = +sessionStorage.getItem(key) || 0; } catch (e) {}
     if (!h) {
       h = window.innerHeight;
@@ -42,15 +42,15 @@
         var pr = document.createElement('div');
         pr.style.cssText = 'position:absolute;visibility:hidden;width:0;height:env(safe-area-inset-bottom,0px)';
         root.appendChild(pr); var safeB = pr.offsetHeight || 0; root.removeChild(pr);
-        h -= 40 + safeB;   // the short fade itself covers the rest of KakaoTalk's bottom bar
+        h -= 66 + safeB;   // keep the feet above KakaoTalk's bottom bar
       }
       h = Math.max(440, Math.round(h));
       try { sessionStorage.setItem(key, h); } catch (e) {}
     }
     root.style.setProperty('--coverH', h + 'px');
     // the photo has ~23% of soft ground added under the feet; that part melts away (transparent) into the page
-    var imgH = Math.max(h, Math.min(w, 460) * 1550 / 933);
-    root.style.setProperty('--fade', Math.round(imgH * 160 / 1550) + 'px');
+    var imgH = Math.max(h, Math.min(w, 460) * 1460 / 933);
+    root.style.setProperty('--fade', Math.round(imgH * 62 / 1460) + 'px');
   }
   apply();
   window.addEventListener('orientationchange', function () { setTimeout(apply, 350); });
@@ -572,7 +572,7 @@ img { -webkit-touch-callout: none; -webkit-user-drag: none; user-select: none; -
 
   <figure class="cover">
     <div class="frame">
-      <img src="r/LUS06413_cs.jpg" fetchpriority="high" decoding="async" onload="this.classList.add('ready')" alt="해 질 무렵 센강 난간 앞, 불 밝힌 에펠탑을 배경으로 선 현석과 가영" width="933" height="1550"><script>(function(){var c=document.currentScript.previousElementSibling;if(c.complete&&c.naturalWidth)c.classList.add('ready');})();</script>
+      <img src="r/LUS06413_cx.jpg" fetchpriority="high" decoding="async" onload="this.classList.add('ready')" alt="해 질 무렵 센강 난간 앞, 불 밝힌 에펠탑을 배경으로 선 현석과 가영" width="933" height="1460"><script>(function(){var c=document.currentScript.previousElementSibling;if(c.complete&&c.naturalWidth)c.classList.add('ready');})();</script>
     </div>
     <div class="cover-top v4top">
       <p class="label v4label">The Wedding of</p>
