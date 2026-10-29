@@ -28,7 +28,7 @@
   var root = document.documentElement, lastW = 0;
   function calc(force) {
     var w = window.innerWidth;
-    if (!force && w === lastW) return;            // ignore height-only changes (browser bars sliding)
+    if (!force && Math.abs(w - lastW) < 80) return; // lock: ignore toolbar/scroll resizes; only a real rotation recalculates
     lastW = w;
     var vh = (window.visualViewport && window.visualViewport.height) || window.innerHeight;
     vh = Math.min(vh, window.innerHeight);
@@ -37,7 +37,7 @@
   }
   calc(true);
   window.addEventListener('resize', function () { calc(false); });
-  window.addEventListener('orientationchange', function () { setTimeout(function () { calc(true); }, 250); });
+  window.addEventListener('orientationchange', function () { setTimeout(function () { calc(true); }, 300); });
 
   (function () { var ci = document.querySelector('.cover img'); if (ci && ci.complete && ci.naturalWidth) ci.classList.add('ready'); })();
 })();
