@@ -45,7 +45,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@300;400&family=Mrs+Saint+Delafield&family=Nanum+Pen+Script&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@300;400;500&family=Mrs+Saint+Delafield&family=Nanum+Pen+Script&display=swap">
 <style>
 /* Layout: a fashion-editorial single column. Full-bleed cover, then generous white space,
    hairline rules, and one large Bodoni numeral per section. Single light look by choice (paper invitation). */
@@ -485,7 +485,12 @@ img { -webkit-touch-callout: none; -webkit-user-drag: none; user-select: none; -
 /* quick info right under the cover */
 .quick { padding-block: 64px 48px; text-align: center; border-bottom: 1px solid var(--hair); display: grid; gap: 20px; justify-items: center; }
 .quick + section { border-top: 0; }
-.greeting { padding-top: 56px; }
+.greeting { padding-top: 56px; font-family: var(--sans); }
+.greeting .stack { gap: 40px; }
+.greeting .ko-names { font-family: var(--sans); font-weight: 400; }
+.greeting .verse p { font-weight: 300; }
+.greeting .fam .parents { font-family: var(--sans); font-weight: 300; }
+.greeting .fam .child { font-family: var(--sans); font-weight: 500; }
 .quick-row { display: grid; gap: 14px; justify-items: center; }
 .q-when, .q-where { margin: 0; display: grid; gap: 6px; }
 .q-date { font-family: var(--serif); font-size: 17px; letter-spacing: .04em; color: var(--ink); white-space: nowrap; }
@@ -535,12 +540,10 @@ html { scroll-behavior: smooth; }
   <section class="pad greeting">
     <div class="stack">
       <p class="ko-names">정현석<span class="heart" role="img" aria-label="그리고"><svg viewBox="0 0 24 22" aria-hidden="true"><path d="M12 21.2 10.6 20C5.4 15.4 2 12.3 2 8.5 2 5.4 4.4 3 7.5 3c1.7 0 3.4.8 4.5 2.1C13.1 3.8 14.8 3 16.5 3 19.6 3 22 5.4 22 8.5c0 3.8-3.4 6.9-8.6 11.5L12 21.2z"/></svg></span>양가영</p>
-      <hr class="rule">
       <div class="verse">
         <p>겨울의 끝자락,<br>서로의 계절이 되어주기로 한<br>두 사람이 있습니다.</p>
         <p>함께 걸어갈 첫걸음을 내딛는 날,<br>귀한 걸음으로 오시어<br>따뜻한 축복을 나눠주세요.</p>
       </div>
-      <hr class="rule">
       <div class="families">
         <div class="fam"><span class="parents">정득주 · 임수진</span><span class="rel">의 아들</span><span class="child">현석</span></div>
         <div class="fam"><span class="parents">양규봉 · 김봉순</span><span class="rel">의 딸</span><span class="child">가영</span></div>
