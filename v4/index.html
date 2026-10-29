@@ -33,11 +33,7 @@
     var vh = (window.visualViewport && window.visualViewport.height) || window.innerHeight;
     vh = Math.min(vh, window.innerHeight);
     if (/KAKAOTALK|NAVER\(inapp|Instagram|FBAN|FBAV|Line\//i.test(navigator.userAgent)) vh = vh * 0.84;
-    // read the safe-area insets once and bake them in, so in-app toolbars changing the inset mid-scroll can't resize the photo
-    var pr = document.createElement('div');
-    pr.style.cssText = 'position:absolute;visibility:hidden;pointer-events:none;top:0;left:0;width:0;height:calc(env(safe-area-inset-top,0px) + env(safe-area-inset-bottom,0px))';
-    root.appendChild(pr); var inset = pr.offsetHeight || 0; root.removeChild(pr);
-    root.style.setProperty('--coverH', Math.max(440, Math.round(vh - inset)) + 'px');
+    root.style.setProperty('--coverH', Math.max(440, Math.round(vh)) + 'px');
   }
   calc(true);
   // hold the cover lettering until its webfont is ready, so the text doesn't visibly swap fonts
