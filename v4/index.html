@@ -33,7 +33,7 @@
   var lastW = 0;
   function apply() {
     var w = window.innerWidth; if (Math.abs(w - lastW) < 80) return; lastW = w;
-    var key = 'coverH8:' + w, h = 0;
+    var key = 'coverH9:' + w, h = 0;
     try { h = +sessionStorage.getItem(key) || 0; } catch (e) {}
     if (!h) {
       h = window.innerHeight;
@@ -50,7 +50,7 @@
     root.style.setProperty('--coverH', h + 'px');
     // the photo has ~23% of soft ground added under the feet; that part melts away (transparent) into the page
     var imgH = Math.max(h, Math.min(w, 460) * 1400 / 933);
-    root.style.setProperty('--fade', Math.round(imgH * 84 / 1400) + 'px');   // bottom edge up to about the shoes
+    root.style.setProperty('--fade', Math.round(imgH * 190 / 1400) + 'px');   // wide, soft veil from the bottom edge
   }
   apply();
   window.addEventListener('orientationchange', function () { setTimeout(apply, 350); });
@@ -522,7 +522,7 @@ img { -webkit-touch-callout: none; -webkit-user-drag: none; user-select: none; -
 .cover .frame { position: relative; }
 .cover .frame::after {
   content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: calc(var(--fade, 44px) + 1px); pointer-events: none;
-  background: linear-gradient(to top, rgba(27,30,32,.92) 0%, rgba(27,30,32,.55) 45%, rgba(27,30,32,0) 100%);
+  background: linear-gradient(to top, rgba(27,30,32,.96) 0%, rgba(27,30,32,.82) 14%, rgba(27,30,32,.6) 30%, rgba(27,30,32,.38) 48%, rgba(27,30,32,.2) 66%, rgba(27,30,32,.08) 83%, rgba(27,30,32,0) 100%);
 }
 .g-names { margin: 0; display: flex; align-items: baseline; justify-content: center; white-space: nowrap; font-family: var(--sans); }
 .g-role { font-size: 12px; letter-spacing: .1em; color: var(--soft); margin-right: 10px; font-weight: 400; }
