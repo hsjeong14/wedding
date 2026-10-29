@@ -438,7 +438,7 @@ footer { background: #0d0f10; color: #e4e1db; border-top: 1px solid var(--hair);
   height: calc(100svh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
   min-height: 480px;
 }
-.cover img { object-position: 50% 62%; }
+.cover img { object-position: 50% 100%; }
 @media (orientation: landscape) and (max-height: 500px) { .cover .frame { height: auto; aspect-ratio: 2 / 3; min-height: 0; } }
 
 /* No zooming: block pinch / double-tap zoom and long-press save on photos */
@@ -712,7 +712,12 @@ img { -webkit-touch-callout: none; -webkit-user-drag: none; user-select: none; -
       if (window.matchMedia('(orientation: landscape) and (max-height: 500px)').matches) { fr.style.height = ''; return; }
       var cs = getComputedStyle(document.documentElement);
       var pad = (parseFloat(cs.paddingTop) || 0) + (parseFloat(cs.paddingBottom) || 0);
-      fr.style.height = Math.max(480, window.innerHeight - pad) + 'px';
+      var vh = (window.visualViewport && window.visualViewport.height) || window.innerHeight;
+      vh = Math.min(vh, window.innerHeight);
+      // KakaoTalk / in-app browsers draw a toolbar over the bottom of the page: keep the whole photo above it
+      var inApp = /KAKAOTALK|NAVER\(inapp|Instagram|FBAN|FBAV|Line\//i.test(navigator.userAgent);
+      if (inApp) vh -= 64;
+      fr.style.height = Math.max(440, vh - pad) + 'px';
     }
     fix(true);
     window.addEventListener('resize', function () { fix(false); });
