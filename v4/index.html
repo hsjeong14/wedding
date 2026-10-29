@@ -461,7 +461,7 @@ img { -webkit-touch-callout: none; -webkit-user-drag: none; user-select: none; -
 @media (max-height: 700px) { .v4top { top: calc(24px + env(safe-area-inset-top, 0px)); } }
 
 /* quick info right under the cover */
-.quick { padding-block: 34px 30px; text-align: center; border-bottom: 1px solid var(--hair); display: grid; gap: 20px; justify-items: center; }
+.quick { padding-block: 34px 34px; text-align: center; border-bottom: 1px solid var(--hair); display: grid; gap: 20px; justify-items: center; }
 .quick + section { border-top: 0; }
 .quick-row { display: grid; gap: 14px; justify-items: center; }
 .q-when, .q-where { margin: 0; display: grid; gap: 2px; }
@@ -498,14 +498,9 @@ html { scroll-behavior: smooth; }
 
   <section class="pad quick" aria-label="예식 일시와 장소">
     <div class="quick-row">
-      <p class="q-when"><span class="q-date">2027년 2월 20일 토요일</span><span class="q-time">오후 3시</span></p>
+      <p class="q-when"><span class="q-date">2027년 2월 20일 토요일</span><span class="q-date">오후 3시</span></p>
       <span class="q-rule" aria-hidden="true"></span>
-      <p class="q-where"><span class="q-venue">빌라드지디 논현</span><span class="q-addr">서울 강남구 언주로126길 23</span></p>
-    </div>
-    <div class="q-links">
-      <a href="https://map.naver.com/p/search/%EB%B9%8C%EB%9D%BC%EB%93%9C%EC%A7%80%EB%94%94%20%EB%85%BC%ED%98%84" target="_blank" rel="noopener">네이버 지도</a>
-      <a href="https://map.kakao.com/?q=%EB%B9%8C%EB%9D%BC%EB%93%9C%EC%A7%80%EB%94%94%20%EB%85%BC%ED%98%84" target="_blank" rel="noopener">카카오맵</a>
-      <a href="#location" class="q-more">오시는 길 ↓</a>
+      <p class="q-where"><span class="q-venue">빌라드지디 논현</span></p>
     </div>
   </section>
 
