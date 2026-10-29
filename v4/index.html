@@ -459,6 +459,25 @@ img { -webkit-touch-callout: none; -webkit-user-drag: none; user-select: none; -
 .v4names .heart { width: .3em; height: .28em; margin: 0 .22em; vertical-align: .12em; }
 .v4date { margin-top: 2px !important; font-family: var(--latin) !important; font-weight: 500; font-style: normal; font-size: 15px !important; letter-spacing: .2em !important; text-indent: .2em !important; color: #f3ece2; }
 @media (max-height: 700px) { .v4top { top: calc(24px + env(safe-area-inset-top, 0px)); } }
+
+/* quick info right under the cover */
+.quick { padding-block: 34px 30px; text-align: center; border-bottom: 1px solid var(--hair); display: grid; gap: 20px; justify-items: center; }
+.quick + section { border-top: 0; }
+.quick-row { display: grid; gap: 14px; justify-items: center; }
+.q-when, .q-where { margin: 0; display: grid; gap: 2px; }
+.q-date { font-family: var(--serif); font-size: 17px; letter-spacing: .04em; color: var(--ink); white-space: nowrap; }
+.q-time { font-family: var(--serif); font-size: 15px; color: var(--soft); }
+.q-rule { width: 22px; height: 1px; background: var(--blush); opacity: .8; }
+.q-venue { font-family: var(--serif); font-weight: 700; font-size: 18px; letter-spacing: .1em; color: var(--ink); }
+.q-addr { font-family: var(--sans); font-size: 12.5px; letter-spacing: .04em; color: var(--soft); }
+.q-links { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.q-links a {
+  font-family: var(--sans); font-size: 12px; letter-spacing: .06em; color: var(--ink); text-decoration: none;
+  border: 1px solid var(--hair); padding: 8px 14px; border-radius: 999px;
+}
+.q-links a.q-more { border-color: transparent; color: var(--seine); }
+.q-links a:focus-visible { outline: 1px solid var(--seine); outline-offset: 2px; }
+html { scroll-behavior: smooth; }
 </style>
 </head>
 <body>
@@ -476,6 +495,19 @@ img { -webkit-touch-callout: none; -webkit-user-drag: none; user-select: none; -
       <p class="cover-date v4date">2027. 02. 20</p>
     </div>
   </figure>
+
+  <section class="pad quick" aria-label="예식 일시와 장소">
+    <div class="quick-row">
+      <p class="q-when"><span class="q-date">2027년 2월 20일 토요일</span><span class="q-time">오후 3시</span></p>
+      <span class="q-rule" aria-hidden="true"></span>
+      <p class="q-where"><span class="q-venue">빌라드지디 논현</span><span class="q-addr">서울 강남구 언주로126길 23</span></p>
+    </div>
+    <div class="q-links">
+      <a href="https://map.naver.com/p/search/%EB%B9%8C%EB%9D%BC%EB%93%9C%EC%A7%80%EB%94%94%20%EB%85%BC%ED%98%84" target="_blank" rel="noopener">네이버 지도</a>
+      <a href="https://map.kakao.com/?q=%EB%B9%8C%EB%9D%BC%EB%93%9C%EC%A7%80%EB%94%94%20%EB%85%BC%ED%98%84" target="_blank" rel="noopener">카카오맵</a>
+      <a href="#location" class="q-more">오시는 길 ↓</a>
+    </div>
+  </section>
 
   <section class="pad greeting">
     <div class="stack">
@@ -545,7 +577,7 @@ img { -webkit-touch-callout: none; -webkit-user-drag: none; user-select: none; -
 
   <section class="pad">
     <div class="stack">
-      <p class="label">Location</p>
+      <p class="label" id="location">Location</p>
       <div>
         <p class="venue">빌라드지디 논현</p>
         <p class="venue-en">Villa de GD, Nonhyeon</p>
