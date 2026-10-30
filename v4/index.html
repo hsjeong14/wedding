@@ -21,38 +21,62 @@
 <meta name="twitter:image" content="https://hsjeong14.github.io/wedding/og-f.jpg">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px/1.5 system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>현석과 가영의 결혼식에 초대합니다</title>
-<link rel="preload" as="image" href="r/LUS06413_c.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="r/LUS06413_sky.jpg" fetchpriority="high">
 <script>
-/* Cover height is measured ONCE (first open), remembered for this browsing session, and then never
-   recalculated — so scrolling (in-app toolbars resizing the webview) and refreshing can't change it.
-   Only a real rotation (width change) measures again. */
+/* First screen sizing — works the same on iOS Safari, Android Chrome and the KakaoTalk in-app browser.
+   1. The visible height is read ONCE on open (min of 100dvh / innerHeight / visualViewport) and locked in px,
+      so toolbars appearing/disappearing never resize the photo or shove the page around.
+   2. The photo is barely enlarged (at most 18%, only on very tall screens), drawn across the width with its
+      bottom edge — the feet — pinned to the bottom of the first screen; any extra height is twilight sky
+      continued above it. So the couple's full figures and the Eiffel Tower are always in view.
+   3. In-app browsers (KakaoTalk etc.) may lay a toolbar over the bottom of the page. Its height is not
+      assumed: we use the safe-area inset the app reports, and once the toolbar hides the page measures how
+      much taller the view got and remembers that real toolbar height for every later open. Until a real
+      measurement exists, a proportional margin keeps the feet clear. */
 (function () {
   var root = document.documentElement;
   var inapp = /KAKAOTALK|NAVER\(inapp|Instagram|FBAN|FBAV|Line\//i.test(navigator.userAgent);
   if (inapp) root.classList.add('inapp');
-  var lastW = 0;
+  function px(css) {
+    var d = document.createElement('div');
+    d.style.cssText = 'position:absolute;visibility:hidden;pointer-events:none;width:0;height:' + css;
+    root.appendChild(d); var v = d.offsetHeight || 0; root.removeChild(d); return v;
+  }
+  function store(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function load(k) { try { return +localStorage.getItem(k) || 0; } catch (e) { return 0; } }
+  var lastW = 0, baseH = 0;
+  function visible() {
+    var h = window.innerHeight, d = px('100dvh');
+    if (d) h = Math.min(h, d);
+    if (window.visualViewport) h = Math.min(h, window.visualViewport.height);
+    return h;
+  }
   function apply() {
     var w = window.innerWidth; if (Math.abs(w - lastW) < 80) return; lastW = w;
-    var key = 'coverH12:' + w, h = 0;
-    try { h = +sessionStorage.getItem(key) || 0; } catch (e) {}
-    if (!h) {
-      // space actually visible on first open (KakaoTalk & co. also lay a bottom bar over the page)
-      var avail = window.innerHeight;
-      if (window.visualViewport) avail = Math.min(avail, window.visualViewport.height);
-      if (inapp) {
-        var pr = document.createElement('div');
-        pr.style.cssText = 'position:absolute;visibility:hidden;width:0;height:env(safe-area-inset-bottom,0px)';
-        root.appendChild(pr); var safeB = pr.offsetHeight || 0; root.removeChild(pr);
-        avail -= 96 + safeB;
-      }
-      // the photo is pinned to its bottom edge: enlarging it to fill the screen only trims the sides/sky,
-      // never the feet — so the only thing that can hide them is that bottom bar, which we keep clear of
-      h = Math.max(360, Math.round(avail));
-      try { sessionStorage.setItem(key, h); } catch (e) {}
+    baseH = visible();
+    var h = baseH;
+    if (inapp) {
+      var bar = Math.max(px('env(safe-area-inset-bottom,0px)'), load('inappBar'));
+      if (!load('inappBar')) bar = Math.max(bar, Math.round(baseH * 0.12));   // until the real toolbar height is known
+      h -= bar;
     }
+    h = Math.max(360, Math.round(h));
     root.style.setProperty('--coverH', h + 'px');
+    // on tall screens enlarge a little (at most 18%) so the couple doesn't sit under a huge empty sky
+    var cw = Math.min(w, 460);
+    root.style.setProperty('--imgS', Math.max(1, Math.min(h / (cw * 1.5), 1.18)).toFixed(3));
   }
   apply();
+  // learn the in-app toolbar's real height the first time it slides away (the view gets taller, width unchanged)
+  if (inapp) {
+    var learn = function () {
+      if (Math.abs(window.innerWidth - lastW) >= 80) return;
+      var grow = Math.round(Math.max(window.innerHeight, window.visualViewport ? window.visualViewport.height : 0) - baseH);
+      if (grow > 20 && grow < 200 && grow > load('inappBar')) store('inappBar', grow);
+    };
+    window.addEventListener('resize', learn);
+    if (window.visualViewport) window.visualViewport.addEventListener('resize', learn);
+  }
   window.addEventListener('orientationchange', function () { setTimeout(apply, 350); });
   window.addEventListener('resize', apply);   // ignored unless the width really changed (rotation)
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';   // refresh always starts at the cover
@@ -484,7 +508,9 @@ footer { background: #0d0f10; color: #e4e1db; border-top: 1px solid var(--hair);
 /* no motion anywhere: no transitions, no animations, no rubber-band stretch at the top */
 *, *::before, *::after { animation: none !important; transition: none !important; }
 html, body { overscroll-behavior-y: none; }
-.cover img { object-position: 50% 100%; }
+/* never enlarged: full width, feet pinned to the bottom of the first screen, sky fills whatever is above */
+.cover .frame { position: relative; }
+.cover img { position: absolute; left: 50%; bottom: 0; width: calc(100% * var(--imgS, 1)); max-width: none; height: auto; min-height: 100%; transform: translateX(-50%); object-fit: cover; object-position: 50% 100%; }
 @media (orientation: landscape) and (max-height: 500px) { .cover .frame { height: auto; aspect-ratio: 2 / 3; min-height: 0; } }
 
 /* No zooming: block pinch / double-tap zoom and long-press save on photos */
@@ -568,7 +594,7 @@ img { -webkit-touch-callout: none; -webkit-user-drag: none; user-select: none; -
 
   <figure class="cover">
     <div class="frame">
-      <img src="r/LUS06413_c.jpg" fetchpriority="high" decoding="async" onload="this.classList.add('ready')" alt="해 질 무렵 센강 난간 앞, 불 밝힌 에펠탑을 배경으로 선 현석과 가영" width="933" height="1400"><script>(function(){var c=document.currentScript.previousElementSibling;if(c.complete&&c.naturalWidth)c.classList.add('ready');})();</script>
+      <img src="r/LUS06413_sky.jpg" fetchpriority="high" decoding="async" onload="this.classList.add('ready')" alt="해 질 무렵 센강 난간 앞, 불 밝힌 에펠탑을 배경으로 선 현석과 가영" width="933" height="2300"><script>(function(){var c=document.currentScript.previousElementSibling;if(c.complete&&c.naturalWidth)c.classList.add('ready');})();</script>
     </div>
     <div class="cover-top v4top">
       <p class="label v4label">The Wedding of</p>
