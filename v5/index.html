@@ -112,7 +112,7 @@ section { padding-block: 96px; text-align: center; }
 
 /* section titles: serif display word with a handwritten aside */
 .sec { margin: 0; position: relative; display: inline-block; font-family: var(--display); font-weight: 400; font-size: 40px; line-height: 1; letter-spacing: -.01em; color: var(--cream); }
-.sec .sc { position: absolute; left: 50%; top: 100%; transform: translate(-30%, -38%) rotate(-6deg); font-family: var(--script); font-size: 26px; color: var(--olive); white-space: nowrap; letter-spacing: 0; }
+.sec .sc { display: block; margin-top: 12px; font-family: var(--sans); font-size: 10.5px; font-weight: 500; letter-spacing: .32em; text-indent: .32em; text-transform: uppercase; color: var(--olive); white-space: nowrap; }
 .kicker { font-family: var(--sans); font-size: 10.5px; font-weight: 500; letter-spacing: .38em; text-indent: .38em; text-transform: uppercase; color: var(--olive); }
 .sub { font-size: 13px; color: var(--olive); letter-spacing: .02em; }
 
@@ -248,7 +248,7 @@ section { padding-block: 96px; text-align: center; }
 
 /* ---------- footer ---------- */
 footer { padding-block: 88px calc(96px + env(safe-area-inset-bottom, 0px)); text-align: center; border-top: 1px solid var(--line); }
-footer .thanks { font-family: var(--script); font-size: 46px; line-height: 1; color: var(--cream); }
+footer .thanks { font-family: var(--display); font-style: italic; font-size: 42px; line-height: 1; color: var(--cream); }
 footer .sig { margin-top: 18px; font-family: var(--display); font-size: 22px; color: var(--olive); white-space: nowrap; }
 
 /* ---------- lightbox ---------- */
@@ -310,7 +310,7 @@ footer .sig { margin-top: 18px; font-family: var(--display); font-size: 22px; co
 
   <section class="pad greeting">
     <div class="stack">
-      <h2 class="sec">Invitation<span class="sc" aria-hidden="true">with love</span></h2>
+      <h2 class="sec">Invitation<span class="sc">with love</span></h2>
       <div class="verse" style="margin-top:22px">
         <p>5년간 서로에게 가장 든든했던 두 사람이<br>이제 부부로서 새 출발을 합니다.</p>
         <p>‘연애 5년 차’를 졸업하고<br>‘결혼 1년 차’로 시작하는 오늘,</p>
@@ -325,7 +325,7 @@ footer .sig { margin-top: 18px; font-family: var(--display); font-size: 22px; co
 
   <section class="pad letters">
     <div class="stack">
-      <h2 class="sec">Letters<span class="sc" aria-hidden="true">to you</span></h2>
+      <h2 class="sec">Letters<span class="sc">to you</span></h2>
       <p class="sub" style="margin-top:18px">서로에게 건네는 작은 편지</p>
       <article class="letter paper l1">
         <span class="tape" aria-hidden="true"></span>
@@ -346,7 +346,7 @@ footer .sig { margin-top: 18px; font-family: var(--display); font-size: 22px; co
 
   <section class="pad gallery">
     <div class="stack">
-      <h2 class="sec">Gallery<span class="sc" aria-hidden="true">our moments</span></h2>
+      <h2 class="sec">Gallery<span class="sc">our moments</span></h2>
       <div style="height:14px"></div>
       <div class="grid" id="grid"><button type="button" class="tile" data-i="0" aria-label="사진 1 크게 보기"><img src="r/LUS04897_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="1" aria-label="사진 2 크게 보기"><img src="r/LUS04938_t.jpg?v=2" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="2" aria-label="사진 3 크게 보기"><img src="r/LUS04948_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="3" aria-label="사진 4 크게 보기"><img src="g/LUS04961_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="4" aria-label="사진 5 크게 보기"><img src="r/LUS05163_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="5" aria-label="사진 6 크게 보기"><img src="r/LUS05177_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="6" aria-label="사진 7 크게 보기"><img src="g/LUS05239_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="7" aria-label="사진 8 크게 보기"><img src="r/LUS05244_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="8" aria-label="사진 9 크게 보기"><img src="r/LUS05503_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="9" aria-label="사진 10 크게 보기"><img src="r/LUS05505_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="10" aria-label="사진 11 크게 보기"><img src="r/LUS05578_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="11" aria-label="사진 12 크게 보기"><img src="r/LUS05710_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="12" aria-label="사진 13 크게 보기"><img src="r/LUS05791_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="13" aria-label="사진 14 크게 보기"><img src="r/LUS05815_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><button type="button" class="tile" data-i="14" aria-label="사진 15 크게 보기"><img src="r/LUS05837_t.jpg" alt="" loading="lazy" width="700" height="1050"></button><div class="tile" tabindex="-1" data-i="15" hidden><img src="r/LUS05861_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="16" hidden><img src="r/LUS05872_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="17" hidden><img src="r/LUS05987_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="18" hidden><img src="r/LUS06008_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="19" hidden><img src="r/LUS06044_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="20" hidden><img src="r/LUS06067_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="21" hidden><img src="r/LUS06095_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="22" hidden><img src="r/LUS06110_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="23" hidden><img src="r/LUS06162_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="24" hidden><img src="r/LUS06280_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="25" hidden><img src="r/LUS06290_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="26" hidden><img src="r/LUS06296_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="27" hidden><img src="r/LUS06368_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="28" hidden><img src="r/LUS06380_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="29" hidden><img src="r/LUS06391_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="30" hidden><img src="r/LUS06413_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="31" hidden><img src="r/LUS06447_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="32" hidden><img src="r/LUS06450_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="33" hidden><img src="r/LUS06489_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="34" hidden><img src="g/LUS06523_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="35" hidden><img src="r/LUS06555_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="36" hidden><img src="r/LUS06762_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="37" hidden><img src="g/LUS06821_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="38" hidden><img src="r/LUS06841_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="39" hidden><img src="r/LUS06897_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="40" hidden><img src="r/LUS07022_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="41" hidden><img src="r/LUS07071_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="42" hidden><img src="r/LUS07093_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="43" hidden><img src="r/LUS07096_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="44" hidden><img src="r/LUS07196_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="45" hidden><img src="r/LUS07324_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="46" hidden><img src="g/LUS07389_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="47" hidden><img src="r/LUS07448_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="48" hidden><img src="g/LUS07459_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="49" hidden><img src="r/LUS07565_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="50" hidden><img src="r/LUS07572_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="51" hidden><img src="r/LUS07580_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="52" hidden><img src="r/LUS07614_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="53" hidden><img src="r/LUS07714_t.jpg" alt="" loading="lazy" width="700" height="1050"></div><div class="tile" tabindex="-1" data-i="54" hidden><img src="r/LUS07716_t.jpg" alt="" loading="lazy" width="700" height="1050"></div></div>
       <button class="more" id="more" type="button">MORE <span id="moreCount">15 / 55</span></button>
@@ -356,7 +356,7 @@ footer .sig { margin-top: 18px; font-family: var(--display); font-size: 22px; co
 
   <section class="pad">
     <div class="stack">
-      <h2 class="sec">The Day<span class="sc" aria-hidden="true">save the date</span></h2>
+      <h2 class="sec">The Day<span class="sc">save the date</span></h2>
       <div class="day-meta" style="margin-top:18px">
         <p class="en">Saturday, February 20, 2027</p>
         <p>오후 3시 · 빌라드지디 논현</p>
@@ -382,7 +382,7 @@ footer .sig { margin-top: 18px; font-family: var(--display); font-size: 22px; co
   <section class="pad">
     <div class="stack">
       <span id="location"></span>
-      <h2 class="sec">Location<span class="sc" aria-hidden="true">see you there</span></h2>
+      <h2 class="sec">Location<span class="sc">see you there</span></h2>
       <div style="margin-top:18px">
         <p class="venue">Villa de GD</p>
         <p class="venue-ko">빌라드지디 논현</p>
@@ -402,7 +402,7 @@ footer .sig { margin-top: 18px; font-family: var(--display); font-size: 22px; co
 
   <section class="pad">
     <div class="stack">
-      <h2 class="sec">Directions<span class="sc" aria-hidden="true">how to come</span></h2>
+      <h2 class="sec">Directions<span class="sc">how to come</span></h2>
       <div style="height:18px"></div>
       <div class="shuttle">
         <div class="shuttle-head"><h3>셔틀버스 운행</h3><span class="every">10분 간격</span></div>
@@ -454,7 +454,7 @@ footer .sig { margin-top: 18px; font-family: var(--display); font-size: 22px; co
 
   <section class="pad">
     <div class="stack">
-      <h2 class="sec">Guestbook<span class="sc" aria-hidden="true">leave a note</span></h2>
+      <h2 class="sec">Guestbook<span class="sc">leave a note</span></h2>
       <p class="sub" style="margin-top:18px">두 사람에게 축하의 한마디를 남겨주세요</p>
       <div class="gb">
         <article class="gb-card paper"><p class="who"><span>FROM. 친구</span><span class="ex">예시</span></p><p>둘이 처음 만난 날부터 알았어, 결국 이렇게 될 줄! 결혼 진심으로 축하해 💐</p></article>
@@ -466,7 +466,7 @@ footer .sig { margin-top: 18px; font-family: var(--display); font-size: 22px; co
 
   <section class="pad">
     <div class="stack">
-      <h2 class="sec">Notice<span class="sc" aria-hidden="true">please note</span></h2>
+      <h2 class="sec">Notice<span class="sc">please note</span></h2>
       <ul class="notice" style="margin-top:18px">
         <li>예식장은 단독 주택을 개조한 하우스웨딩홀로<br>주차 공간이 넉넉하지 않습니다.<br>가급적 대중교통과 셔틀버스를 이용해 주세요.</li>
         <li>장소가 협소하여<br>축하 화환은 정중히 사양합니다.<br>보내주시는 마음만 감사히 받겠습니다.</li>
