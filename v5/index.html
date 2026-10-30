@@ -56,8 +56,9 @@
     baseH = visible();
     var h = baseH;
     if (inapp) {
-      var bar = Math.max(px('env(safe-area-inset-bottom,0px)'), load('inappBar'));
-      if (!load('inappBar')) bar = Math.max(bar, Math.round(baseH * 0.12));   // until the real toolbar height is known
+      // keep the feet above the bottom toolbar: whichever is larger of the measured toolbar height and a safe margin
+      var safeB = px('env(safe-area-inset-bottom,0px)');
+      var bar = Math.max(load('inappBar') + safeB, Math.round(baseH * 0.15), 100 + safeB);
       h -= bar;
     }
     h = Math.max(360, Math.round(h));
