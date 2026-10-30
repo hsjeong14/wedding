@@ -634,6 +634,29 @@ footer .sig { margin-top: 18px; font-family: var(--display); font-size: 22px; co
   });
 })();
 </script>
-
+<script>
+/* ?debug — shows the numbers the first screen is built from, to calibrate the KakaoTalk toolbar exactly */
+(function () {
+  if (!/[?&]debug/.test(location.search)) return;
+  var r = document.documentElement, cs = getComputedStyle(r);
+  function px(css) { var d = document.createElement('div'); d.style.cssText = 'position:absolute;visibility:hidden;width:0;height:' + css; r.appendChild(d); var v = d.offsetHeight; r.removeChild(d); return v; }
+  var box = document.createElement('pre');
+  box.style.cssText = 'position:fixed;left:8px;top:8px;z-index:99;margin:0;padding:8px 10px;background:rgba(0,0,0,.78);color:#0f0;font:11px/1.45 monospace;white-space:pre-wrap;max-width:94vw';
+  function upd() {
+    box.textContent = [
+      'innerW x innerH : ' + innerWidth + ' x ' + innerHeight,
+      'visualViewport  : ' + (window.visualViewport ? Math.round(visualViewport.height) : '-'),
+      '100dvh / 100svh / 100lvh : ' + px('100dvh') + ' / ' + px('100svh') + ' / ' + px('100lvh'),
+      'safe top / bottom: ' + px('env(safe-area-inset-top,0px)') + ' / ' + px('env(safe-area-inset-bottom,0px)'),
+      'screen          : ' + screen.width + ' x ' + screen.height + '  dpr ' + devicePixelRatio,
+      'coverH / bar    : ' + cs.getPropertyValue('--coverH') + ' / ' + cs.getPropertyValue('--bar'),
+      'learned bar     : ' + (function () { try { return localStorage.getItem('inappBar'); } catch (e) { return '-'; } })(),
+      navigator.userAgent
+    ].join('\n');
+  }
+  document.body.appendChild(box); upd();
+  addEventListener('resize', upd); if (window.visualViewport) visualViewport.addEventListener('resize', upd);
+})();
+</script>
 </body>
 </html>
