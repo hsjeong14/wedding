@@ -21,7 +21,7 @@
 <meta name="twitter:image" content="https://hsjeong14.github.io/wedding/og-f.jpg">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px/1.5 system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>현석과 가영의 결혼식에 초대합니다</title>
-<link rel="preload" as="image" href="r/LUS06413_sky.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="r/LUS06413_full.jpg" fetchpriority="high">
 <script>
 /* First screen sizing — works the same on iOS Safari, Android Chrome and the KakaoTalk in-app browser.
    1. The visible height is read ONCE on open (min of 100dvh / innerHeight / visualViewport) and locked in px,
@@ -54,18 +54,21 @@
   function apply() {
     var w = window.innerWidth; if (Math.abs(w - lastW) < 80) return; lastW = w;
     baseH = visible();
-    var h = baseH;
+    var h = baseH, bar = 0;
     if (inapp) {
       // keep the feet above the bottom toolbar: whichever is larger of the measured toolbar height and a safe margin
       var safeB = px('env(safe-area-inset-bottom,0px)');
-      var bar = Math.max(load('inappBar') + safeB, Math.round(baseH * 0.15), 100 + safeB);
-      h -= bar;
+      bar = Math.max(load('inappBar') + safeB, Math.round(baseH * 0.15), 100 + safeB);
     }
     h = Math.max(360, Math.round(h));
+    // the first screen always fills the whole visible height (no empty band); the photo continues with
+    // soft out-of-focus ground under the feet, so in KakaoTalk the toolbar only ever covers that ground
     root.style.setProperty('--coverH', h + 'px');
-    // on tall screens enlarge a little (at most 18%) so the couple doesn't sit under a huge empty sky
     var cw = Math.min(w, 460);
-    root.style.setProperty('--imgS', Math.max(1, Math.min(h / (cw * 1.5), 1.18)).toFixed(3));
+    var s = Math.max(1, Math.min((h - bar) / (cw * 1.5), 1.18));
+    root.style.setProperty('--imgS', s.toFixed(3));
+    var ground = Math.round(cw * s * 420 / 933);          // on-screen height of the ground strip under the feet
+    root.style.setProperty('--shift', Math.max(0, ground - bar) + 'px');
   }
   apply();
   // learn the in-app toolbar's real height the first time it slides away (the view gets taller, width unchanged)
@@ -138,7 +141,7 @@ section { padding-block: 96px; text-align: center; }
 /* ---------- cover ---------- */
 .cover { position: relative; margin: 0; color: #fff; }
 .cover .frame { position: relative; overflow: hidden; height: 100vh; height: 100svh; height: var(--coverH, 100svh); background: var(--bg); }
-.cover img { position: absolute; left: 50%; bottom: 0; width: calc(100% * var(--imgS, 1)); max-width: none; height: auto; min-height: 100%; transform: translateX(-50%); object-fit: cover; object-position: 50% 100%; }
+.cover img { position: absolute; left: 50%; bottom: calc(var(--shift, 0px) * -1); width: calc(100% * var(--imgS, 1)); max-width: none; height: auto; transform: translateX(-50%); }
 .cover::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(8,8,12,.5) 0%, rgba(8,8,12,.16) 28%, rgba(8,8,12,0) 44%); }
 .cover-top { position: absolute; z-index: 1; left: 0; right: 0; top: calc(40px + env(safe-area-inset-top, 0px)); text-align: center; display: grid; gap: 10px; }
 @media (max-height: 700px) { .cover-top { top: calc(26px + env(safe-area-inset-top, 0px)); } }
@@ -302,7 +305,7 @@ footer .sig { margin-top: 18px; font-family: var(--display); font-size: 22px; co
 
   <figure class="cover">
     <div class="frame">
-      <img src="r/LUS06413_sky.jpg" fetchpriority="high" decoding="async" alt="해 질 무렵 센강 난간 앞, 불 밝힌 에펠탑을 배경으로 선 현석과 가영" width="933" height="2300">
+      <img src="r/LUS06413_full.jpg" fetchpriority="high" decoding="async" alt="해 질 무렵 센강 난간 앞, 불 밝힌 에펠탑을 배경으로 선 현석과 가영" width="933" height="2720">
     </div>
     <div class="cover-top">
       <p class="kicker">The Wedding of</p>
