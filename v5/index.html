@@ -23,16 +23,8 @@
 <title>현석과 가영의 결혼식에 초대합니다</title>
 <link rel="preload" as="image" href="r/LUS06413_sky.jpg" fetchpriority="high">
 <script>
-/* First screen sizing — works the same on iOS Safari, Android Chrome and the KakaoTalk in-app browser.
-   1. The visible height is read ONCE on open (min of 100dvh / innerHeight / visualViewport) and locked in px,
-      so toolbars appearing/disappearing never resize the photo or shove the page around.
-   2. The photo is barely enlarged (at most 18%, only on very tall screens), drawn across the width with its
-      bottom edge — the feet — pinned to the bottom of the first screen; any extra height is twilight sky
-      continued above it. So the couple's full figures and the Eiffel Tower are always in view.
-   3. In-app browsers (KakaoTalk etc.) may lay a toolbar over the bottom of the page. Its height is not
-      assumed: we use the safe-area inset the app reports, and once the toolbar hides the page measures how
-      much taller the view got and remembers that real toolbar height for every later open. Until a real
-      measurement exists, a proportional margin keeps the feet clear. */
+/* First screen sizing — the cover is exactly the area you can see when the link opens (between KakaoTalk's
+   top and bottom bars, or the browser's), and never changes size afterwards; the photo's feet sit on its bottom edge. */
 (function () {
   var root = document.documentElement;
   var inapp = /KAKAOTALK|NAVER\(inapp|Instagram|FBAN|FBAV|Line\//i.test(navigator.userAgent);
@@ -44,43 +36,35 @@
   }
   function store(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
   function load(k) { try { return +localStorage.getItem(k) || 0; } catch (e) { return 0; } }
-  var lastW = 0, baseH = 0;
+  var lastW = 0, minH = 0;
   function visible() {
-    var h = window.innerHeight, d = px('100dvh');
-    if (d) h = Math.min(h, d);
+    var h = window.innerHeight;
     if (window.visualViewport) h = Math.min(h, window.visualViewport.height);
-    return h;
+    return Math.round(h);
   }
-  function apply() {
-    var w = window.innerWidth; if (Math.abs(w - lastW) < 80) return; lastW = w;
-    baseH = visible();
-    var h = baseH, bar = 0;
-    if (inapp) {
-      // keep the feet above the bottom toolbar: whichever is larger of the measured toolbar height and a safe margin
-      var safeB = px('env(safe-area-inset-bottom,0px)');
-      bar = Math.max(load('inappBar') + safeB, Math.round(baseH * 0.15), 100 + safeB);
-    }
-    // photo ends just above the toolbar zone; the date & venue sit in that zone (designed, never an empty strip):
-    // with the toolbar showing it covers them, once it slides away they are right there under the photo
-    h = Math.max(360, Math.round(h - bar));
+  function set(h) {
+    h = Math.max(360, h);
     root.style.setProperty('--coverH', h + 'px');
-    root.style.setProperty('--bar', bar + 'px');
-    var cw = Math.min(w, 460);
+    root.style.setProperty('--bar', '0px');
+    var cw = Math.min(lastW, 460);
     root.style.setProperty('--imgS', Math.max(1, Math.min(h / (cw * 1.5), 1.18)).toFixed(3));
   }
-  apply();
-  // learn the in-app toolbar's real height the first time it slides away (the view gets taller, width unchanged)
-  if (inapp) {
-    var learn = function () {
-      if (Math.abs(window.innerWidth - lastW) >= 80) return;
-      var grow = Math.round(Math.max(window.innerHeight, window.visualViewport ? window.visualViewport.height : 0) - baseH);
-      if (grow > 20 && grow < 200 && grow > load('inappBar')) store('inappBar', grow);
-    };
-    window.addEventListener('resize', learn);
-    if (window.visualViewport) window.visualViewport.addEventListener('resize', learn);
+  // KakaoTalk (measured on iPhone 13 Pro Max): the page first reports a taller height (843) that still
+  // includes the space under its top/bottom bars, then settles to the real area between them (742).
+  // So the cover takes the SMALLEST visible height seen: it never grows when the bars slide away,
+  // and it shrinks to the true between-the-bars height as soon as the app reports it.
+  function apply(force) {
+    var w = window.innerWidth;
+    if (force || Math.abs(w - lastW) >= 80) { lastW = w; minH = 0; }
+    var h = visible();
+    if (!minH || h < minH - 1) { minH = h; set(minH); }
   }
-  window.addEventListener('orientationchange', function () { setTimeout(apply, 350); });
-  window.addEventListener('resize', apply);   // ignored unless the width really changed (rotation)
+  apply(true);
+  window.addEventListener('resize', function () { apply(false); });
+  if (window.visualViewport) window.visualViewport.addEventListener('resize', function () { apply(false); });
+  document.addEventListener('DOMContentLoaded', function () { apply(false); });
+  window.addEventListener('load', function () { apply(false); setTimeout(function () { apply(false); }, 300); });
+  window.addEventListener('orientationchange', function () { setTimeout(function () { apply(true); }, 350); });
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';   // refresh always starts at the cover
   // hold the cover lettering until its webfont is ready, so the text doesn't visibly swap fonts
   root.classList.add('fonts-pending');
@@ -151,9 +135,6 @@ section { padding-block: 96px; text-align: center; }
 
 /* ---------- quick info ---------- */
 .quick { padding-block: 72px 24px; }
-/* in KakaoTalk the date & venue fill the strip right under the photo (where the toolbar sits), centred in it */
-.inapp .quick { min-height: var(--bar, 0px); padding-block: 0 24px; display: grid; align-content: center; }
-.inapp .quick p:first-child { margin-top: 18px; }
 .quick p { font-size: 14.5px; letter-spacing: .06em; color: var(--cream); }
 .quick p + p { color: var(--olive); margin-top: 4px; }
 
