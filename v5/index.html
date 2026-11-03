@@ -625,22 +625,6 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 
   <section class="pad">
     <div class="stack">
-      <h2 class="sec">방명록</h2>
-      <div class="panel gb-panel">
-        <p class="gb-sub">두 사람에게 축하의 한마디를 남겨주세요</p>
-        <p class="gb-ex">아래 메시지는 디자인 예시예요</p>
-        <div class="gb-scroll" id="gbScroll">
-          <div class="gb-page"><article class="gb-note"><p class="gb-msg">둘이 처음 만난 날부터 알았어, 결국 이렇게 될 줄! 진심으로 축하해</p><p class="gb-who">친구</p></article><article class="gb-note"><p class="gb-msg">파리 사진 너무 예뻐요. 오래오래 행복하세요!</p><p class="gb-who">회사 동료</p></article><article class="gb-note"><p class="gb-msg">5년 연애 졸업 축하해! 결혼 1년 차도 지금처럼만 💛</p><p class="gb-who">대학 동기</p></article><article class="gb-note"><p class="gb-msg">가영아 너무 예쁘다. 현석이랑 행복하게 잘 살아!</p><p class="gb-who">사촌 언니</p></article></div>
-          <div class="gb-page"><article class="gb-note"><p class="gb-msg">현석아 결혼 축하한다. 가영 씨 잘 부탁드려요!</p><p class="gb-who">고등학교 친구</p></article><article class="gb-note"><p class="gb-msg">우리 가영이 시집가는구나. 축복한다, 행복하렴.</p><p class="gb-who">이모</p></article><article class="gb-note"><p class="gb-msg">둘이 정말 잘 어울려요. 예쁜 가정 이루길!</p><p class="gb-who">동아리 선배</p></article><article class="gb-note"><p class="gb-msg">결혼 축하해요! 신혼여행 사진도 기대할게요.</p><p class="gb-who">직장 선배</p></article></div>
-        </div>
-        <div class="gb-dots" id="gbDots" aria-hidden="true"></div>
-        <button class="gb-write" type="button" disabled>축하 메시지 남기기 · 곧 열려요</button>
-      </div>
-    </div>
-  </section>
-
-  <section class="pad">
-    <div class="stack">
       <h2 class="sec">마음 전하실 곳</h2>
       <div class="panel gift-panel">
         <p class="gift-msg">따뜻한 마음으로 축복해 주시는 모든 분들께<br>진심으로 감사드립니다.</p>
@@ -801,15 +785,6 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 })();
 </script>
 <script>
-/* guestbook pager dots */
-(function () {
-  var sc = document.getElementById('gbScroll'), dots = document.getElementById('gbDots'); if (!sc || !dots) return;
-  var n = sc.children.length; for (var i = 0; i < n; i++) dots.appendChild(document.createElement('i'));
-  function upd() { var k = Math.round(sc.scrollLeft / sc.clientWidth); [].forEach.call(dots.children, function (d, j) { d.className = j === k ? 'on' : ''; }); }
-  sc.addEventListener('scroll', upd, { passive: true }); upd();
-})();
-</script>
-<script>
 /* copy account numbers */
 (function () {
   var toast = document.getElementById('toast'), t;
@@ -843,7 +818,7 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 (function () {
   /* ▼ 여기만 바꾸면 됩니다 ▼ */
   var KAKAO_JS_KEY = '1e75ce76e7372491e4b502ebba8c8f0d';
-  var VER          = '11031633';   // 업데이트할 때마다 바뀌는 번호 — 카톡이 예전 페이지를 다시 보여주지 않게
+  var VER          = '11031635';   // 업데이트할 때마다 바뀌는 번호 — 카톡이 예전 페이지를 다시 보여주지 않게
   var SITE_URL     = 'https://hsjeong14.github.io/wedding/v5/?v=' + VER;          // 청첩장 주소
   var MAP_URL      = 'https://hsjeong14.github.io/wedding/v5/?v=' + VER + '#location'; // '식장 위치 보기'가 열 주소
   var IMAGE_URL    = 'https://hsjeong14.github.io/wedding/share-v3.jpg';  // 900 x 1200 (3:4) 세로 썸네일
