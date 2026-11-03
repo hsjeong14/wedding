@@ -417,7 +417,9 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 .end-photo img { display: block; width: 100%; height: auto; }
 .end-photo::before { content: ""; position: absolute; z-index: 1; left: 0; right: 0; top: 0; height: 46%; pointer-events: none;
   background: linear-gradient(180deg, #0c0c0c 0%, rgba(12,12,12,.78) 34%, rgba(12,12,12,.35) 72%, rgba(12,12,12,0) 100%); }
-.end-photo::after { content: ""; display: block; height: env(safe-area-inset-bottom, 0px); background: #0c0c0c; }
+.end-photo::after { content: ""; position: absolute; z-index: 1; left: 0; right: 0; bottom: 0; height: 22%; pointer-events: none; background: linear-gradient(180deg, rgba(12,12,12,0), rgba(12,12,12,.85)); }
+.end-bottom { position: absolute; z-index: 2; left: 0; right: 0; bottom: calc(22px + env(safe-area-inset-bottom, 0px)); margin: 0 !important; text-align: center; }
+.ending { padding-bottom: env(safe-area-inset-bottom, 0px); background: #0c0c0c; }
 .end-msg { position: absolute; z-index: 2; left: 0; right: 0; top: 0; text-align: center; padding: 30px 24px 0; color: #f2efe6; text-shadow: 0 1px 12px rgba(0,0,0,.45); }
 .end-l1 { font-family: "Gowun Batang", serif; font-size: clamp(17px, 5vw, 21px); line-height: 1.6; letter-spacing: .02em; }
 .end-l2 { margin-top: 10px !important; font-family: "Gowun Batang", serif; font-size: clamp(17px, 5vw, 21px); line-height: 1.6; letter-spacing: .02em; color: #f2efe6; }
@@ -687,9 +689,9 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
       <figcaption class="end-msg">
         <p class="end-l1">서로의 손을 꼭 잡고<br>이제, 같은 길을 걸어갑니다.</p>
         <p class="end-l2">진심으로 감사합니다.</p>
-        <p class="end-en">February 20, 2027 · Villa de GD, Nonhyeon</p>
         <p class="end-sig"><span class="end-role">신랑</span> 정현석<span class="end-gap"></span><span class="end-role">신부</span> 양가영</p>
       </figcaption>
+      <p class="end-en end-bottom">February 20, 2027 · Villa de GD, Nonhyeon</p>
     </div>
   </figure>
 </main>
@@ -847,7 +849,7 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 (function () {
   /* ▼ 여기만 바꾸면 됩니다 ▼ */
   var KAKAO_JS_KEY = '1e75ce76e7372491e4b502ebba8c8f0d';
-  var VER          = '11031703';   // 업데이트할 때마다 바뀌는 번호 — 카톡이 예전 페이지를 다시 보여주지 않게
+  var VER          = '11031704';   // 업데이트할 때마다 바뀌는 번호 — 카톡이 예전 페이지를 다시 보여주지 않게
   var SITE_URL     = 'https://hsjeong14.github.io/wedding/v5/?v=' + VER;          // 청첩장 주소
   var MAP_URL      = 'https://hsjeong14.github.io/wedding/v5/?v=' + VER + '#location'; // '식장 위치 보기'가 열 주소
   var IMAGE_URL    = 'https://hsjeong14.github.io/wedding/share-v3.jpg';  // 900 x 1200 (3:4) 세로 썸네일
