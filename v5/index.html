@@ -480,7 +480,7 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
     <svg class="note" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9 17.5a2.5 2.5 0 1 1-2-2.45V5.6l11-2.1v11.4a2.5 2.5 0 1 1-2-2.45V7.3L9 8.6v8.9z"/></svg>
     <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
   </button>
-  <audio id="bgmAudio" src="bgm/close-to-you.mp3" preload="none" loop></audio>
+  <audio id="bgmAudio" src="bgm/wedding.mp3" preload="none" loop></audio>
 
   <figure class="cover">
     <div class="frame">
@@ -920,7 +920,7 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 })();
 </script>
 <script>
-/* background music: plays from the first tap anywhere (phones block sound before a tap); the button toggles it.
+/* background music: off at start; only the button turns it on/off.
    The button only appears when the music file actually exists. */
 (function () {
   var a = document.getElementById('bgmAudio'), b = document.getElementById('bgm'), started = false, userOff = false;
@@ -929,8 +929,6 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
   function on() { a.play().then(function () { b.classList.add('on'); b.setAttribute('aria-label', '배경음악 끄기'); }).catch(function () {}); }
   function off() { a.pause(); b.classList.remove('on'); b.setAttribute('aria-label', '배경음악 켜기'); }
   b.addEventListener('click', function (e) { e.stopPropagation(); started = true; if (a.paused) { userOff = false; on(); } else { userOff = true; off(); } });
-  function first() { if (started || userOff || b.hidden) return; started = true; on(); }
-  ['touchend', 'click'].forEach(function (ev) { document.addEventListener(ev, first, { once: true, passive: true }); });
   document.addEventListener('visibilitychange', function () { if (document.hidden && !a.paused) { a.pause(); a._resume = true; } else if (!document.hidden && a._resume) { a._resume = false; on(); } });
 })();
 </script>
@@ -940,7 +938,7 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 (function () {
   /* ▼ 여기만 바꾸면 됩니다 ▼ */
   var KAKAO_JS_KEY = '1e75ce76e7372491e4b502ebba8c8f0d';
-  var VER          = '11031927';   // 업데이트할 때마다 바뀌는 번호 — 카톡이 예전 페이지를 다시 보여주지 않게
+  var VER          = '11031943';   // 업데이트할 때마다 바뀌는 번호 — 카톡이 예전 페이지를 다시 보여주지 않게
   var SITE_URL     = 'https://hsjeong14.github.io/wedding/v5/?v=' + VER;          // 청첩장 주소
   var MAP_URL      = 'https://hsjeong14.github.io/wedding/v5/?v=' + VER + '#location'; // '식장 위치 보기'가 열 주소
   var IMAGE_URL    = 'https://hsjeong14.github.io/wedding/share-v3.jpg';  // 900 x 1200 (3:4) 세로 썸네일
