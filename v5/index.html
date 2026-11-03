@@ -431,6 +431,31 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 .end-role { font-size: 11.5px; color: rgba(242,239,230,.7); letter-spacing: .08em; margin-right: 2px; }
 .end-gap { display: inline-block; width: 18px; }
 
+
+/* ---------- 참석 의사 전달 ---------- */
+.rsvp-panel { gap: 18px; }
+.rsvp-msg { font-size: 14px; line-height: 1.85; color: var(--cream); }
+.rsvp-open { appearance: none; border: 0; background: #2a2823; color: #f2efe6; font: 500 14px var(--sans); letter-spacing: .04em; padding: 14px 28px; border-radius: 999px; cursor: pointer; }
+.rsvp { position: fixed; inset: 0; z-index: 35; background: rgba(0,0,0,.6); display: flex; align-items: flex-end; justify-content: center; }
+.rsvp-sheet { width: 100%; max-width: 460px; max-height: 92vh; overflow-y: auto; margin: 0; padding: 20px 22px calc(22px + env(safe-area-inset-bottom, 0px)); background: #f2efe6; color: #2a2823; border-radius: 20px 20px 0 0; display: grid; gap: 16px; text-align: left; }
+.rsvp-head { display: flex; justify-content: space-between; align-items: center; }
+.rsvp-head p { font-size: 16px; font-weight: 600; }
+.rsvp-x { appearance: none; border: 0; background: none; font-size: 26px; line-height: 1; color: #6f6a5f; padding: 2px 6px; cursor: pointer; }
+.seg { border: 0; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.seg legend { grid-column: 1 / -1; padding: 0; margin-bottom: 8px; font-size: 12.5px; color: #6f6a5f; }
+.seg label { position: relative; }
+.seg input { position: absolute; opacity: 0; inset: 0; margin: 0; }
+.seg span { display: block; text-align: center; padding: 11px 6px; border-radius: 10px; border: 1px solid rgba(42,40,35,.2); font-size: 14px; background: #fbf9f3; }
+.seg input:checked + span { background: #2a2823; color: #f2efe6; border-color: #2a2823; }
+.seg input:focus-visible + span { outline: 2px solid #b0574f; outline-offset: 2px; }
+.fld { display: grid; gap: 8px; font-size: 12.5px; color: #6f6a5f; }
+.fld input, .fld select, .fld textarea { font: 400 15px var(--sans); color: #2a2823; background: #fbf9f3; border: 1px solid rgba(42,40,35,.2); border-radius: 10px; padding: 12px 12px; width: 100%; }
+.fld textarea { resize: none; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: end; }
+.seg.small span { padding: 11px 4px; }
+.rsvp-send { appearance: none; border: 0; background: #2a2823; color: #f2efe6; font: 600 15px var(--sans); padding: 15px; border-radius: 12px; cursor: pointer; }
+.rsvp-send[disabled] { opacity: .5; }
+
 /* kakao share */
   .kshare { display: grid; justify-items: center; gap: 10px; margin: 0 auto; }
   .kshare-btn {
@@ -664,6 +689,16 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 
   <section class="pad">
     <div class="stack">
+      <h2 class="sec">참석 의사 전달</h2>
+      <div class="panel rsvp-panel">
+        <p class="rsvp-msg">축하의 마음으로 함께해 주시는 모든 분들을<br>정성껏 모실 수 있도록<br>참석 여부를 미리 알려주시면 감사하겠습니다.</p>
+        <button type="button" class="rsvp-open" id="rsvpOpen">참석 의사 전달하기</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad">
+    <div class="stack">
       <h2 class="sec">안내 사항</h2>
       <div class="panel">
       <ul class="notice">
@@ -701,6 +736,29 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
   <div class="lb-top"><span id="lbCount">01 / 55</span><button class="lb-close" id="lbClose" type="button">CLOSE</button></div>
   <div class="lb-track" id="lbTrack"><div class="lb-slide"><img data-src="r/LUS06555.jpg" alt="사진 1"></div><div class="lb-slide"><img data-src="r/LUS06380.jpg" alt="사진 2"></div><div class="lb-slide"><img data-src="r/LUS07022.jpg" alt="사진 3"></div><div class="lb-slide"><img data-src="r/LUS06391.jpg" alt="사진 4"></div><div class="lb-slide"><img data-src="r/LUS06413.jpg" alt="사진 5"></div><div class="lb-slide"><img data-src="r/LUS07614.jpg" alt="사진 6"></div><div class="lb-slide"><img data-src="r/LUS05710.jpg" alt="사진 7"></div><div class="lb-slide"><img data-src="r/LUS05503.jpg" alt="사진 8"></div><div class="lb-slide"><img data-src="r/LUS05815.jpg" alt="사진 9"></div><div class="lb-slide"><img data-src="g/LUS05239.jpg" alt="사진 10"></div><div class="lb-slide"><img data-src="r/LUS05872.jpg" alt="사진 11"></div><div class="lb-slide"><img data-src="r/LUS06290.jpg" alt="사진 12"></div><div class="lb-slide"><img data-src="r/LUS07565.jpg" alt="사진 13"></div><div class="lb-slide"><img data-src="r/LUS07093.jpg" alt="사진 14"></div><div class="lb-slide"><img data-src="r/LUS06762.jpg" alt="사진 15"></div><div class="lb-slide"><img data-src="r/LUS06280.jpg" alt="사진 16"></div><div class="lb-slide"><img data-src="r/LUS04897.jpg" alt="사진 17"></div><div class="lb-slide"><img data-src="r/LUS06841.jpg" alt="사진 18"></div><div class="lb-slide"><img data-src="r/LUS05791.jpg" alt="사진 19"></div><div class="lb-slide"><img data-src="r/LUS06489.jpg" alt="사진 20"></div><div class="lb-slide"><img data-src="r/LUS07071.jpg" alt="사진 21"></div><div class="lb-slide"><img data-src="r/LUS07580.jpg" alt="사진 22"></div><div class="lb-slide"><img data-src="r/LUS05861.jpg" alt="사진 23"></div><div class="lb-slide"><img data-src="r/LUS06897.jpg" alt="사진 24"></div><div class="lb-slide"><img data-src="r/LUS07324.jpg" alt="사진 25"></div><div class="lb-slide"><img data-src="r/LUS05578.jpg" alt="사진 26"></div><div class="lb-slide"><img data-src="g/LUS06523.jpg" alt="사진 27"></div><div class="lb-slide"><img data-src="r/LUS07448.jpg" alt="사진 28"></div><div class="lb-slide"><img data-src="r/LUS06296.jpg" alt="사진 29"></div><div class="lb-slide"><img data-src="r/LUS07096.jpg" alt="사진 30"></div><div class="lb-slide"><img data-src="g/LUS04961.jpg" alt="사진 31"></div><div class="lb-slide"><img data-src="r/LUS07572.jpg" alt="사진 32"></div><div class="lb-slide"><img data-src="r/LUS05244.jpg" alt="사진 33"></div><div class="lb-slide"><img data-src="r/LUS07196.jpg" alt="사진 34"></div><div class="lb-slide"><img data-src="r/LUS06110.jpg" alt="사진 35"></div><div class="lb-slide"><img data-src="r/LUS06450.jpg" alt="사진 36"></div><div class="lb-slide"><img data-src="r/LUS04938.jpg?v=2" alt="사진 37"></div><div class="lb-slide"><img data-src="r/LUS06162.jpg" alt="사진 38"></div><div class="lb-slide"><img data-src="r/LUS04948.jpg" alt="사진 39"></div><div class="lb-slide"><img data-src="g/LUS07389.jpg" alt="사진 40"></div><div class="lb-slide"><img data-src="r/LUS06368.jpg" alt="사진 41"></div><div class="lb-slide"><img data-src="r/LUS06095.jpg" alt="사진 42"></div><div class="lb-slide"><img data-src="r/LUS05163.jpg" alt="사진 43"></div><div class="lb-slide"><img data-src="r/LUS05837.jpg" alt="사진 44"></div><div class="lb-slide"><img data-src="r/LUS07716.jpg" alt="사진 45"></div><div class="lb-slide"><img data-src="r/LUS06067.jpg" alt="사진 46"></div><div class="lb-slide"><img data-src="r/LUS06447.jpg" alt="사진 47"></div><div class="lb-slide"><img data-src="g/LUS06821.jpg" alt="사진 48"></div><div class="lb-slide"><img data-src="g/LUS07459.jpg" alt="사진 49"></div><div class="lb-slide"><img data-src="r/LUS05177.jpg" alt="사진 50"></div><div class="lb-slide"><img data-src="r/LUS06044.jpg" alt="사진 51"></div><div class="lb-slide"><img data-src="r/LUS06008.jpg" alt="사진 52"></div><div class="lb-slide"><img data-src="r/LUS07714.jpg" alt="사진 53"></div><div class="lb-slide"><img data-src="r/LUS05987.jpg" alt="사진 54"></div><div class="lb-slide"><img data-src="r/LUS05505.jpg" alt="사진 55"></div></div>
   <div class="lb-nav"><button type="button" id="lbPrev" aria-label="이전 사진">&larr;</button><button type="button" id="lbNext" aria-label="다음 사진">&rarr;</button></div>
+</div>
+<div class="rsvp" id="rsvp" role="dialog" aria-modal="true" aria-labelledby="rsvpTitle" hidden>
+  <form class="rsvp-sheet" id="rsvpForm" novalidate>
+    <div class="rsvp-head"><p id="rsvpTitle">참석 의사 전달</p><button type="button" class="rsvp-x" id="rsvpClose" aria-label="닫기">×</button></div>
+    <fieldset class="seg"><legend>어느 쪽 하객이신가요</legend>
+      <label><input type="radio" name="side" value="신랑측" checked><span>신랑측</span></label>
+      <label><input type="radio" name="side" value="신부측"><span>신부측</span></label>
+    </fieldset>
+    <fieldset class="seg"><legend>참석 여부</legend>
+      <label><input type="radio" name="attend" value="참석" checked><span>참석할게요</span></label>
+      <label><input type="radio" name="attend" value="불참"><span>마음만 전할게요</span></label>
+    </fieldset>
+    <label class="fld"><span>성함</span><input type="text" name="name" autocomplete="name" placeholder="이름을 입력해 주세요" required></label>
+    <div class="row2">
+      <label class="fld"><span>동반 인원 (본인 제외)</span><select name="guests"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
+      <fieldset class="seg small"><legend>식사</legend>
+        <label><input type="radio" name="meal" value="예정" checked><span>예정</span></label>
+        <label><input type="radio" name="meal" value="안 함"><span>안 함</span></label>
+      </fieldset>
+    </div>
+    <label class="fld"><span>전하실 말 (선택)</span><textarea name="note" rows="2" placeholder="축하 한마디를 남겨주셔도 좋아요"></textarea></label>
+    <button type="submit" class="rsvp-send">전달하기</button>
+  </form>
 </div>
 <div class="toast" id="toast" role="status" hidden></div>
 <script>
@@ -830,6 +888,37 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 })();
 </script>
 <script>
+/* 참석 의사 전달 — answers go to a Google Form (its sheet collects every reply).
+   Fill these in once the form exists; until then the button explains that it opens soon. */
+(function () {
+  var GFORM = {
+    action: '',            // e.g. https://docs.google.com/forms/d/e/XXXX/formResponse
+    side:   '', attend: '', name: '', guests: '', meal: '', note: ''   // entry.123456789 ids
+  };
+  var dlg = document.getElementById('rsvp'), form = document.getElementById('rsvpForm');
+  var toast = document.getElementById('toast'), t;
+  function show(m) { toast.textContent = m; toast.hidden = false; clearTimeout(t); t = setTimeout(function () { toast.hidden = true; }, 2200); }
+  function open() { dlg.hidden = false; document.body.classList.add('locked'); }
+  function close() { dlg.hidden = true; document.body.classList.remove('locked'); }
+  document.getElementById('rsvpOpen').addEventListener('click', open);
+  document.getElementById('rsvpClose').addEventListener('click', close);
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) close(); });
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var f = form.elements;
+    if (!f.name.value.trim()) { f.name.focus(); show('성함을 입력해 주세요'); return; }
+    if (!GFORM.action) { show('참석 의사 전달은 곧 열려요. 조금만 기다려 주세요!'); return; }
+    var body = new URLSearchParams();
+    ['side', 'attend', 'name', 'guests', 'meal', 'note'].forEach(function (k) { if (GFORM[k]) body.append(GFORM[k], (f[k].value || '').trim()); });
+    var btn = form.querySelector('.rsvp-send'); btn.disabled = true;
+    fetch(GFORM.action, { method: 'POST', mode: 'no-cors', body: body }).then(function () {
+      close(); form.reset(); show('전달되었어요. 감사합니다!');
+    }).catch(function () { show('전송에 실패했어요. 잠시 후 다시 시도해 주세요'); }).then(function () { btn.disabled = false; });
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !dlg.hidden) close(); });
+})();
+</script>
+<script>
 /* background music: plays from the first tap anywhere (phones block sound before a tap); the button toggles it.
    The button only appears when the music file actually exists. */
 (function () {
@@ -850,7 +939,7 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 (function () {
   /* ▼ 여기만 바꾸면 됩니다 ▼ */
   var KAKAO_JS_KEY = '1e75ce76e7372491e4b502ebba8c8f0d';
-  var VER          = '11031758';   // 업데이트할 때마다 바뀌는 번호 — 카톡이 예전 페이지를 다시 보여주지 않게
+  var VER          = '11031800';   // 업데이트할 때마다 바뀌는 번호 — 카톡이 예전 페이지를 다시 보여주지 않게
   var SITE_URL     = 'https://hsjeong14.github.io/wedding/v5/?v=' + VER;          // 청첩장 주소
   var MAP_URL      = 'https://hsjeong14.github.io/wedding/v5/?v=' + VER + '#location'; // '식장 위치 보기'가 열 주소
   var IMAGE_URL    = 'https://hsjeong14.github.io/wedding/share-v3.jpg';  // 900 x 1200 (3:4) 세로 썸네일
