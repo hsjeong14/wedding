@@ -322,12 +322,16 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 .countdown { color: var(--cream) !important; }
 
 /* ---------- music ---------- */
-.bgm { position: fixed; z-index: 25; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); right: max(16px, calc(50% - 230px + 16px)); width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(242,239,230,.28); background: rgba(12,12,12,.42); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); color: var(--cream); display: grid; place-items: center; padding: 0; cursor: pointer; }
-.bgm svg { width: 17px; height: 17px; }
-.bgm .bars { display: none; gap: 2px; align-items: flex-end; height: 14px; }
+.bgm { position: fixed; z-index: 25; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); right: max(18px, calc(50% - 230px + 18px)); width: 52px; height: 52px; border-radius: 50%; border: 0; background: var(--cream); color: #0c0c0c; box-shadow: 0 6px 20px rgba(0,0,0,.45), inset 0 0 0 1.5px rgba(12,12,12,.18); display: grid; place-items: center; padding: 0; cursor: pointer; }
+.bgm::before, .bgm::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 2px solid #a39d8c; animation: bgmPulse 2.4s ease-out infinite !important; pointer-events: none; }
+.bgm::after { animation-delay: 1.2s !important; }
+.bgm.on::before, .bgm.on::after { display: none; }
+@keyframes bgmPulse { from { transform: scale(1); opacity: .85; } to { transform: scale(1.75); opacity: 0; } }
+.bgm svg { width: 22px; height: 22px; }
+.bgm .bars { display: none; gap: 3px; align-items: flex-end; height: 18px; }
 .bgm.on .bars { display: flex; }
 .bgm.on .note { display: none; }
-.bgm .bars i { width: 2px; background: var(--cream); height: 40%; }
+.bgm .bars i { width: 3px; border-radius: 1px; background: #0c0c0c; height: 40%; }
 .bgm.on .bars i { animation: eq 1s ease-in-out infinite alternate !important; }
 .bgm.on .bars i:nth-child(2) { animation-delay: -.4s !important; }
 .bgm.on .bars i:nth-child(3) { animation-delay: -.7s !important; }
@@ -938,7 +942,7 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 (function () {
   /* ▼ 여기만 바꾸면 됩니다 ▼ */
   var KAKAO_JS_KEY = '1e75ce76e7372491e4b502ebba8c8f0d';
-  var VER          = '11031945';   // 업데이트할 때마다 바뀌는 번호 — 카톡이 예전 페이지를 다시 보여주지 않게
+  var VER          = '11031952';   // 업데이트할 때마다 바뀌는 번호 — 카톡이 예전 페이지를 다시 보여주지 않게
   var SITE_URL     = 'https://hsjeong14.github.io/wedding/v5/?v=' + VER;          // 청첩장 주소
   var MAP_URL      = 'https://hsjeong14.github.io/wedding/v5/?v=' + VER + '#location'; // '식장 위치 보기'가 열 주소
   var IMAGE_URL    = 'https://hsjeong14.github.io/wedding/share-v3.jpg';  // 900 x 1200 (3:4) 세로 썸네일
