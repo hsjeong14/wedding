@@ -282,16 +282,16 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 /* ---------- family (contrasting cream section) ---------- */
 .family { background-color: var(--cream); background-image: var(--grain); color: var(--ink); padding-block: 88px 96px; text-align: center; }
 .fam-block + .fam-block { margin-top: 104px; }
-.fam-photo { position: relative; margin: 0 28px; overflow: hidden; border-radius: 2px; box-shadow: 0 10px 26px rgba(42,40,35,.16); }
+.fam-photo { position: relative; width: 76%; margin: 0 auto; overflow: hidden; border-radius: 2px; box-shadow: 0 10px 26px rgba(42,40,35,.16); }
 .fam-photo img { display: block; width: 100%; height: auto; filter: sepia(.12) saturate(.94); }
 .fam-photo::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 42%; background: linear-gradient(180deg, rgba(12,12,12,.62), rgba(12,12,12,0)); z-index: 1; pointer-events: none; }
-.fam-cap { position: absolute; z-index: 2; left: 0; right: 0; top: 26px; display: flex; justify-content: center; align-items: baseline; gap: .4em; color: #fbf9f3; text-shadow: 0 1px 10px rgba(0,0,0,.35); white-space: nowrap; }
-.fam-parents { font-size: 14px; font-weight: 400; letter-spacing: .04em; }
-.fam-rel { font-size: 12.5px; opacity: .85; }
-.fam-child { font-size: 19px; font-weight: 700; letter-spacing: .06em; margin-left: .15em; }
-.fam-kid { display: block; position: relative; z-index: 3; width: 50%; margin-top: -26%; }
-.fam-kid.kid-r { margin-left: auto; margin-right: 6%; }
-.fam-kid.kid-l { margin-right: auto; margin-left: 6%; }
+.fam-cap { position: absolute; z-index: 2; left: 0; right: 0; top: 20px; display: flex; justify-content: center; align-items: baseline; gap: .4em; color: #fbf9f3; text-shadow: 0 1px 10px rgba(0,0,0,.35); white-space: nowrap; }
+.fam-parents { font-size: 13px; font-weight: 400; letter-spacing: .04em; }
+.fam-rel { font-size: 12px; opacity: .85; }
+.fam-child { font-size: 17px; font-weight: 700; letter-spacing: .06em; margin-left: .15em; }
+.fam-kid { display: block; position: relative; z-index: 3; width: 40%; margin-top: -20%; }
+.fam-kid.kid-r { margin-left: auto; margin-right: 9%; }
+.fam-kid.kid-l { margin-right: auto; margin-left: 9%; }
 .fam-kid img { display: block; width: 100%; height: auto; filter: drop-shadow(0 6px 10px rgba(42,40,35,.25)) drop-shadow(0 1px 2px rgba(42,40,35,.2)); }
 .fam-kid.kid-r img { transform: rotate(4deg); }
 .fam-kid.kid-l img { transform: rotate(-4deg); }
@@ -349,8 +349,8 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 .day-panel { gap: 24px; padding-top: 30px; }
 .panel .shuttle { background: #1e1e1b; border-radius: 14px; }
 .panel .ways .way:first-child { border-top: 0; }
-.map { position: relative; display: block; width: 100%; aspect-ratio: 4 / 3; border-radius: 14px; overflow: hidden; background: #22221f; text-decoration: none; }
-.map-canvas { position: absolute; inset: 0; display: block; }
+.map { position: relative; display: block; width: 100%; aspect-ratio: 1284 / 1000; border-radius: 14px; overflow: hidden; background: #22221f; text-decoration: none; }
+.map img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .map-canvas:empty::after { content: "지도 불러오는 중"; position: absolute; inset: 0; display: grid; place-items: center; font-size: 12px; color: var(--olive); }
 .map-tag { position: absolute; z-index: 5; right: 10px; bottom: 10px; padding: 7px 12px; border-radius: 999px; background: rgba(12,12,12,.78); color: var(--cream); font-size: 11.5px; letter-spacing: .02em; }
 .map * { pointer-events: none; }
@@ -423,12 +423,12 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
       <div class="fam-letters">
         <article class="pletter">
           <p class="to">사랑하는 아들 현석에게</p>
-          <p>걸음마 떼던 날이 엊그제 같은데<br>어느새 이렇게 멋진 신랑이 되었구나.</p><p>가영이와 서로 아끼고 보듬으며<br>지금처럼 웃으며 살아가길 바란다.</p>
+          <p>네가 처음 걸음마를 떼던 날,<br>두 팔을 벌리고 엄마한테 걸어오던 모습이<br>아직도 눈에 선한데<br>어느새 이렇게 멋진 신랑이 되었구나.</p><p>어릴 때부터 웃음이 많고<br>마음이 따뜻했던 우리 아들,<br>그 다정함 그대로 가영이를 아껴주렴.</p><p>살다 보면 맑은 날도 흐린 날도 있겠지만<br>서로의 손을 놓지 않으면 다 지나간단다.<br>지금처럼 서로 웃게 해주며 살아가길,<br>엄마는 언제나 너희 편에서 응원할게.</p><p>결혼 정말 축하해. 사랑한다, 아들.</p>
           <p class="from">엄마가</p>
         </article>
         <article class="pletter">
           <p class="to">든든한 아들 현석에게</p>
-          <p>바르게 자라줘서 늘 고맙고 자랑스럽다.</p><p>이제 한 가정의 든든한 기둥이 되어<br>가영이를 아끼고 지켜주렴.<br>힘들 땐 언제든 기대도 된다.</p>
+          <p>바르게, 성실하게 자라줘서<br>늘 고맙고 자랑스러웠다.</p><p>이제 한 가정을 꾸리는 어른이 되었으니<br>무엇보다 가영이의 이야기에 먼저 귀 기울이고,<br>작은 약속도 소중히 지키는 남편이 되거라.</p><p>부부는 같은 곳을 바라보며<br>천천히 함께 걷는 사이란다.<br>서두르지 말고, 서로를 믿으며 가거라.</p><p>힘든 날이 오면 언제든 집에 들르렴.<br>아빠는 늘 여기 있다.</p><p>결혼 축하한다, 우리 아들.</p>
           <p class="from">아빠가</p>
         </article>
       </div>
@@ -442,12 +442,12 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
       <div class="fam-letters">
         <article class="pletter">
           <p class="to">예쁜 우리 딸 가영에게</p>
-          <p>그네 타며 까르르 웃던 네가<br>벌써 신부가 된다니 믿기지가 않네.</p><p>현석이와 서로의 편이 되어<br>늘 행복하게 살기를 바랄게.</p>
+          <p>그네 타며 까르르 웃던 네가<br>벌써 신부가 된다니 아직도 믿기지가 않네.</p><p>엄마 손을 꼭 잡고 다니던 작은 손이<br>이제 평생 함께할 사람의 손을 잡는구나.<br>서운하면서도 참 고맙고 기쁘다.</p><p>현석이와 서로의 편이 되어<br>좋은 날엔 함께 웃고,<br>힘든 날엔 꼭 안아주며 살아가렴.</p><p>무엇보다 지금처럼 밝고 사랑스러운<br>우리 가영이로 행복하게 지내길 바랄게.</p><p>사랑하는 우리 딸, 결혼 축하해.</p>
           <p class="from">엄마가</p>
         </article>
         <article class="pletter">
           <p class="to">사랑하는 딸 가영에게</p>
-          <p>너는 언제나 우리 집의 웃음이었단다.</p><p>새로운 가정에서도 그 웃음 잃지 말고<br>현석이와 오래오래 행복하거라.</p>
+          <p>너는 태어난 날부터 지금까지<br>언제나 우리 집의 웃음이었단다.</p><p>아빠 눈에는 아직도 어린 딸 같은데<br>이렇게 듬직한 사람을 만나<br>새로운 가정을 꾸린다니 마음이 놓인다.</p><p>새로운 집에서도 그 웃음 잃지 말고,<br>현석이와 서로 존중하고 아끼며<br>오래오래 행복하거라.</p><p>언제든 기댈 곳이 필요하면<br>아빠는 늘 네 뒤에 있을게.</p><p>결혼 축하한다, 우리 딸.</p>
           <p class="from">아빠가</p>
         </article>
       </div>
@@ -490,7 +490,7 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
       <span id="location"></span>
       <h2 class="sec">오시는 길</h2>
       <div class="panel">
-      <a class="map" id="map" href="https://map.naver.com/p/search/%EB%B9%8C%EB%9D%BC%EB%93%9C%EC%A7%80%EB%94%94%20%EB%85%BC%ED%98%84" target="_blank" rel="noopener" aria-label="네이버 지도에서 빌라드지디 논현 보기"><span class="map-canvas" id="mapCanvas"></span><span class="map-tag">네이버 지도에서 보기 →</span></a>
+      <a class="map" id="map" href="https://map.naver.com/p/search/%EB%B9%8C%EB%9D%BC%EB%93%9C%EC%A7%80%EB%94%94%20%EB%85%BC%ED%98%84" target="_blank" rel="noopener" aria-label="네이버 지도에서 빌라드지디 논현 보기"><img src="f/map.jpg" alt="빌라드지디 논현 약도 — 강남구청역과 학동역 사이" width="1284" height="1000" loading="lazy" decoding="async"><span class="map-tag">네이버 지도에서 보기 →</span></a>
       <div>
         <p class="venue">Villa de GD · Nonhyeon</p>
         <p class="venue-ko">빌라드지디 논현</p>
@@ -718,27 +718,6 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 })();
 </script>
 <script>
-/* small map of the venue (Kakao Maps, geocoded from the address); the whole map is a link to Naver Map */
-(function () {
-  var box = document.getElementById('mapCanvas'); if (!box) return;
-  var KEY = '1e75ce76e7372491e4b502ebba8c8f0d', ADDR = '서울 강남구 언주로126길 23';
-  var s = document.createElement('script');
-  s.src = 'https://dapi.kakao.com/v2/maps/sdk.js?appkey=' + KEY + '&libraries=services&autoload=false';
-  s.onload = function () {
-    kakao.maps.load(function () {
-      new kakao.maps.services.Geocoder().addressSearch(ADDR, function (r, st) {
-        if (st !== kakao.maps.services.Status.OK) return;
-        var pos = new kakao.maps.LatLng(r[0].y, r[0].x);
-        var map = new kakao.maps.Map(box, { center: pos, level: 4, draggable: false, scrollwheel: false, disableDoubleClickZoom: true });
-        new kakao.maps.Marker({ position: pos, map: map });
-      });
-    });
-  };
-  s.onerror = function () { box.textContent = ''; };
-  document.head.appendChild(s);
-})();
-</script>
-<script>
 /* background music: plays from the first tap anywhere (phones block sound before a tap); the button toggles it.
    The button only appears when the music file actually exists. */
 (function () {
@@ -759,7 +738,7 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 (function () {
   /* ▼ 여기만 바꾸면 됩니다 ▼ */
   var KAKAO_JS_KEY = '1e75ce76e7372491e4b502ebba8c8f0d';
-  var VER          = '11031556';   // 업데이트할 때마다 바뀌는 번호 — 카톡이 예전 페이지를 다시 보여주지 않게
+  var VER          = '11031606';   // 업데이트할 때마다 바뀌는 번호 — 카톡이 예전 페이지를 다시 보여주지 않게
   var SITE_URL     = 'https://hsjeong14.github.io/wedding/v5/?v=' + VER;          // 청첩장 주소
   var MAP_URL      = 'https://hsjeong14.github.io/wedding/v5/?v=' + VER + '#location'; // '식장 위치 보기'가 열 주소
   var IMAGE_URL    = 'https://hsjeong14.github.io/wedding/share-v3.jpg';  // 900 x 1200 (3:4) 세로 썸네일
