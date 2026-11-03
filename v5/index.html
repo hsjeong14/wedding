@@ -111,7 +111,7 @@ section { padding-block: 96px; text-align: center; }
 .heart svg { display: block; width: 100%; height: 100%; fill: var(--blush); }
 
 /* section titles: serif display word with a handwritten aside */
-.sec { margin: 0; position: relative; display: inline-block; font-family: var(--sans); font-weight: 600; font-size: 19px; line-height: 1; letter-spacing: .28em; text-indent: .28em; color: var(--cream); padding-bottom: 16px; }
+.sec { margin: 0; position: relative; display: inline-block; font-family: var(--sans); font-weight: 500; font-size: 17px; line-height: 1; letter-spacing: .28em; text-indent: .28em; color: var(--cream); padding-bottom: 16px; }
 .sec::after { content: ""; position: absolute; left: 50%; bottom: 0; width: 22px; height: 1px; background: var(--olive); transform: translateX(-50%); }
 .sec .sc { display: block; margin-top: 12px; font-family: var(--sans); font-size: 10.5px; font-weight: 500; letter-spacing: .32em; text-indent: .32em; text-transform: uppercase; color: var(--olive); white-space: nowrap; }
 .kicker { font-family: var(--sans); font-size: 10.5px; font-weight: 500; letter-spacing: .38em; text-indent: .38em; text-transform: uppercase; color: var(--olive); }
@@ -196,11 +196,11 @@ section { padding-block: 96px; text-align: center; }
 .day-meta p { font-size: 14.5px; letter-spacing: .04em; }
 .day-meta .en { font-family: var(--display); font-size: 21px; letter-spacing: 0; color: var(--cream); margin-bottom: 2px; }
 .countdown { font-size: 14px; color: var(--olive); }
-.countdown b { font-family: var(--display); font-weight: 400; font-size: 26px; color: var(--cream); margin: 0 4px; vertical-align: -2px; }
+.countdown b { font-weight: 600; font-size: 20px; color: var(--cream); margin: 0 4px; }
 
 /* ---------- location ---------- */
-.venue { font-family: var(--display); font-size: 30px; line-height: 1.15; color: var(--cream); }
-.venue-ko { font-size: 17px; font-weight: 600; letter-spacing: .06em; color: var(--cream); margin-top: 8px; }
+.venue { font-size: 12px; font-weight: 500; letter-spacing: .3em; text-indent: .3em; color: var(--olive); text-transform: uppercase; }
+.venue-ko { font-size: 20px; font-weight: 600; letter-spacing: .04em; color: var(--cream); margin-top: 8px; }
 .addr-block p { font-size: 14px; color: var(--olive); }
 .addr-block a { color: var(--olive); text-decoration: none; }
 .links { width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
@@ -252,8 +252,8 @@ section { padding-block: 96px; text-align: center; }
 
 /* ---------- footer ---------- */
 footer { padding-block: 88px calc(96px + env(safe-area-inset-bottom, 0px)); text-align: center; border-top: 1px solid var(--line); }
-footer .thanks { font-family: var(--display); font-style: italic; font-size: 42px; line-height: 1; color: var(--cream); }
-footer .sig { margin-top: 18px; font-family: var(--display); font-size: 22px; color: var(--olive); white-space: nowrap; }
+footer .thanks { font-size: 15px; font-weight: 500; letter-spacing: .4em; text-indent: .4em; text-transform: uppercase; color: var(--cream); }
+footer .sig { margin-top: 14px; font-size: 15px; letter-spacing: .06em; color: var(--olive); white-space: nowrap; }
 
 /* ---------- lightbox ---------- */
 .lb { position: fixed; inset: 0; z-index: 30; background: rgba(8,8,8,.97); display: grid; grid-template-rows: auto 1fr auto; }
@@ -289,17 +289,15 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 .fam-parents { font-size: 15px; font-weight: 400; letter-spacing: .04em; }
 .fam-rel { font-size: 13px; opacity: .85; }
 .fam-child { font-size: 22px; font-weight: 700; letter-spacing: .06em; margin-left: .15em; }
-.fam-kid { display: block; position: relative; z-index: 3; width: 54%; margin-top: -30%; }
+.fam-kid { display: block; position: relative; z-index: 3; width: 50%; margin-top: -26%; }
 .fam-kid.kid-r { margin-left: auto; margin-right: 6%; }
 .fam-kid.kid-l { margin-right: auto; margin-left: 6%; }
-.fam-kid img { display: block; width: 100%; height: auto; filter: drop-shadow(0 10px 16px rgba(42,40,35,.28));
-  -webkit-mask-image: linear-gradient(180deg, #000 82%, transparent 100%); mask-image: linear-gradient(180deg, #000 82%, transparent 100%); }
-.fam-letters { display: grid; gap: 26px; padding: 22px 28px 0; }
-.pletter { text-align: left; padding: 24px 22px 18px 34px; font-family: var(--hand); font-size: 21px; line-height: 30px; color: #2b2925;
-  background-color: #fbf9f3; background-image: var(--grain), linear-gradient(90deg, transparent 22px, rgba(196,120,112,.38) 22px, rgba(196,120,112,.38) 23px, transparent 23px), repeating-linear-gradient(180deg, transparent 0 29px, rgba(110,124,140,.18) 29px 30px);
-  background-position: 0 0, 0 0, 0 22px; box-shadow: 0 8px 20px rgba(42,40,35,.14), 0 1px 3px rgba(42,40,35,.12); }
-.pletter:nth-child(odd) { transform: rotate(-.9deg); }
-.pletter:nth-child(even) { transform: rotate(.8deg); }
+.fam-kid img { display: block; width: 100%; height: auto; filter: drop-shadow(0 6px 10px rgba(42,40,35,.25)) drop-shadow(0 1px 2px rgba(42,40,35,.2)); }
+.fam-kid.kid-r img { transform: rotate(4deg); }
+.fam-kid.kid-l img { transform: rotate(-4deg); }
+.fam-letters { display: grid; gap: 34px; padding: 30px 34px 0; }
+.pletter + .pletter { padding-top: 30px; border-top: 1px dashed rgba(42,40,35,.2); }
+.pletter { text-align: left; padding: 6px 4px 0; font-family: var(--hand); font-size: 22px; line-height: 1.55; color: #2b2925; }
 .pletter p + p { margin-top: 10px; }
 .pletter .to { font-size: 22px; }
 .pletter .from { text-align: right; margin-top: 12px; }
@@ -312,10 +310,10 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 .when-ko { display: grid; gap: 6px; }
 .when-ko .w1 { font-size: 26px; font-weight: 600; letter-spacing: .04em; color: var(--cream); line-height: 1.3; }
 .when-ko .w2 { font-size: 18px; font-weight: 400; letter-spacing: .06em; color: var(--cream); }
-.when-ko .w3 { margin-top: 6px; font-family: var(--display); font-style: italic; font-size: 17px; color: var(--olive); }
+.when-ko .w3 { margin-top: 8px; font-size: 11px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--olive); }
 .cal2 { width: 100%; max-width: 330px; display: grid; grid-template-columns: repeat(7, 1fr); row-gap: 4px; padding: 22px 16px 18px; background: #181816; border: 1px solid var(--line); border-radius: 14px; font-size: 14.5px; color: var(--cream); }
 .cal2-m { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: baseline; padding: 0 6px 14px; margin-bottom: 8px; border-bottom: 1px solid var(--line); font-size: 17px; font-weight: 600; color: var(--cream); }
-.cal2-m span { font-family: var(--display); font-style: italic; font-weight: 400; font-size: 15px; color: var(--olive); }
+.cal2-m span { font-size: 11px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--olive); }
 .cal2 > span { height: 36px; display: grid; place-items: center; position: relative; z-index: 0; }
 .cal2 .h { height: 28px; font-size: 11px; font-weight: 600; letter-spacing: .1em; color: var(--olive); }
 .cal2 .sun { color: #e0928c; }
@@ -334,6 +332,17 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 .bgm.on .bars i:nth-child(2) { animation-delay: -.4s !important; }
 .bgm.on .bars i:nth-child(3) { animation-delay: -.7s !important; }
 @keyframes eq { from { height: 25%; } to { height: 100%; } }
+
+
+/* ---------- rounded panels for 오시는 길 / 교통 안내 ---------- */
+.panel { width: 100%; display: grid; gap: 22px; justify-items: center; margin-top: 8px; padding: 22px 18px 26px; background: #161614; border: 1px solid var(--line); border-radius: 20px; }
+.panel .shuttle { background: #1e1e1b; border-radius: 14px; }
+.panel .ways .way:first-child { border-top: 0; }
+.map { position: relative; display: block; width: 100%; aspect-ratio: 4 / 3; border-radius: 14px; overflow: hidden; background: #22221f; text-decoration: none; }
+.map-canvas { position: absolute; inset: 0; display: block; }
+.map-canvas:empty::after { content: "지도 불러오는 중"; position: absolute; inset: 0; display: grid; place-items: center; font-size: 12px; color: var(--olive); }
+.map-tag { position: absolute; z-index: 5; right: 10px; bottom: 10px; padding: 7px 12px; border-radius: 999px; background: rgba(12,12,12,.78); color: var(--cream); font-size: 11.5px; letter-spacing: .02em; }
+.map * { pointer-events: none; }
 
 /* kakao share */
   .kshare { display: grid; justify-items: center; gap: 10px; margin: 0 auto 44px; }
@@ -399,7 +408,7 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
         <img src="f/pj.jpg" alt="정득주 · 임수진 두 분의 결혼식 사진" width="900" height="1351" loading="lazy" decoding="async">
         <figcaption class="fam-cap"><span class="fam-parents">정득주 · 임수진</span><span class="fam-rel">의 아들</span><span class="fam-child">현석</span></figcaption>
       </figure>
-      <picture class="fam-kid kid-r"><source srcset="f/hs.webp" type="image/webp"><img src="f/hs.png" alt="어린 시절의 현석" width="600" height="727" loading="lazy" decoding="async"></picture>
+      <picture class="fam-kid kid-r"><source srcset="f/hs2.webp" type="image/webp"><img src="f/hs2.png" alt="어린 시절의 현석" width="600" height="720" loading="lazy" decoding="async"></picture>
       <div class="fam-letters">
         <article class="pletter">
           <p class="to">사랑하는 아들 현석에게</p>
@@ -418,7 +427,7 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
         <img src="f/py.jpg" alt="양규봉 · 김봉순 두 분의 결혼식 사진" width="900" height="1123" loading="lazy" decoding="async">
         <figcaption class="fam-cap"><span class="fam-parents">양규봉 · 김봉순</span><span class="fam-rel">의 딸</span><span class="fam-child">가영</span></figcaption>
       </figure>
-      <picture class="fam-kid kid-l"><source srcset="f/gy.webp" type="image/webp"><img src="f/gy.png" alt="어린 시절의 가영" width="520" height="694" loading="lazy" decoding="async"></picture>
+      <picture class="fam-kid kid-l"><source srcset="f/gy2.webp" type="image/webp"><img src="f/gy2.png" alt="어린 시절의 가영" width="540" height="669" loading="lazy" decoding="async"></picture>
       <div class="fam-letters">
         <article class="pletter">
           <p class="to">예쁜 우리 딸 가영에게</p>
@@ -448,7 +457,7 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
       <div class="when-ko">
         <p class="w1">2027년 2월 20일</p>
         <p class="w2">토요일 오후 3시</p>
-        <p class="w3">Saturday, February 20, 2027 · 3 PM</p>
+        <p class="w3">Saturday · February 20 · 3 PM</p>
       </div>
       <div class="cal2" aria-hidden="true">
         <p class="cal2-m">2월 <span>February 2027</span></p>
@@ -467,8 +476,10 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
     <div class="stack">
       <span id="location"></span>
       <h2 class="sec">오시는 길</h2>
-      <div style="margin-top:18px">
-        <p class="venue">Villa de GD</p>
+      <div class="panel">
+      <a class="map" id="map" href="https://map.naver.com/p/search/%EB%B9%8C%EB%9D%BC%EB%93%9C%EC%A7%80%EB%94%94%20%EB%85%BC%ED%98%84" target="_blank" rel="noopener" aria-label="네이버 지도에서 빌라드지디 논현 보기"><span class="map-canvas" id="mapCanvas"></span><span class="map-tag">네이버 지도에서 보기 →</span></a>
+      <div>
+        <p class="venue">Villa de GD · Nonhyeon</p>
         <p class="venue-ko">빌라드지디 논현</p>
       </div>
       <div class="addr-block">
@@ -481,13 +492,14 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
         <a href="https://tmap.life/search?name=%EB%B9%8C%EB%9D%BC%EB%93%9C%EC%A7%80%EB%94%94%20%EB%85%BC%ED%98%84" target="_blank" rel="noopener">티맵</a>
       </nav>
       <button class="copy" id="copyAddr" type="button">주소 복사하기</button>
+      </div>
     </div>
   </section>
 
   <section class="pad">
     <div class="stack">
       <h2 class="sec">교통 안내</h2>
-      <div style="height:18px"></div>
+      <div class="panel">
       <div class="shuttle">
         <div class="shuttle-head"><h3>셔틀버스 운행</h3><span class="every">10분 간격</span></div>
         <p class="stop">7호선 · 수인분당선 <b>강남구청역 2번 출구</b><br>20m 직진, 버스 승강장 옆에서 승차</p>
@@ -533,6 +545,7 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
           </dd>
         </div>
       </dl>
+      </div>
     </div>
   </section>
 
@@ -668,8 +681,8 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
     'section .sec', '.verse p', '.families', '.fam-photo', '.fam-kid', '.pletter',
     '.gallery .grid', '.more', '.more-hint',
     '.when-ko', '.cal2', '.countdown', 'section .kicker',
-    '.venue', '.venue-ko', '.addr-block', '.links', '.copy',
-    '.shuttle', '.way',
+    '.panel',
+    
     '.gb .gb-card', '.gb-write', 'section .sub',
     '.notice li',
     '.kshare', 'footer .thanks', 'footer .sig'
@@ -689,6 +702,27 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
     });
   }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
   els.forEach(function (e) { io.observe(e); });
+})();
+</script>
+<script>
+/* small map of the venue (Kakao Maps, geocoded from the address); the whole map is a link to Naver Map */
+(function () {
+  var box = document.getElementById('mapCanvas'); if (!box) return;
+  var KEY = '1e75ce76e7372491e4b502ebba8c8f0d', ADDR = '서울 강남구 언주로126길 23';
+  var s = document.createElement('script');
+  s.src = 'https://dapi.kakao.com/v2/maps/sdk.js?appkey=' + KEY + '&libraries=services&autoload=false';
+  s.onload = function () {
+    kakao.maps.load(function () {
+      new kakao.maps.services.Geocoder().addressSearch(ADDR, function (r, st) {
+        if (st !== kakao.maps.services.Status.OK) return;
+        var pos = new kakao.maps.LatLng(r[0].y, r[0].x);
+        var map = new kakao.maps.Map(box, { center: pos, level: 4, draggable: false, scrollwheel: false, disableDoubleClickZoom: true });
+        new kakao.maps.Marker({ position: pos, map: map });
+      });
+    });
+  };
+  s.onerror = function () { box.textContent = ''; };
+  document.head.appendChild(s);
 })();
 </script>
 <script>
@@ -712,7 +746,7 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 (function () {
   /* ▼ 여기만 바꾸면 됩니다 ▼ */
   var KAKAO_JS_KEY = '1e75ce76e7372491e4b502ebba8c8f0d';
-  var VER          = '11031538';   // 업데이트할 때마다 바뀌는 번호 — 카톡이 예전 페이지를 다시 보여주지 않게
+  var VER          = '11031547';   // 업데이트할 때마다 바뀌는 번호 — 카톡이 예전 페이지를 다시 보여주지 않게
   var SITE_URL     = 'https://hsjeong14.github.io/wedding/v5/?v=' + VER;          // 청첩장 주소
   var MAP_URL      = 'https://hsjeong14.github.io/wedding/v5/?v=' + VER + '#location'; // '식장 위치 보기'가 열 주소
   var IMAGE_URL    = 'https://hsjeong14.github.io/wedding/share-v3.jpg';  // 900 x 1200 (3:4) 세로 썸네일
