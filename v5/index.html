@@ -251,7 +251,7 @@ section { padding-block: 96px; text-align: center; }
 .notice li::before { content: "—"; display: block; color: var(--olive); margin-bottom: 4px; }
 
 /* ---------- footer ---------- */
-footer { padding-block: 8px 56px; text-align: center; }
+footer { padding-block: 8px 128px; text-align: center; }
 footer .thanks { font-size: 15px; font-weight: 500; letter-spacing: .4em; text-indent: .4em; text-transform: uppercase; color: var(--cream); }
 footer .sig { margin-top: 14px; font-size: 15px; letter-spacing: .06em; color: var(--olive); white-space: nowrap; }
 
@@ -420,7 +420,7 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 .end-photo::after { content: ""; position: absolute; z-index: 1; left: 0; right: 0; bottom: 0; height: 22%; pointer-events: none; background: linear-gradient(180deg, rgba(12,12,12,0), rgba(12,12,12,.85)); }
 .end-bottom { position: absolute; z-index: 2; left: 0; right: 0; bottom: calc(22px + env(safe-area-inset-bottom, 0px)); margin: 0 !important; text-align: center; }
 .ending { padding-bottom: env(safe-area-inset-bottom, 0px); background: #0c0c0c; }
-.end-msg { position: absolute; z-index: 2; left: 0; right: 0; top: 0; text-align: center; padding: 30px 24px 0; color: #d9d1c3; text-shadow: 0 1px 12px rgba(0,0,0,.45); }
+.end-msg { position: absolute; z-index: 2; left: 0; right: 0; top: 0; text-align: center; padding: 19% 24px 0; color: #d9d1c3; text-shadow: 0 1px 12px rgba(0,0,0,.45); }
 .end-l1 { font-family: "Gowun Batang", serif; font-size: clamp(14px, 4.6vw, 19px); line-height: 1.6; letter-spacing: .02em; }
 .end-l2 { margin-top: 22px !important; white-space: nowrap; font-family: "Gowun Batang", serif; font-size: clamp(14px, 4.6vw, 19px); line-height: 1.6; letter-spacing: .02em; color: #d9d1c3; }
 .end-en { margin-top: 12px !important; font-size: clamp(8.5px, 2.5vw, 10px); font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: rgba(242,239,230,.75); white-space: nowrap; }
@@ -849,7 +849,7 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 (function () {
   /* ▼ 여기만 바꾸면 됩니다 ▼ */
   var KAKAO_JS_KEY = '1e75ce76e7372491e4b502ebba8c8f0d';
-  var VER          = '11031715';   // 업데이트할 때마다 바뀌는 번호 — 카톡이 예전 페이지를 다시 보여주지 않게
+  var VER          = '11031716';   // 업데이트할 때마다 바뀌는 번호 — 카톡이 예전 페이지를 다시 보여주지 않게
   var SITE_URL     = 'https://hsjeong14.github.io/wedding/v5/?v=' + VER;          // 청첩장 주소
   var MAP_URL      = 'https://hsjeong14.github.io/wedding/v5/?v=' + VER + '#location'; // '식장 위치 보기'가 열 주소
   var IMAGE_URL    = 'https://hsjeong14.github.io/wedding/share-v3.jpg';  // 900 x 1200 (3:4) 세로 썸네일
