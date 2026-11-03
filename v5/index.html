@@ -385,6 +385,24 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 .panel .notice { width: 100%; gap: 20px; }
 .panel .notice li { color: var(--cream); }
 
+
+/* ---------- 마음 전하실 곳 ---------- */
+.gift-panel { gap: 12px; }
+.gift-msg { font-size: 14px; line-height: 1.8; color: var(--cream); margin-bottom: 8px; }
+.acct-group { width: 100%; border-radius: 12px; background: #fbf9f3; box-shadow: 0 1px 3px rgba(42,40,35,.08); overflow: hidden; }
+.acct-group summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 16px 18px; font-size: 15px; font-weight: 600; color: #2a2823; }
+.acct-group summary::-webkit-details-marker { display: none; }
+.chev { width: 9px; height: 9px; border-right: 1.5px solid #6f6a5f; border-bottom: 1.5px solid #6f6a5f; transform: rotate(45deg); margin-top: -4px; }
+.acct-group[open] .chev { transform: rotate(-135deg); margin-top: 4px; }
+.acct-list { list-style: none; margin: 0; padding: 0 18px 8px; border-top: 1px solid rgba(42,40,35,.1); }
+.acct { display: grid; gap: 4px; padding: 14px 0; text-align: left; }
+.acct + .acct { border-top: 1px dashed rgba(42,40,35,.14); }
+.acct-who { display: flex; gap: 8px; align-items: baseline; }
+.acct-role { font-size: 12px; color: #6f6a5f; }
+.acct-name { font-size: 14.5px; font-weight: 600; color: #2a2823; }
+.acct-num { display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: 13.5px; color: #2a2823; }
+.acct-copy { appearance: none; flex: none; border: 1px solid rgba(42,40,35,.25); background: transparent; color: #2a2823; font: 500 12px var(--sans); padding: 6px 12px; border-radius: 999px; cursor: pointer; }
+
 /* kakao share */
   .kshare { display: grid; justify-items: center; gap: 10px; margin: 0 auto 44px; }
   .kshare-btn {
@@ -617,6 +635,23 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 
   <section class="pad">
     <div class="stack">
+      <h2 class="sec">마음 전하실 곳</h2>
+      <div class="panel gift-panel">
+        <p class="gift-msg">따뜻한 마음으로 축복해 주시는 모든 분들께<br>진심으로 감사드립니다.</p>
+        <details class="acct-group">
+          <summary>신랑측에게<span class="chev" aria-hidden="true"></span></summary>
+          <ul class="acct-list"><li class="acct"><div class="acct-who"><span class="acct-role">신랑</span><span class="acct-name">정현석</span></div><div class="acct-num"><span>○○은행 000-0000-0000-00</span><button type="button" class="acct-copy" data-copy="○○은행 000-0000-0000-00 정현석">복사</button></div></li><li class="acct"><div class="acct-who"><span class="acct-role">신랑 아버지</span><span class="acct-name">정득주</span></div><div class="acct-num"><span>○○은행 000-0000-0000-00</span><button type="button" class="acct-copy" data-copy="○○은행 000-0000-0000-00 정득주">복사</button></div></li><li class="acct"><div class="acct-who"><span class="acct-role">신랑 어머니</span><span class="acct-name">임수진</span></div><div class="acct-num"><span>○○은행 000-0000-0000-00</span><button type="button" class="acct-copy" data-copy="○○은행 000-0000-0000-00 임수진">복사</button></div></li></ul>
+        </details>
+        <details class="acct-group">
+          <summary>신부측에게<span class="chev" aria-hidden="true"></span></summary>
+          <ul class="acct-list"><li class="acct"><div class="acct-who"><span class="acct-role">신부</span><span class="acct-name">양가영</span></div><div class="acct-num"><span>○○은행 000-0000-0000-00</span><button type="button" class="acct-copy" data-copy="○○은행 000-0000-0000-00 양가영">복사</button></div></li><li class="acct"><div class="acct-who"><span class="acct-role">신부 아버지</span><span class="acct-name">양규봉</span></div><div class="acct-num"><span>○○은행 000-0000-0000-00</span><button type="button" class="acct-copy" data-copy="○○은행 000-0000-0000-00 양규봉">복사</button></div></li><li class="acct"><div class="acct-who"><span class="acct-role">신부 어머니</span><span class="acct-name">김봉순</span></div><div class="acct-num"><span>○○은행 000-0000-0000-00</span><button type="button" class="acct-copy" data-copy="○○은행 000-0000-0000-00 김봉순">복사</button></div></li></ul>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad">
+    <div class="stack">
       <h2 class="sec">안내 사항</h2>
       <div class="panel">
       <ul class="notice">
@@ -769,6 +804,19 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 })();
 </script>
 <script>
+/* copy account numbers */
+(function () {
+  var toast = document.getElementById('toast'), t;
+  function show(m) { toast.textContent = m; toast.hidden = false; clearTimeout(t); t = setTimeout(function () { toast.hidden = true; }, 1800); }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('.acct-copy'); if (!b) return;
+    var text = b.getAttribute('data-copy');
+    function done() { show('계좌번호를 복사했어요'); }
+    try { navigator.clipboard.writeText(text).then(done, function () { show(text); }); } catch (err) { show(text); }
+  });
+})();
+</script>
+<script>
 /* background music: plays from the first tap anywhere (phones block sound before a tap); the button toggles it.
    The button only appears when the music file actually exists. */
 (function () {
@@ -789,7 +837,7 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 (function () {
   /* ▼ 여기만 바꾸면 됩니다 ▼ */
   var KAKAO_JS_KEY = '1e75ce76e7372491e4b502ebba8c8f0d';
-  var VER          = '11031625';   // 업데이트할 때마다 바뀌는 번호 — 카톡이 예전 페이지를 다시 보여주지 않게
+  var VER          = '11031627';   // 업데이트할 때마다 바뀌는 번호 — 카톡이 예전 페이지를 다시 보여주지 않게
   var SITE_URL     = 'https://hsjeong14.github.io/wedding/v5/?v=' + VER;          // 청첩장 주소
   var MAP_URL      = 'https://hsjeong14.github.io/wedding/v5/?v=' + VER + '#location'; // '식장 위치 보기'가 열 주소
   var IMAGE_URL    = 'https://hsjeong14.github.io/wedding/share-v3.jpg';  // 900 x 1200 (3:4) 세로 썸네일
