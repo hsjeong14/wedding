@@ -75,7 +75,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Sacramento&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Gowun+Batang:wght@400;700&family=Sacramento&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
 :root {
@@ -251,7 +251,7 @@ section { padding-block: 96px; text-align: center; }
 .notice li::before { content: "—"; display: block; color: var(--olive); margin-bottom: 4px; }
 
 /* ---------- footer ---------- */
-footer { padding-block: 88px calc(96px + env(safe-area-inset-bottom, 0px)); text-align: center; border-top: 1px solid var(--line); }
+footer { padding-block: 72px 80px; text-align: center; border-top: 1px solid var(--line); }
 footer .thanks { font-size: 15px; font-weight: 500; letter-spacing: .4em; text-indent: .4em; text-transform: uppercase; color: var(--cream); }
 footer .sig { margin-top: 14px; font-size: 15px; letter-spacing: .06em; color: var(--olive); white-space: nowrap; }
 
@@ -409,6 +409,19 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 .acct-name { font-size: 14.5px; font-weight: 600; color: #2a2823; }
 .acct-num { display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: 13.5px; color: #2a2823; }
 .acct-copy { appearance: none; flex: none; border: 1px solid rgba(42,40,35,.25); background: transparent; color: #2a2823; font: 500 12px var(--sans); padding: 6px 12px; border-radius: 999px; cursor: pointer; }
+
+
+/* ---------- ending: last photo with the closing words ---------- */
+.ending { position: relative; margin: 0; }
+.ending img { display: block; width: 100%; height: auto; }
+.ending .end-photo { position: relative; }
+.ending .end-photo::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 16%; pointer-events: none;
+  background: linear-gradient(180deg, rgba(12,12,12,0), #0c0c0c); }
+.end-msg { position: relative; z-index: 1; margin-top: -8px; padding: 0 28px calc(84px + env(safe-area-inset-bottom, 0px)); text-align: center; color: #f2efe6; }
+.end-l1 { font-family: "Gowun Batang", serif; font-size: clamp(19px, 5.6vw, 23px); line-height: 1.6; letter-spacing: .02em; text-shadow: 0 2px 14px rgba(0,0,0,.5); }
+.end-l2 { margin-top: 18px !important; font-family: "Gowun Batang", serif; font-size: 14px; line-height: 1.85; color: rgba(242,239,230,.82); }
+.end-sig { margin-top: 26px !important; font-family: "Gowun Batang", serif; font-size: 15px; letter-spacing: .3em; text-indent: .3em; color: #f2efe6; }
+.end-sig .heart { width: .55em; height: .5em; margin: 0 .1em 0 -.1em; }
 
 /* kakao share */
   .kshare { display: grid; justify-items: center; gap: 10px; margin: 0 auto 44px; }
@@ -662,9 +675,17 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
   </button>
   <p class="kshare-note" id="kakaoShareNote" hidden></p>
 </div>
-    <p class="thanks">Thank you</p>
-    <p class="sig">Hyunseok <span class="heart" role="img" aria-label="그리고"><svg viewBox="0 0 24 22" aria-hidden="true"><path d="M12 21.2 10.6 20C5.4 15.4 2 12.3 2 8.5 2 5.4 4.4 3 7.5 3c1.7 0 3.4.8 4.5 2.1C13.1 3.8 14.8 3 16.5 3 19.6 3 22 5.4 22 8.5c0 3.8-3.4 6.9-8.6 11.5L12 21.2z"/></svg></span> Gayeong</p>
   </footer>
+
+  <figure class="ending">
+    <div class="end-photo"><img src="f/end.jpg" alt="파리 지하철역 계단 앞에서 손을 맞잡은 현석과 가영" width="1000" height="1500" loading="lazy" decoding="async"></div>
+    <figcaption class="end-msg">
+      <p class="end-l1">서로의 손을 꼭 잡고</p>
+      <p class="end-l1">이제, 같은 길을 걸어갑니다.</p>
+      <p class="end-l2">그 첫걸음을 함께 축복해 주셔서<br>진심으로 고맙습니다.</p>
+      <p class="end-sig">현석 <span class="heart" role="img" aria-label="그리고"><svg viewBox="0 0 24 22" aria-hidden="true"><path d="M12 21.2 10.6 20C5.4 15.4 2 12.3 2 8.5 2 5.4 4.4 3 7.5 3c1.7 0 3.4.8 4.5 2.1C13.1 3.8 14.8 3 16.5 3 19.6 3 22 5.4 22 8.5c0 3.8-3.4 6.9-8.6 11.5L12 21.2z"/></svg></span> 가영</p>
+    </figcaption>
+  </figure>
 </main>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="사진 크게 보기" hidden>
@@ -767,7 +788,7 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
     '.panel',
     
     'section .sub',
-    '.kshare', 'footer .thanks', 'footer .sig'
+    '.kshare', '.end-msg'
   ];
   var els = [];
   groups.forEach(function (q) { document.querySelectorAll(q).forEach(function (e) { if (els.indexOf(e) < 0) els.push(e); }); });
@@ -820,7 +841,7 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 (function () {
   /* ▼ 여기만 바꾸면 됩니다 ▼ */
   var KAKAO_JS_KEY = '1e75ce76e7372491e4b502ebba8c8f0d';
-  var VER          = '11031645';   // 업데이트할 때마다 바뀌는 번호 — 카톡이 예전 페이지를 다시 보여주지 않게
+  var VER          = '11031655';   // 업데이트할 때마다 바뀌는 번호 — 카톡이 예전 페이지를 다시 보여주지 않게
   var SITE_URL     = 'https://hsjeong14.github.io/wedding/v5/?v=' + VER;          // 청첩장 주소
   var MAP_URL      = 'https://hsjeong14.github.io/wedding/v5/?v=' + VER + '#location'; // '식장 위치 보기'가 열 주소
   var IMAGE_URL    = 'https://hsjeong14.github.io/wedding/share-v3.jpg';  // 900 x 1200 (3:4) 세로 썸네일
