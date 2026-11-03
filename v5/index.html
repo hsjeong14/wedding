@@ -355,6 +355,36 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 .map-tag { position: absolute; z-index: 5; right: 10px; bottom: 10px; padding: 7px 12px; border-radius: 999px; background: rgba(12,12,12,.78); color: var(--cream); font-size: 11.5px; letter-spacing: .02em; }
 .map * { pointer-events: none; }
 
+
+/* ---------- walking route & valet ---------- */
+.walk { width: 100%; text-align: left; padding: 20px 20px 18px; border-radius: 14px; background: #e8e3d7; }
+.walk-h { font-size: 15px; font-weight: 600; color: var(--cream); }
+.walk-t { margin-top: 8px !important; font-size: 13.5px; line-height: 1.75; color: var(--cream); font-weight: 400; }
+.walk-link { display: inline-block; margin-top: 12px; padding: 9px 14px; border-radius: 999px; background: #2a2823; color: #f2efe6; font-size: 12.5px; text-decoration: none; letter-spacing: .02em; }
+.walk-note { margin-top: 12px !important; font-size: 12.5px; color: var(--olive); }
+.valet { padding: 14px 14px 12px; border-radius: 12px; background: #2a2823; color: #f2efe6; }
+.valet-h { font-size: 15px; font-weight: 600; color: #f2efe6; }
+.valet .free { background: #e7a3ad !important; color: #2a2823 !important; font-size: 11.5px; padding: 1px 8px; margin-left: 6px; border-radius: 999px; }
+.valet-t { margin-top: 4px !important; font-size: 12.5px; color: rgba(242,239,230,.8); }
+
+/* ---------- guestbook: 2 x 2 notes per page, swipe sideways for more ---------- */
+.gb-panel { gap: 14px; }
+.gb-sub { font-size: 14px; color: var(--cream); }
+.gb-ex { font-size: 11px; color: #b0574f; letter-spacing: .04em; margin-top: -8px; }
+.gb-scroll { width: 100%; display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; gap: 12px; padding: 4px 2px 6px; }
+.gb-scroll::-webkit-scrollbar { display: none; }
+.gb-page { flex: 0 0 100%; min-width: 0; scroll-snap-align: start; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 1fr; gap: 10px; }
+.gb-note { min-width: 0; display: flex; flex-direction: column; justify-content: space-between; text-align: left; aspect-ratio: 1 / 1; padding: 14px 13px 11px; border-radius: 10px; background: #fbf9f3; box-shadow: 0 4px 12px rgba(42,40,35,.1), 0 1px 2px rgba(42,40,35,.08); }
+.gb-msg { font-family: var(--hand); font-size: 18px; line-height: 1.3; color: #2b2925; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; }
+.gb-who { font-size: 11px; color: var(--olive); letter-spacing: .04em; }
+.gb-who::before { content: "— "; }
+.gb-dots { display: flex; gap: 6px; justify-content: center; }
+.gb-dots i { width: 6px; height: 6px; border-radius: 50%; background: rgba(42,40,35,.2); }
+.gb-dots i.on { background: #2a2823; }
+.panel .gb-write { border: 1px dashed rgba(42,40,35,.3); color: var(--olive); border-radius: 12px; }
+.panel .notice { width: 100%; gap: 20px; }
+.panel .notice li { color: var(--cream); }
+
 /* kakao share */
   .kshare { display: grid; justify-items: center; gap: 10px; margin: 0 auto 44px; }
   .kshare-btn {
@@ -535,6 +565,13 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
         </div>
       </div>
 
+      <div class="walk">
+        <p class="walk-h">강남구청역에서 걸어오실 때</p>
+        <p class="walk-t">강남구청역 2번 출구에서 예식장까지는 언덕 없는 평지 길이라 걸어서도 편하게 오실 수 있어요. 처음 오시는 길이라면 아래 영상으로 경로를 미리 확인해 보세요.</p>
+        <a class="walk-link" href="https://www.instagram.com/reel/DTcdkxMCQas/" target="_blank" rel="noopener">도보 경로 영상 보기 →</a>
+        <p class="walk-note">짐이 있으시거나 날씨가 춥다면 셔틀버스를 추천드려요.</p>
+      </div>
+
       <dl class="ways">
         <div class="way">
           <dt>지하철</dt>
@@ -551,7 +588,7 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
         <div class="way">
           <dt>자가용</dt>
           <dd>
-            <p>예식장 앞 발렛파킹 <span class="free">무료</span><br><span class="sub">빌라드지디 논현 정문 앞에서 바로 맡기실 수 있어요</span></p>
+            <div class="valet"><p class="valet-h">예식장 앞 발렛파킹 <span class="free">무료</span></p><p class="valet-t">빌라드지디 논현 정문 앞에서 바로 차를 맡기실 수 있어요.</p></div>
             <p><span class="sub">또는</span><br>SK허브블루 지하주차장<br><span class="sub">강남구 학동로 342 · 강남구청역 연결</span></p>
             <p class="sub">주차 후 강남구청역 2번 출구에서 셔틀버스 이용</p>
             <a class="more" href="https://m.site.naver.com/1Cikn" target="_blank" rel="noopener">하객 주차장 이용 안내<span>→</span></a>
@@ -565,22 +602,28 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
   <section class="pad">
     <div class="stack">
       <h2 class="sec">방명록</h2>
-      <p class="sub" style="margin-top:18px">두 사람에게 축하의 한마디를 남겨주세요</p>
-      <div class="gb">
-        <article class="gb-card paper"><p class="who"><span>FROM. 친구</span><span class="ex">예시</span></p><p>둘이 처음 만난 날부터 알았어, 결국 이렇게 될 줄! 결혼 진심으로 축하해 💐</p></article>
-        <article class="gb-card paper"><p class="who"><span>FROM. 회사 동료</span><span class="ex">예시</span></p><p>파리 사진 너무 예뻐요. 오래오래 행복하세요!</p></article>
+      <div class="panel gb-panel">
+        <p class="gb-sub">두 사람에게 축하의 한마디를 남겨주세요</p>
+        <p class="gb-ex">아래 메시지는 디자인 예시예요</p>
+        <div class="gb-scroll" id="gbScroll">
+          <div class="gb-page"><article class="gb-note"><p class="gb-msg">둘이 처음 만난 날부터 알았어, 결국 이렇게 될 줄! 진심으로 축하해</p><p class="gb-who">친구</p></article><article class="gb-note"><p class="gb-msg">파리 사진 너무 예뻐요. 오래오래 행복하세요!</p><p class="gb-who">회사 동료</p></article><article class="gb-note"><p class="gb-msg">5년 연애 졸업 축하해! 결혼 1년 차도 지금처럼만 💛</p><p class="gb-who">대학 동기</p></article><article class="gb-note"><p class="gb-msg">가영아 너무 예쁘다. 현석이랑 행복하게 잘 살아!</p><p class="gb-who">사촌 언니</p></article></div>
+          <div class="gb-page"><article class="gb-note"><p class="gb-msg">현석아 결혼 축하한다. 가영 씨 잘 부탁드려요!</p><p class="gb-who">고등학교 친구</p></article><article class="gb-note"><p class="gb-msg">우리 가영이 시집가는구나. 축복한다, 행복하렴.</p><p class="gb-who">이모</p></article><article class="gb-note"><p class="gb-msg">둘이 정말 잘 어울려요. 예쁜 가정 이루길!</p><p class="gb-who">동아리 선배</p></article><article class="gb-note"><p class="gb-msg">결혼 축하해요! 신혼여행 사진도 기대할게요.</p><p class="gb-who">직장 선배</p></article></div>
+        </div>
+        <div class="gb-dots" id="gbDots" aria-hidden="true"></div>
+        <button class="gb-write" type="button" disabled>축하 메시지 남기기 · 곧 열려요</button>
       </div>
-      <button class="gb-write" type="button" disabled>방명록 작성은 곧 열려요</button>
     </div>
   </section>
 
   <section class="pad">
     <div class="stack">
       <h2 class="sec">안내 사항</h2>
-      <ul class="notice" style="margin-top:18px">
+      <div class="panel">
+      <ul class="notice">
         <li>예식장은 단독 주택을 개조한 하우스웨딩홀로<br>주차 공간이 넉넉하지 않습니다.<br>가급적 대중교통과 셔틀버스를 이용해 주세요.</li>
         <li>장소가 협소하여<br>축하 화환은 정중히 사양합니다.<br>보내주시는 마음만 감사히 받겠습니다.</li>
       </ul>
+      </div>
     </div>
   </section>
 
@@ -696,8 +739,7 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
     '.day-panel', 'section .kicker',
     '.panel',
     
-    '.gb .gb-card', '.gb-write', 'section .sub',
-    '.notice li',
+    'section .sub',
     '.kshare', 'footer .thanks', 'footer .sig'
   ];
   var els = [];
@@ -715,6 +757,15 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
     });
   }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
   els.forEach(function (e) { io.observe(e); });
+})();
+</script>
+<script>
+/* guestbook pager dots */
+(function () {
+  var sc = document.getElementById('gbScroll'), dots = document.getElementById('gbDots'); if (!sc || !dots) return;
+  var n = sc.children.length; for (var i = 0; i < n; i++) dots.appendChild(document.createElement('i'));
+  function upd() { var k = Math.round(sc.scrollLeft / sc.clientWidth); [].forEach.call(dots.children, function (d, j) { d.className = j === k ? 'on' : ''; }); }
+  sc.addEventListener('scroll', upd, { passive: true }); upd();
 })();
 </script>
 <script>
@@ -738,7 +789,7 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 (function () {
   /* ▼ 여기만 바꾸면 됩니다 ▼ */
   var KAKAO_JS_KEY = '1e75ce76e7372491e4b502ebba8c8f0d';
-  var VER          = '11031614';   // 업데이트할 때마다 바뀌는 번호 — 카톡이 예전 페이지를 다시 보여주지 않게
+  var VER          = '11031625';   // 업데이트할 때마다 바뀌는 번호 — 카톡이 예전 페이지를 다시 보여주지 않게
   var SITE_URL     = 'https://hsjeong14.github.io/wedding/v5/?v=' + VER;          // 청첩장 주소
   var MAP_URL      = 'https://hsjeong14.github.io/wedding/v5/?v=' + VER + '#location'; // '식장 위치 보기'가 열 주소
   var IMAGE_URL    = 'https://hsjeong14.github.io/wedding/share-v3.jpg';  // 900 x 1200 (3:4) 세로 썸네일
