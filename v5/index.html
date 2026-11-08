@@ -129,8 +129,8 @@ section.info:last-of-type { padding-top: 26px; padding-bottom: 40px; }
 .cover .frame { position: relative; overflow: hidden; height: 100vh; height: 100svh; height: var(--coverH, 100svh); background: var(--bg); }
 .cover img { position: absolute; left: 50%; bottom: 0; width: calc(100% * var(--imgS, 1)); max-width: none; height: auto; transform: translateX(-50%); }
 .cover::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(8,8,12,.5) 0%, rgba(8,8,12,.16) 28%, rgba(8,8,12,0) 44%); }
-.cover-top { position: absolute; z-index: 1; left: 0; right: 0; top: calc(78px + env(safe-area-inset-top, 0px)); text-align: center; display: grid; gap: 10px; }
-@media (max-height: 700px) { .cover-top { top: calc(52px + env(safe-area-inset-top, 0px)); } }
+.cover-top { position: absolute; z-index: 1; left: 0; right: 0; top: calc(120px + env(safe-area-inset-top, 0px)); text-align: center; display: grid; gap: 10px; }
+@media (max-height: 700px) { .cover-top { top: calc(84px + env(safe-area-inset-top, 0px)); } }
 .cover-top .kicker { color: rgba(242,239,230,.82); }
 .cover-names { margin: 0; font-family: var(--display); font-style: italic; font-weight: 400; font-size: clamp(30px, 9.4vw, 42px); line-height: 1.05; color: var(--cream); white-space: nowrap; text-shadow: 0 1px 18px rgba(0,0,0,.35); }
 .cover-names .heart { width: .3em; height: .28em; margin: 0 .2em; vertical-align: .14em; }
@@ -929,7 +929,7 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 (function () {
   /* ▼ 여기만 바꾸면 됩니다 ▼ */
   var KAKAO_JS_KEY = '1e75ce76e7372491e4b502ebba8c8f0d';
-  var VER          = '11081621';   // 업데이트할 때마다 바뀌는 번호 — 카톡이 예전 페이지를 다시 보여주지 않게
+  var VER          = '11081628';   // 업데이트할 때마다 바뀌는 번호 — 카톡이 예전 페이지를 다시 보여주지 않게
   var SITE_URL     = 'https://hsjeong14.github.io/wedding/v5/?v=' + VER;          // 청첩장 주소
   var MAP_URL      = 'https://hsjeong14.github.io/wedding/v5/?v=' + VER + '#location'; // '식장 위치 보기'가 열 주소
   var IMAGE_URL    = 'https://hsjeong14.github.io/wedding/share-v3.jpg';  // 900 x 1200 (3:4) 세로 썸네일
