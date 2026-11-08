@@ -299,6 +299,12 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 .fam-kid { display: block; position: relative; z-index: 3; width: 40%; margin-top: -20%; }
 .fam-kid.kid-r { margin-left: auto; margin-right: 9%; }
 .fam-kid.kid-l { margin-right: auto; margin-left: 9%; }
+.fam-kids { position: relative; z-index: 3; display: flex; justify-content: space-between; align-items: flex-start; margin-top: -20%; padding: 0 7%; }
+.fam-kids .fam-kid { margin: 0 !important; width: 40%; }
+.fam-kids .fam-kid.kid2 { width: 27%; margin-top: 10% !important; }
+.fam-gy .fam-kids .fam-kid.kid2 { width: 33%; }
+.fam-kids .kid2.kid-l img { transform: rotate(-6deg); }
+.fam-kids .kid2.kid-r img { transform: rotate(5deg); }
 .fam-kid img { display: block; width: 100%; height: auto; filter: drop-shadow(0 6px 10px rgba(42,40,35,.25)) drop-shadow(0 1px 2px rgba(42,40,35,.2)); }
 .fam-kid.kid-r img { transform: rotate(4deg); }
 .fam-kid.kid-l img { transform: rotate(-4deg); }
@@ -551,7 +557,10 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
         <img src="f/pj2.jpg" alt="정득주 · 임수진 두 분의 결혼식 사진" width="900" height="1264" loading="lazy" decoding="async">
         <figcaption class="fam-cap"><span class="fam-parents">정득주 · 임수진</span><span class="fam-rel">의 셋째 아들</span><span class="fam-child">현석</span></figcaption>
       </figure>
-      <picture class="fam-kid kid-r"><source srcset="f/hs4.webp" type="image/webp"><img src="f/hs4.png" alt="어린 시절의 현석" width="600" height="717" loading="lazy" decoding="async"></picture>
+      <div class="fam-kids">
+        <picture class="fam-kid kid2 kid-l"><source srcset="f/hs2.webp" type="image/webp"><img src="f/hs2.png" alt="수영장에서 웃는 어린 현석" width="440" height="1117" loading="lazy" decoding="async"></picture>
+        <picture class="fam-kid kid-r"><source srcset="f/hs4.webp" type="image/webp"><img src="f/hs4.png" alt="어린 시절의 현석" width="600" height="717" loading="lazy" decoding="async"></picture>
+      </div>
       <div class="fam-letters">
         <article class="pletter">
           <p class="to">사랑하는 아들 현석에게</p>
@@ -568,7 +577,10 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
         <img src="f/py.jpg" alt="양규봉 · 김봉순 두 분의 결혼식 사진" width="900" height="1123" loading="lazy" decoding="async">
         <figcaption class="fam-cap"><span class="fam-parents">양규봉 · 김봉순</span><span class="fam-rel">의 둘째 딸</span><span class="fam-child">가영</span></figcaption>
       </figure>
-      <picture class="fam-kid kid-l"><source srcset="f/gy3.webp" type="image/webp"><img src="f/gy3.png" alt="어린 시절의 가영" width="560" height="738" loading="lazy" decoding="async"></picture>
+      <div class="fam-kids">
+        <picture class="fam-kid kid-l"><source srcset="f/gy3.webp" type="image/webp"><img src="f/gy3.png" alt="어린 시절의 가영" width="560" height="738" loading="lazy" decoding="async"></picture>
+        <picture class="fam-kid kid2 kid-r"><source srcset="f/gy2.webp" type="image/webp"><img src="f/gy2.png" alt="고양이 분장을 한 어린 가영" width="560" height="985" loading="lazy" decoding="async"></picture>
+      </div>
       <div class="fam-letters">
         <article class="pletter pletter-hand">
           <picture><source srcset="f/gy_mom.webp" type="image/webp"><img src="f/gy_mom.png" alt="사랑하는 딸 가영에게. 사랑하는 딸 결혼을 진심으로 축하해. 네가 아주 조그마했던 시절 자전거 바구니에 너를 태우고 자전거를 타던 때가 엊그제 같은데 이제 곧 세상에서 가장 빛나는 신부가 될 너를 생각하니 감회가 새롭구나. 건강하고 예쁘게 잘 자라주어 고마워. 앞으로 현석이와 함께 서로의 비바람을 막아주는 지붕이 되어 따뜻한 가정을 이루길 바란다. 항상 옆에서 응원할게. 사랑해~" width="1553" height="1909" loading="lazy" decoding="async"></picture>
@@ -947,7 +959,7 @@ html.rv-on .rv.in { opacity: 1; transform: none; }
 (function () {
   /* ▼ 여기만 바꾸면 됩니다 ▼ */
   var KAKAO_JS_KEY = '1e75ce76e7372491e4b502ebba8c8f0d';
-  var VER          = '11081820';   // 업데이트할 때마다 바뀌는 번호 — 카톡이 예전 페이지를 다시 보여주지 않게
+  var VER          = '11081836';   // 업데이트할 때마다 바뀌는 번호 — 카톡이 예전 페이지를 다시 보여주지 않게
   var SITE_URL     = 'https://hsjeong14.github.io/wedding/v5/?v=' + VER;          // 청첩장 주소
   var MAP_URL      = 'https://hsjeong14.github.io/wedding/v5/?v=' + VER + '#location'; // '식장 위치 보기'가 열 주소
   var IMAGE_URL    = 'https://hsjeong14.github.io/wedding/share-v5.jpg';  // 900 x 1200 (3:4) 세로 썸네일
